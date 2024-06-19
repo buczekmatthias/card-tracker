@@ -22,9 +22,9 @@
 </template>
 
 <script setup>
-import CardSlots from "@/components/CardSlots.vue";
-import Container from "@/components/Container.vue";
-import Card from "@/components/Card.vue";
+import CardSlots from "@/components/Tracker/CardSlots.vue";
+import Container from "@/components/Tracker/Container.vue";
+import Card from "@/components/Tracker/Card.vue";
 
 const cards = JSON.parse(localStorage.getItem("cards"));
 

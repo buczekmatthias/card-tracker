@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 #app {
-  @apply mx-auto min-h-screen text-font flex flex-col w-full max-w-4xl;
+  @apply mx-auto min-h-screen text-font flex flex-col w-full max-w-2xl;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -15,7 +15,7 @@ html {
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
-  @apply border border-solid bg-theme text-font rounded-md px-2 py-1;
+  @apply border border-solid bg-theme text-font rounded-md px-2 py-1.5;
 }
 
 @layer components {
@@ -39,4 +39,13 @@ input[type="number"] {
   .container-subcontent span:nth-of-type(n + 3) {
     @apply text-center;
   }
+
+  .loadout-grid {
+    @apply grid grid-cols-[3fr_repeat(5,1fr)];
+  }
+}
+.preset {
+  writing-mode: vertical-lr;
+  text-align: center;
+  transform: rotate(180deg);
 }

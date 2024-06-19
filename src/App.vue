@@ -12,6 +12,8 @@ import Navigation from "./components/Navigation.vue";
 import { onBeforeMount, ref } from "vue";
 import freshLoad from "./data/freshLoad";
 import updateData from "./data/updateData";
+import freshLoadout from "./data/freshLoadout";
+import updateLoadout from "./data/updateLoadout";
 
 const page = ref(localStorage.getItem("page") || "tracker");
 
@@ -23,13 +25,19 @@ const changePage = (p) => {
 };
 
 onBeforeMount(() => {
-  if (page.value === "tracker") {
-    if (!localStorage.getItem("cards")) {
-      freshLoad();
-    } else if (!localStorage.getItem(`${version}-update`)) {
-      updateData();
-    }
-    localStorage.setItem(`${version}-update`, true);
+  if (!localStorage.getItem("cards")) {
+    freshLoad();
   }
+
+  if (!localStorage.getItem("presets")) {
+    freshLoadout();
+  }
+
+  if (!localStorage.getItem(`${version}-update`)) {
+    updateData();
+    updateLoadout();
+  }
+
+  localStorage.setItem(`${version}-update`, true);
 });
 </script>

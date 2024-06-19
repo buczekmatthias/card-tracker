@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       backgroundColor: {
+        active: "#32ef2e",
         theme: "#111111",
         card: {
           common: "#919191",
@@ -14,6 +15,11 @@ export default {
       borderColor: {
         container: "#343434",
         active: "#32ef2e",
+        inactive: "#404040",
+      },
+      fill: {
+        active: "#111111",
+        inactive: "#404040",
       },
       minHeight: {
         screen: ["100vh", "100dvh"],
