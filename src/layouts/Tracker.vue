@@ -1,5 +1,6 @@
 <template>
   <div class="p-container flex flex-col gap-8">
+    <GemTracker />
     <Container>
       <CardSlots />
     </Container>
@@ -25,6 +26,7 @@
 import CardSlots from "@/components/Tracker/CardSlots.vue";
 import Container from "@/components/Tracker/Container.vue";
 import Card from "@/components/Tracker/Card.vue";
+import GemTracker from "@/components/Tracker/GemTracker.vue";
 
 const cards = JSON.parse(localStorage.getItem("cards"));
 

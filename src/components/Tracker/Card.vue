@@ -9,7 +9,7 @@
       <span>Left</span>
       <input type="number" v-model="updatedCard.lvl" min="0" max="7" />
       <input type="number" v-model="updatedCard.owned" min="0" />
-      <span>{{ target }}</span>
+      <span>{{ target || "Max" }}</span>
       <span>{{ getPercentageOfMax(getRequiredToMax(updatedCard.lvl, updatedCard.owned)) }}</span>
       <span>{{ getRequiredToMax(updatedCard.lvl, updatedCard.owned) }}</span>
     </div>

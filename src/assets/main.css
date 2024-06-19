@@ -19,6 +19,10 @@ input[type="number"] {
 }
 
 @layer components {
+  .tracker-container {
+    @apply border border-solid border-container rounded-md p-2.5;
+  }
+
   .container-header {
     @apply text-3xl font-semibold mb-4;
   }

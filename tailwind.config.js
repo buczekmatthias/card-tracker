@@ -15,11 +15,16 @@ export default {
       borderColor: {
         container: "#343434",
         active: "#32ef2e",
-        inactive: "#404040",
+        inactive: "#2b2b2b",
+        card: {
+          common: "#919191",
+          rare: "#236dc8",
+          epic: "#c825ad",
+        },
       },
       fill: {
         active: "#111111",
-        inactive: "#404040",
+        inactive: "#2b2b2b",
       },
       minHeight: {
         screen: ["100vh", "100dvh"],

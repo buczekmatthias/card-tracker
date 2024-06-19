@@ -29,8 +29,18 @@ const getRequiredToMax = (level, owned) => {
   }
 };
 
-const getPercentageOfMax = (required) => {
-  return (100 - (required / 80) * 100).toFixed(1);
+const getPercentageOfMax = (required) => (100 - (required / 80) * 100).toFixed(1);
+
+const getCardChance = () => {
+  const cards = JSON.parse(localStorage.getItem("cards"));
+
+  // If commons are not maxed
+  if (cards[0].cards.some((card) => card.lvl < 7)) return { Common: 80, Rare: 17, Epic: 3 };
+
+  // If rares are not maxed
+  if (cards[1].cards.some((card) => card.lvl < 7)) return { Common: 0, Rare: 97, Epic: 3 };
+
+  return { Common: 0, Rare: 0, Epic: 100 };
 };
 
-export { levels, getRequiredToMax, getPercentageOfMax };
+export { levels, getRequiredToMax, getPercentageOfMax, getCardChance };
