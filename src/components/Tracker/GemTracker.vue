@@ -136,7 +136,7 @@ const getGroupData = (index) => {
 const requiredCards = ref(getRequiredCards());
 const obtainedCards = ref(cards.length * 80 - requiredCards.value);
 const requiredCardGems = ref(requiredCards.value * 20);
-const cardCompletePercent = ref((obtainedCards.value / (cards.length * 80)).toFixed(2));
+const cardCompletePercent = ref(((obtainedCards.value / (cards.length * 80)) * 100).toFixed(2));
 
 const commonStats = ref(getGroupData(0));
 const rareStats = ref(getGroupData(1));
@@ -153,7 +153,7 @@ const refreshTracker = () => {
   requiredCards.value = getRequiredCards();
   obtainedCards.value = cards.length * 80 - requiredCards.value;
   requiredCardGems.value = requiredCards.value * 20;
-  cardCompletePercent.value = (obtainedCards.value / (cards.length * 80)).toFixed(2);
+  cardCompletePercent.value = ((obtainedCards.value / (cards.length * 80)) * 100).toFixed(2);
 
   commonStats.value = getGroupData(0);
   rareStats.value = getGroupData(1);
