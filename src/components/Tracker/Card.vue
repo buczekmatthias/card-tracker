@@ -33,7 +33,7 @@ watch(
   () => {
     updatedCard.value.lvl = updatedCard.value.lvl > 7 ? 7 : updatedCard.value.lvl > 0 ? updatedCard.value.lvl : 0;
     target.value = levels[updatedCard.value.lvl];
-    if (updatedCard.value.owned > target.value || updatedCard.lvl === 7) {
+    if (updatedCard.value.owned > target.value || updatedCard.value.lvl === 7) {
       updatedCard.value.owned = 0;
     }
   }

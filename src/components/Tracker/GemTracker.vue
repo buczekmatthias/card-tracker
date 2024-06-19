@@ -144,8 +144,8 @@ const epicStats = ref(getGroupData(2));
 
 const cardChances = ref(getCardChance());
 
-const slotsCost = ref(slotsCostToMax(localStorage.getItem("ownedSlots")));
-const slotsPercent = ref(getSlotMaxPercent(localStorage.getItem("ownedSlots")));
+const slotsCost = ref(slotsCostToMax(localStorage.getItem("ownedSlots") || 1));
+const slotsPercent = ref(getSlotMaxPercent(localStorage.getItem("ownedSlots") || 1));
 
 const refreshTracker = () => {
   storageCards.value = JSON.parse(localStorage.getItem("cards"));
@@ -161,8 +161,8 @@ const refreshTracker = () => {
 
   cardChances.value = getCardChance();
 
-  slotsCost.value = slotsCostToMax(localStorage.getItem("ownedSlots"));
-  slotsPercent.value = getSlotMaxPercent(localStorage.getItem("ownedSlots"));
+  slotsCost.value = slotsCostToMax(localStorage.getItem("ownedSlots") || 1);
+  slotsPercent.value = getSlotMaxPercent(localStorage.getItem("ownedSlots") || 1);
 };
 
 defineExpose({ refreshTracker });
