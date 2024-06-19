@@ -1,35 +1,42 @@
-@import './base.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+  @apply mx-auto min-h-screen text-font flex flex-col w-full max-w-4xl;
+  font-family: "Open Sans", sans-serif;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+html {
+  scroll-behavior: smooth;
+  @apply bg-theme;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  @apply border border-solid bg-theme text-font rounded-md px-2 py-1;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
+@layer components {
+  .container-header {
+    @apply text-3xl font-semibold mb-4;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  .container-content {
+    @apply grid grid-cols-4 gap-2 items-center;
+  }
+  .container-content span:not(:first-of-type) {
+    @apply text-center;
+  }
+
+  .container-subheader {
+    @apply text-2xl;
+  }
+  .container-subcontent {
+    @apply grid grid-cols-5 gap-2 items-center;
+  }
+  .container-subcontent span:nth-of-type(n + 3) {
+    @apply text-center;
   }
 }
