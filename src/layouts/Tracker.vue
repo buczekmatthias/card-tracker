@@ -1,8 +1,8 @@
 <template>
   <div class="p-container flex flex-col gap-8">
-    <GemTracker />
+    <GemTracker ref="tracker" />
     <Container>
-      <CardSlots />
+      <CardSlots @updateOwnedSlots="updateTracker()" />
     </Container>
     <div v-for="(group, i) in cards" :key="group.name" class="flex flex-col gap-3">
       <p
@@ -28,10 +28,17 @@ import Container from "@/components/Tracker/Container.vue";
 import Card from "@/components/Tracker/Card.vue";
 import GemTracker from "@/components/Tracker/GemTracker.vue";
 
+import { ref } from "vue";
+
 const cards = JSON.parse(localStorage.getItem("cards"));
+
+const tracker = ref(null);
 
 const updateCard = (card, group, card_id) => {
   cards[group].cards[card_id] = card;
   localStorage.setItem("cards", JSON.stringify(cards));
+  updateTracker();
 };
+
+const updateTracker = () => tracker.value.refreshTracker();
 </script>

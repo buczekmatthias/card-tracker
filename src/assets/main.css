@@ -17,6 +17,9 @@ input[type="number"] {
   appearance: textfield;
   @apply border border-solid bg-theme text-font rounded-md px-2 py-1.5;
 }
+input[type="number"]:disabled {
+  @apply border-container text-opacity-50 cursor-not-allowed;
+}
 
 @layer components {
   .tracker-container {
