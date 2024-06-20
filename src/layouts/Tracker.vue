@@ -1,9 +1,7 @@
 <template>
   <div class="p-container flex flex-col gap-8">
     <GemTracker ref="tracker" />
-    <Container>
-      <CardSlots @updateOwnedSlots="updateTracker()" />
-    </Container>
+    <CardSlots @updateOwnedSlots="updateTracker()" />
     <div v-for="(group, i) in cards" :key="group.name" class="flex flex-col gap-3">
       <p
         class="container-header p-3 bg-opacity-90 rounded-md -mb-1"
@@ -15,16 +13,13 @@
       >
         {{ group.name }}
       </p>
-      <Container v-for="(card, ind) in group.cards" :key="card.name">
-        <Card :card="card" @cardUpdate="updateCard($event, i, ind)" />
-      </Container>
+      <Card v-for="(card, ind) in group.cards" :key="card.name" :card="card" @cardUpdate="updateCard($event, i, ind)" />
     </div>
   </div>
 </template>
 
 <script setup>
 import CardSlots from "@/components/Tracker/CardSlots.vue";
-import Container from "@/components/Tracker/Container.vue";
 import Card from "@/components/Tracker/Card.vue";
 import GemTracker from "@/components/Tracker/GemTracker.vue";
 

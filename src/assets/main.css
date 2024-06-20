@@ -12,13 +12,12 @@ html {
   @apply bg-theme;
 }
 
-input[type="number"] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-  @apply border border-solid bg-theme text-font rounded-md px-2 py-1.5;
+select {
+  @apply border border-solid bg-theme text-font rounded-md px-2 py-1.5 cursor-pointer;
 }
-input[type="number"]:disabled {
-  @apply border-container text-opacity-50 cursor-not-allowed;
+
+select:disabled {
+  @apply cursor-not-allowed;
 }
 
 @layer components {
@@ -30,20 +29,19 @@ input[type="number"]:disabled {
     @apply text-3xl font-semibold mb-4;
   }
 
-  .container-content {
-    @apply grid grid-cols-4 gap-2 items-center;
-  }
-  .container-content span:not(:first-of-type) {
-    @apply text-center;
+  .slots-content {
+    @apply grid grid-cols-5 gap-2 items-center;
   }
 
   .container-subheader {
     @apply text-2xl;
   }
-  .container-subcontent {
+  .container-content {
     @apply grid grid-cols-5 gap-2 items-center;
   }
-  .container-subcontent span:nth-of-type(n + 3) {
+
+  .container-content span:nth-of-type(n + 3),
+  .slots-content span:nth-of-type(n + 3) {
     @apply text-center;
   }
 

@@ -31,6 +31,17 @@ const slotsCostToMax = (owned) => {
   return cost;
 };
 
+const costToTarget = (owned, target) => {
+  let cost = 0;
+  owned = parseInt(owned) + 1;
+
+  for (let i = owned; i <= target; i++) {
+    cost += slots[i];
+  }
+
+  return cost;
+};
+
 const getSlotMaxPercent = (owned) => ((owned / Object.keys(slots).length) * 100).toFixed(1);
 
-export { slots, slotsCostToMax, getSlotMaxPercent };
+export { slots, slotsCostToMax, getSlotMaxPercent, costToTarget };
