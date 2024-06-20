@@ -47,8 +47,8 @@ watch(
   () => {
     localStorage.setItem("ownedSlots", ownedSlots.value);
     emit("updateOwnedSlots");
-    if (targetSlot.value < ownedSlots.value) {
-      targetSlot.value = ownedSlots.value + 1;
+    if (targetSlot.value <= ownedSlots.value) {
+      targetSlot.value = parseInt(ownedSlots.value) === parseInt(maxSlots.value) ? maxSlots.value : ownedSlots.value + 1;
     }
   }
 );
