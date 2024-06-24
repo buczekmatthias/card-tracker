@@ -1,5 +1,5 @@
 <template>
-  <Container class="flex flex-col gap-4">
+  <Container class="flex flex-col gap-2">
     <p class="container-subheader">{{ updatedCard.name }}</p>
     <div class="container-content">
       <span>Level</span>

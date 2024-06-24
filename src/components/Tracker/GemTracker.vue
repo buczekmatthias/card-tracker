@@ -17,62 +17,71 @@
       <p>Cards %</p>
       <p>{{ cardCompletePercent }}</p>
     </div>
-    <Container class="border-card-common col-span-full tracker-grid">
-      <p class="col-span-full text-2xl">Common</p>
-      <div>
-        <p>Cards required</p>
-        <p>{{ commonStats.required }}</p>
-      </div>
-      <div>
-        <p>Cards obtained</p>
-        <p>{{ commonStats.obtained }}</p>
-      </div>
-      <div>
-        <p>Gems required</p>
-        <p>{{ commonStats.gems }}</p>
-      </div>
-      <div>
-        <p>% finished</p>
-        <p>{{ commonStats.percent }}</p>
-      </div>
+    <Container class="border-card-common col-span-full tracker-grid" :class="{ 'items-center': commonStats.required === 0 }">
+      <p class="text-2xl" :class="{ 'col-span-full': commonStats.required !== 0 }">Common</p>
+      <template v-if="commonStats.required !== 0">
+        <div>
+          <p>Cards required</p>
+          <p>{{ commonStats.required }}</p>
+        </div>
+        <div>
+          <p>Cards obtained</p>
+          <p>{{ commonStats.obtained }}</p>
+        </div>
+        <div>
+          <p>Gems required</p>
+          <p>{{ commonStats.gems }}</p>
+        </div>
+        <div>
+          <p>% finished</p>
+          <p>{{ commonStats.percent }}</p>
+        </div>
+      </template>
+      <p class="justify-self-end" v-else>Finished</p>
     </Container>
-    <Container class="border-card-rare col-span-full tracker-grid">
-      <p class="col-span-full text-2xl">Rare</p>
-      <div>
-        <p>Cards required</p>
-        <p>{{ rareStats.required }}</p>
-      </div>
-      <div>
-        <p>Cards obtained</p>
-        <p>{{ rareStats.obtained }}</p>
-      </div>
-      <div>
-        <p>Gems required</p>
-        <p>{{ rareStats.gems }}</p>
-      </div>
-      <div>
-        <p>% finished</p>
-        <p>{{ rareStats.percent }}</p>
-      </div>
+    <Container class="border-card-rare col-span-full tracker-grid" :class="{ 'items-center': rareStats.required === 0 }">
+      <p class="text-2xl" :class="{ 'col-span-full': rareStats.required !== 0 }">Rare</p>
+      <template v-if="rareStats.required !== 0">
+        <div>
+          <p>Cards required</p>
+          <p>{{ rareStats.required }}</p>
+        </div>
+        <div>
+          <p>Cards obtained</p>
+          <p>{{ rareStats.obtained }}</p>
+        </div>
+        <div>
+          <p>Gems required</p>
+          <p>{{ rareStats.gems }}</p>
+        </div>
+        <div>
+          <p>% finished</p>
+          <p>{{ rareStats.percent }}</p>
+        </div>
+      </template>
+      <p class="justify-self-end" v-else>Finished</p>
     </Container>
-    <Container class="border-card-epic col-span-full tracker-grid">
-      <p class="col-span-full text-2xl">Epic</p>
-      <div>
-        <p>Cards required</p>
-        <p>{{ epicStats.required }}</p>
-      </div>
-      <div>
-        <p>Cards obtained</p>
-        <p>{{ epicStats.obtained }}</p>
-      </div>
-      <div>
-        <p>Gems required</p>
-        <p>{{ epicStats.gems }}</p>
-      </div>
-      <div>
-        <p>% finished</p>
-        <p>{{ epicStats.percent }}</p>
-      </div>
+    <Container class="border-card-epic col-span-full tracker-grid" :class="{ 'items-center': epicStats.required === 0 }">
+      <p class="text-2xl" :class="{ 'col-span-full': epicStats.required !== 0 }">Epic</p>
+      <template v-if="epicStats.required !== 0">
+        <div>
+          <p>Cards required</p>
+          <p>{{ epicStats.required }}</p>
+        </div>
+        <div>
+          <p>Cards obtained</p>
+          <p>{{ epicStats.obtained }}</p>
+        </div>
+        <div>
+          <p>Gems required</p>
+          <p>{{ epicStats.gems }}</p>
+        </div>
+        <div>
+          <p>% finished</p>
+          <p>{{ epicStats.percent }}</p>
+        </div>
+      </template>
+      <p class="justify-self-end" v-else>Finished</p>
     </Container>
     <div>
       <p>Slots cost</p>
@@ -96,7 +105,7 @@
 import Container from "./Container.vue";
 
 import cards from "@/data/cards.json";
-import { getRequiredToMax, getCardChance } from "@/data/cardLevels";
+import { getRequiredToMax, getCardChance, getGroupData } from "@/data/cardLevels";
 import { getSlotMaxPercent, slotsCostToMax } from "@/data/cardSlots";
 import { ref } from "vue";
 
@@ -112,25 +121,6 @@ const getRequiredCards = () => {
   }
 
   return required;
-};
-
-const getGroupData = (index) => {
-  let cards = storageCards.value[index].cards;
-
-  let required = 0;
-
-  for (let card of cards) {
-    required += getRequiredToMax(card.lvl, card.owned);
-  }
-
-  let obtained = cards.length * 80 - required;
-
-  return {
-    required: required,
-    obtained: obtained,
-    gems: required * 20,
-    percent: (100 - (required / (80 * cards.length)) * 100).toFixed(2),
-  };
 };
 
 const requiredCards = ref(getRequiredCards());

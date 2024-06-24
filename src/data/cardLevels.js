@@ -43,4 +43,23 @@ const getCardChance = () => {
   return { Common: 0, Rare: 0, Epic: 100 };
 };
 
-export { levels, getRequiredToMax, getPercentageOfMax, getCardChance };
+const getGroupData = (group_id) => {
+  let cards = JSON.parse(localStorage.getItem("cards"))[group_id].cards;
+
+  let required = 0;
+
+  for (let card of cards) {
+    required += getRequiredToMax(card.lvl, card.owned);
+  }
+
+  let obtained = cards.length * 80 - required;
+
+  return {
+    required: required,
+    obtained: obtained,
+    gems: required * 20,
+    percent: (100 - (required / (80 * cards.length)) * 100).toFixed(2),
+  };
+};
+
+export { levels, getRequiredToMax, getPercentageOfMax, getCardChance, getGroupData };

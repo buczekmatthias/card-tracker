@@ -5,22 +5,23 @@ export default {
     extend: {
       backgroundColor: {
         active: "#32ef2e",
-        theme: "#111111",
         card: {
           common: "#919191",
-          rare: "#236dc8",
           epic: "#c825ad",
+          rare: "#236dc8",
         },
+        theme: "#111111",
       },
       borderColor: {
-        container: "#343434",
         active: "#32ef2e",
-        inactive: "#2b2b2b",
         card: {
           common: "#919191",
-          rare: "#236dc8",
           epic: "#c825ad",
+          rare: "#236dc8",
         },
+        container: "#343434",
+        inactive: "#2b2b2b",
+        separator: "#fafafa",
       },
       fill: {
         active: "#111111",
@@ -33,8 +34,8 @@ export default {
         container: "0.75rem",
       },
       textColor: {
-        font: "#fafafa",
         active: "#32ef2e",
+        font: "#fafafa",
         inactive: "#343434",
       },
     },
