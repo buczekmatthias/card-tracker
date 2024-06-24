@@ -13,7 +13,7 @@
       >
         <div class="w-full flex gap-3 items-center justify-between mb-4">
           <p class="container-header mb-0">{{ group.name }}</p>
-          <p class="cursor-pointer" @click="collapseGroup[i] = !collapseGroup[i]">{{ collapseGroup[i] ? "Show" : "Hide" }} cards</p>
+          <p class="cursor-pointer" v-if="isGroupFinished[i]" @click="collapseGroup[i] = !collapseGroup[i]">{{ collapseGroup[i] ? "Show" : "Hide" }} cards</p>
         </div>
         <p>{{ group.cards.length }} cards</p>
         <p class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 pl-2" v-if="isGroupFinished[i]">Group finished</p>
