@@ -8,6 +8,18 @@ const levels = {
   6: 32,
 };
 
+const getRequiredCards = (groups) => {
+  let required = 0;
+
+  for (let group of groups) {
+    for (let card of group.cards) {
+      required += getRequiredToMax(card.lvl, card.owned);
+    }
+  }
+
+  return required;
+};
+
 const getRequiredToMax = (level, owned) => {
   switch (level) {
     case 0:
@@ -57,9 +69,9 @@ const getGroupData = (group_id) => {
   return {
     required: required,
     obtained: obtained,
-    gems: required * 20,
-    percent: (100 - (required / (80 * cards.length)) * 100).toFixed(2),
+    gems_required: required * 20,
+    percent_finished: (100 - (required / (80 * cards.length)) * 100).toFixed(2),
   };
 };
 
-export { levels, getRequiredToMax, getPercentageOfMax, getCardChance, getGroupData };
+export { levels, getRequiredCards, getRequiredToMax, getPercentageOfMax, getCardChance, getGroupData };

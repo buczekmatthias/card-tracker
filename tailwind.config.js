@@ -27,6 +27,9 @@ export default {
         active: "#111111",
         inactive: "#2b2b2b",
       },
+      height: {
+        screen: ["100vh", "100dvh"],
+      },
       minHeight: {
         screen: ["100vh", "100dvh"],
       },

@@ -1,5 +1,7 @@
 <template>
   <div class="p-container flex flex-col gap-4">
+    <ExportButton @click="showExport = true" />
+    <Export v-if="showExport" @closeExport="showExport = false" ref="exportComponent" />
     <GemTracker ref="tracker" />
     <CardSlots @updateOwnedSlots="updateTracker()" />
     <div v-for="(group, i) in cards" :key="group.name" class="flex flex-col gap-3">
@@ -29,6 +31,8 @@
 import CardSlots from "@/components/Tracker/CardSlots.vue";
 import Card from "@/components/Tracker/Card.vue";
 import GemTracker from "@/components/Tracker/GemTracker.vue";
+import ExportButton from "@/components/ExportButton.vue";
+import Export from "@/components/Tracker/Export.vue";
 
 import { getGroupData } from "@/data/cardLevels";
 import { ref, onMounted } from "vue";
@@ -36,6 +40,10 @@ import { ref, onMounted } from "vue";
 const cards = ref(JSON.parse(localStorage.getItem("cards")));
 
 const tracker = ref(null);
+
+const exportComponent = ref(null);
+
+const showExport = ref(false);
 
 const isGroupFinished = ref([false, false, false]);
 

@@ -15,7 +15,7 @@ defineEmits(["pageChange"]);
 
 <style lang="postcss" scoped>
 .nav {
-  @apply w-full gap-3 p-container grid grid-cols-2;
+  @apply w-full gap-2 p-container grid grid-cols-2;
 }
 .nav-btn {
   @apply border-2 border-solid rounded-md px-5 py-3;

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html:has(#export) {
+  @apply overflow-hidden h-screen;
+}
+
 #app {
   @apply mx-auto min-h-screen text-font flex flex-col w-full max-w-2xl;
   font-family: "Open Sans", sans-serif;

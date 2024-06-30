@@ -30,11 +30,11 @@
         </div>
         <div>
           <p>Gems required</p>
-          <p>{{ commonStats.gems }}</p>
+          <p>{{ commonStats.gems_required }}</p>
         </div>
         <div>
           <p>% finished</p>
-          <p>{{ commonStats.percent }}</p>
+          <p>{{ commonStats.percent_finished }}</p>
         </div>
       </template>
       <p class="justify-self-end" v-else>Finished</p>
@@ -52,11 +52,11 @@
         </div>
         <div>
           <p>Gems required</p>
-          <p>{{ rareStats.gems }}</p>
+          <p>{{ rareStats.gems_required }}</p>
         </div>
         <div>
           <p>% finished</p>
-          <p>{{ rareStats.percent }}</p>
+          <p>{{ rareStats.percent_finished }}</p>
         </div>
       </template>
       <p class="justify-self-end" v-else>Finished</p>
@@ -74,11 +74,11 @@
         </div>
         <div>
           <p>Gems required</p>
-          <p>{{ epicStats.gems }}</p>
+          <p>{{ epicStats.gems_required }}</p>
         </div>
         <div>
           <p>% finished</p>
-          <p>{{ epicStats.percent }}</p>
+          <p>{{ epicStats.percent_finished }}</p>
         </div>
       </template>
       <p class="justify-self-end" v-else>Finished</p>
@@ -105,25 +105,13 @@
 import Container from "./Container.vue";
 
 import cards from "@/data/cards.json";
-import { getRequiredToMax, getCardChance, getGroupData } from "@/data/cardLevels";
+import { getRequiredCards, getCardChance, getGroupData } from "@/data/cardLevels";
 import { getSlotMaxPercent, slotsCostToMax } from "@/data/cardSlots";
 import { ref } from "vue";
 
 const storageCards = ref(JSON.parse(localStorage.getItem("cards")));
 
-const getRequiredCards = () => {
-  let required = 0;
-
-  for (let group of storageCards.value) {
-    for (let card of group.cards) {
-      required += getRequiredToMax(card.lvl, card.owned);
-    }
-  }
-
-  return required;
-};
-
-const requiredCards = ref(getRequiredCards());
+const requiredCards = ref(getRequiredCards(storageCards.value));
 const obtainedCards = ref(cards.length * 80 - requiredCards.value);
 const requiredCardGems = ref(requiredCards.value * 20);
 const cardCompletePercent = ref(((obtainedCards.value / (cards.length * 80)) * 100).toFixed(2));
@@ -140,7 +128,7 @@ const slotsPercent = ref(getSlotMaxPercent(localStorage.getItem("ownedSlots") ||
 const refreshTracker = () => {
   storageCards.value = JSON.parse(localStorage.getItem("cards"));
 
-  requiredCards.value = getRequiredCards();
+  requiredCards.value = getRequiredCards(storageCards.value);
   obtainedCards.value = cards.length * 80 - requiredCards.value;
   requiredCardGems.value = requiredCards.value * 20;
   cardCompletePercent.value = ((obtainedCards.value / (cards.length * 80)) * 100).toFixed(2);
