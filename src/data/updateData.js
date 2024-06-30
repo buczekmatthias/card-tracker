@@ -10,4 +10,8 @@ export default () => {
   localStorage.setItem("cards", JSON.stringify(cards));
 
   // localStorage.setItem("slots", 19);
+
+  if (!localStorage.getItem("ownedSlots")) {
+    localStorage.setItem("ownedSlots", 1);
+  }
 };

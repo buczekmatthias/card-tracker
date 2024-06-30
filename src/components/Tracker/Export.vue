@@ -67,7 +67,7 @@ const loadExportData = () => {
   exportData.value = {};
 
   if (["tracker_cards_slots", "tracker_slots", "cards_slots", "slots"].includes(exportType.value)) {
-    exportData.value.slots = parseInt(localStorage.getItem("ownedSlots"));
+    exportData.value.owned_card_slots = parseInt(localStorage.getItem("ownedSlots"));
   }
   if (["tracker_cards_slots", "tracker_cards", "cards_slots", "cards"].includes(exportType.value)) {
     exportData.value.cards = storageCards.value.map((entry) => entry.cards);
