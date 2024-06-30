@@ -30,6 +30,18 @@ const options = ref([
     value: "tracker_cards_slots",
   },
   {
+    label: "Tracker + cards",
+    value: "tracker_cards",
+  },
+  {
+    label: "Tracker + slots",
+    value: "tracker_slots",
+  },
+  {
+    label: "Cards + slots",
+    value: "cards_slots",
+  },
+  {
     label: "Tracker",
     value: "tracker",
   },
@@ -54,13 +66,13 @@ const storageCards = ref(JSON.parse(localStorage.getItem("cards")));
 const loadExportData = () => {
   exportData.value = {};
 
-  if (["tracker_cards_slots", "slots"].includes(exportType.value)) {
+  if (["tracker_cards_slots", "tracker_slots", "cards_slots", "slots"].includes(exportType.value)) {
     exportData.value.slots = parseInt(localStorage.getItem("ownedSlots"));
   }
-  if (["tracker_cards_slots", "cards"].includes(exportType.value)) {
+  if (["tracker_cards_slots", "tracker_cards", "cards_slots", "cards"].includes(exportType.value)) {
     exportData.value.cards = storageCards.value.map((entry) => entry.cards);
   }
-  if (["tracker_cards_slots", "tracker"].includes(exportType.value)) {
+  if (["tracker_cards_slots", "tracker_cards", "tracker_slots", "tracker"].includes(exportType.value)) {
     const required_cards = getRequiredCards(storageCards.value);
     const obtained_cards = cards.length * 80 - required_cards;
 
