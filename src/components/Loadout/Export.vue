@@ -32,11 +32,11 @@ const presets = ref(JSON.parse(localStorage.getItem("presets")));
 
 const loadExportData = () => {
   if (exportType.value === "all") {
-    exportData.value = presets.value;
+    exportData.value = presets.value.map((preset) => preset.filter((val) => val.used === true).map((val) => val.name));
   } else {
     let preset_id = parseInt(exportType.value.split("_")[1]);
 
-    exportData.value = presets.value[preset_id - 1];
+    exportData.value = presets.value[preset_id - 1].filter((val) => val.used === true).map((val) => val.name);
   }
 };
 

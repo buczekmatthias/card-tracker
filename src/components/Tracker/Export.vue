@@ -67,7 +67,11 @@ const loadExportData = () => {
   exportData.value = {};
 
   if (["tracker_cards_slots", "tracker_slots", "cards_slots", "slots"].includes(exportType.value)) {
-    exportData.value.owned_card_slots = parseInt(localStorage.getItem("ownedSlots"));
+    exportData.value.slots = {
+      owned_card_slots: parseInt(localStorage.getItem("ownedSlots")),
+      slots_complete_percent: getSlotMaxPercent(localStorage.getItem("ownedSlots")),
+      gems_required_to_max_slots: slotsCostToMax(localStorage.getItem("ownedSlots")),
+    };
   }
   if (["tracker_cards_slots", "tracker_cards", "cards_slots", "cards"].includes(exportType.value)) {
     exportData.value.cards = storageCards.value.map((entry) => entry.cards);
@@ -80,14 +84,12 @@ const loadExportData = () => {
       obtained_cards: obtained_cards,
       required_cards: required_cards,
       required_cards_gems: required_cards * 20,
-      card_complete_percent: ((obtained_cards / (cards.length * 80)) * 100).toFixed(2),
+      cards_complete_percent: ((obtained_cards / (cards.length * 80)) * 100).toFixed(2),
       cards: {
         common: getGroupData(0),
         rare: getGroupData(1),
         epic: getGroupData(2),
       },
-      slots_percent: getSlotMaxPercent(localStorage.getItem("ownedSlots")),
-      slots_cost: slotsCostToMax(localStorage.getItem("ownedSlots")),
     };
   }
 };
