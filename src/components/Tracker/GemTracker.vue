@@ -3,7 +3,7 @@
     <p class="container-header col-span-full">Gem tracker</p>
     <div>
       <p>Cards obtained</p>
-      <p>{{ obtainedCards }}</p>
+      <p>{{ obtainedCards }} ({{ cardCompletePercent }}%)</p>
     </div>
     <div>
       <p>Cards required</p>
@@ -14,8 +14,8 @@
       <p>{{ requiredCardGems }}</p>
     </div>
     <div>
-      <p>Cards %</p>
-      <p>{{ cardCompletePercent }}</p>
+      <p>Gem cards spent</p>
+      <p>{{ (obtainedCards + requiredCards) * 20 - requiredCardGems }}</p>
     </div>
     <Container class="border-card-common col-span-full tracker-grid" :class="{ 'items-center': commonStats.required === 0 }">
       <p class="text-2xl" :class="{ 'col-span-full': commonStats.required !== 0 }">Common</p>
@@ -91,6 +91,10 @@
       <p>Slots %</p>
       <p>{{ slotsPercent }}</p>
     </div>
+    <div>
+      <p>Gems slot spent</p>
+      <p>{{ slotsGemsSpent }}</p>
+    </div>
     <div class="col-span-full grid grid-cols-3 gap-2">
       <p class="container-subheader col-span-full mb-2">Card chances</p>
       <div v-for="(chance, type) in cardChances" :key="type">
@@ -106,7 +110,7 @@ import Container from "./Container.vue";
 
 import cards from "@/data/cards.json";
 import { getRequiredCards, getCardChance, getGroupData } from "@/data/cardLevels";
-import { getSlotMaxPercent, slotsCostToMax } from "@/data/cardSlots";
+import { getSlotMaxPercent, slotsCostToMax, gemsSpentSoFar } from "@/data/cardSlots";
 import { ref } from "vue";
 
 const storageCards = ref(JSON.parse(localStorage.getItem("cards")));
@@ -124,6 +128,7 @@ const cardChances = ref(getCardChance());
 
 const slotsCost = ref(slotsCostToMax(localStorage.getItem("ownedSlots") || 1));
 const slotsPercent = ref(getSlotMaxPercent(localStorage.getItem("ownedSlots") || 1));
+const slotsGemsSpent = ref(gemsSpentSoFar(localStorage.getItem("ownedSlots") || 1));
 
 const refreshTracker = () => {
   storageCards.value = JSON.parse(localStorage.getItem("cards"));
@@ -141,6 +146,7 @@ const refreshTracker = () => {
 
   slotsCost.value = slotsCostToMax(localStorage.getItem("ownedSlots") || 1);
   slotsPercent.value = getSlotMaxPercent(localStorage.getItem("ownedSlots") || 1);
+  slotsGemsSpent.value = gemsSpentSoFar(localStorage.getItem("ownedSlots") || 1);
 };
 
 defineExpose({ refreshTracker });

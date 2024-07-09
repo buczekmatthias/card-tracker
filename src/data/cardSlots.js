@@ -42,6 +42,18 @@ const costToTarget = (owned, target) => {
   return cost;
 };
 
+const gemsSpentSoFar = (owned) => {
+  let cost = 0;
+
+  owned = parseInt(owned);
+
+  for (let i = 1; i <= owned; i++) {
+    cost += slots[i];
+  }
+
+  return cost;
+};
+
 const getSlotMaxPercent = (owned) => ((owned / Object.keys(slots).length) * 100).toFixed(1);
 
-export { slots, slotsCostToMax, getSlotMaxPercent, costToTarget };
+export { slots, slotsCostToMax, getSlotMaxPercent, costToTarget, gemsSpentSoFar };
