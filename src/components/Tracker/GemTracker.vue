@@ -10,14 +10,14 @@
       <p>{{ requiredCards }}</p>
     </div>
     <div>
-      <p>Gem cards required</p>
+      <p>Cards gems required</p>
       <p>{{ requiredCardGems }}</p>
     </div>
     <div>
-      <p>Gem cards spent</p>
+      <p>Cards gems spent</p>
       <p>{{ (obtainedCards + requiredCards) * 20 - requiredCardGems }}</p>
     </div>
-    <Container class="border-card-common col-span-full tracker-grid" :class="{ 'items-center': commonStats.required === 0 }">
+    <Container class="border-card-common col-span-full tracker-grid border-2" :class="{ 'items-center': commonStats.required === 0 }">
       <p class="text-2xl" :class="{ 'col-span-full': commonStats.required !== 0 }">Common</p>
       <template v-if="commonStats.required !== 0">
         <div>
@@ -39,7 +39,7 @@
       </template>
       <p class="justify-self-end" v-else>Finished</p>
     </Container>
-    <Container class="border-card-rare col-span-full tracker-grid" :class="{ 'items-center': rareStats.required === 0 }">
+    <Container class="border-card-rare col-span-full tracker-grid border-2" :class="{ 'items-center': rareStats.required === 0 }">
       <p class="text-2xl" :class="{ 'col-span-full': rareStats.required !== 0 }">Rare</p>
       <template v-if="rareStats.required !== 0">
         <div>
@@ -61,7 +61,7 @@
       </template>
       <p class="justify-self-end" v-else>Finished</p>
     </Container>
-    <Container class="border-card-epic col-span-full tracker-grid" :class="{ 'items-center': epicStats.required === 0 }">
+    <Container class="border-card-epic col-span-full tracker-grid border-2" :class="{ 'items-center': epicStats.required === 0 }">
       <p class="text-2xl" :class="{ 'col-span-full': epicStats.required !== 0 }">Epic</p>
       <template v-if="epicStats.required !== 0">
         <div>
@@ -84,11 +84,11 @@
       <p class="justify-self-end" v-else>Finished</p>
     </Container>
     <div>
-      <p>Gens slot required</p>
+      <p>Slots gems required</p>
       <p>{{ slotsCost }}</p>
     </div>
     <div>
-      <p>Gems slot spent</p>
+      <p>Slots gems spent</p>
       <p>{{ slotsGemsSpent }}</p>
     </div>
     <div class="col-span-full grid grid-cols-3 gap-2">
