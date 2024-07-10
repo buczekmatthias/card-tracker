@@ -11,7 +11,13 @@
         <option :value="i" v-for="i in Array.from(Array(8).keys())" :key="i">{{ i }}</option>
       </select>
       <select v-model="updatedCard.owned" :disabled="[0, 7].includes(updatedCard.lvl)">
-        <option :value="i" v-for="i in Array.from(Array(target).keys())" :key="i">{{ i }}</option>
+        <template v-if="updatedCard.lvl === 1">
+          <option :value="1">1</option>
+          <option :value="2">2</option>
+        </template>
+        <template v-else>
+          <option :value="i" v-for="i in Array.from(Array(target).keys())" :key="i">{{ i }}</option>
+        </template>
       </select>
       <span>{{ target || "Max" }}</span>
       <span>{{ getPercentageOfMax(getRequiredToMax(updatedCard.lvl, updatedCard.owned)) }}</span>
@@ -38,7 +44,7 @@ watch(
   () => updatedCard.value.lvl,
   () => {
     target.value = levels[updatedCard.value.lvl];
-    updatedCard.value.owned = 0;
+    updatedCard.value.owned = updatedCard.value.lvl === 1 ? 1 : 0;
   }
 );
 

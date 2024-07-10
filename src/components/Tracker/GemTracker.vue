@@ -21,20 +21,20 @@
       <p class="text-2xl" :class="{ 'col-span-full': commonStats.required !== 0 }">Common</p>
       <template v-if="commonStats.required !== 0">
         <div>
-          <p>Cards required</p>
-          <p>{{ commonStats.required }}</p>
+          <p>Cards obtained</p>
+          <p>{{ commonStats.obtained }} ({{ commonStats.percent_finished }}%)</p>
         </div>
         <div>
-          <p>Cards obtained</p>
-          <p>{{ commonStats.obtained }}</p>
+          <p>Cards required</p>
+          <p>{{ commonStats.required }}</p>
         </div>
         <div>
           <p>Gems required</p>
           <p>{{ commonStats.gems_required }}</p>
         </div>
         <div>
-          <p>% finished</p>
-          <p>{{ commonStats.percent_finished }}</p>
+          <p>Gems spent</p>
+          <p>{{ commonStats.gems_spent }}</p>
         </div>
       </template>
       <p class="justify-self-end" v-else>Finished</p>
@@ -43,20 +43,20 @@
       <p class="text-2xl" :class="{ 'col-span-full': rareStats.required !== 0 }">Rare</p>
       <template v-if="rareStats.required !== 0">
         <div>
-          <p>Cards required</p>
-          <p>{{ rareStats.required }}</p>
+          <p>Cards obtained</p>
+          <p>{{ rareStats.obtained }} ({{ rareStats.percent_finished }})%</p>
         </div>
         <div>
-          <p>Cards obtained</p>
-          <p>{{ rareStats.obtained }}</p>
+          <p>Cards required</p>
+          <p>{{ rareStats.required }}</p>
         </div>
         <div>
           <p>Gems required</p>
           <p>{{ rareStats.gems_required }}</p>
         </div>
         <div>
-          <p>% finished</p>
-          <p>{{ rareStats.percent_finished }}</p>
+          <p>Gems spent</p>
+          <p>{{ rareStats.gems_spent }}</p>
         </div>
       </template>
       <p class="justify-self-end" v-else>Finished</p>
@@ -65,31 +65,27 @@
       <p class="text-2xl" :class="{ 'col-span-full': epicStats.required !== 0 }">Epic</p>
       <template v-if="epicStats.required !== 0">
         <div>
-          <p>Cards required</p>
-          <p>{{ epicStats.required }}</p>
+          <p>Cards obtained</p>
+          <p>{{ epicStats.obtained }} ({{ epicStats.percent_finished }}%)</p>
         </div>
         <div>
-          <p>Cards obtained</p>
-          <p>{{ epicStats.obtained }}</p>
+          <p>Cards required</p>
+          <p>{{ epicStats.required }}</p>
         </div>
         <div>
           <p>Gems required</p>
           <p>{{ epicStats.gems_required }}</p>
         </div>
         <div>
-          <p>% finished</p>
-          <p>{{ epicStats.percent_finished }}</p>
+          <p>Gems spent</p>
+          <p>{{ epicStats.gems_spent }}</p>
         </div>
       </template>
       <p class="justify-self-end" v-else>Finished</p>
     </Container>
     <div>
-      <p>Slots cost</p>
+      <p>Gens slot required</p>
       <p>{{ slotsCost }}</p>
-    </div>
-    <div>
-      <p>Slots %</p>
-      <p>{{ slotsPercent }}</p>
     </div>
     <div>
       <p>Gems slot spent</p>
@@ -110,7 +106,7 @@ import Container from "./Container.vue";
 
 import cards from "@/data/cards.json";
 import { getRequiredCards, getCardChance, getGroupData } from "@/data/cardLevels";
-import { getSlotMaxPercent, slotsCostToMax, gemsSpentSoFar } from "@/data/cardSlots";
+import { slotsCostToMax, gemsSpentSoFar } from "@/data/cardSlots";
 import { ref } from "vue";
 
 const storageCards = ref(JSON.parse(localStorage.getItem("cards")));
@@ -127,7 +123,6 @@ const epicStats = ref(getGroupData(2));
 const cardChances = ref(getCardChance());
 
 const slotsCost = ref(slotsCostToMax(localStorage.getItem("ownedSlots") || 1));
-const slotsPercent = ref(getSlotMaxPercent(localStorage.getItem("ownedSlots") || 1));
 const slotsGemsSpent = ref(gemsSpentSoFar(localStorage.getItem("ownedSlots") || 1));
 
 const refreshTracker = () => {
@@ -145,7 +140,6 @@ const refreshTracker = () => {
   cardChances.value = getCardChance();
 
   slotsCost.value = slotsCostToMax(localStorage.getItem("ownedSlots") || 1);
-  slotsPercent.value = getSlotMaxPercent(localStorage.getItem("ownedSlots") || 1);
   slotsGemsSpent.value = gemsSpentSoFar(localStorage.getItem("ownedSlots") || 1);
 };
 

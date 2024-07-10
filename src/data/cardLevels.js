@@ -70,6 +70,7 @@ const getGroupData = (group_id) => {
     required: required,
     obtained: obtained,
     gems_required: required * 20,
+    gems_spent: obtained * 20,
     percent_finished: (100 - (required / (80 * cards.length)) * 100).toFixed(2),
   };
 };

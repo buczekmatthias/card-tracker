@@ -54,6 +54,4 @@ const gemsSpentSoFar = (owned) => {
   return cost;
 };
 
-const getSlotMaxPercent = (owned) => ((owned / Object.keys(slots).length) * 100).toFixed(1);
-
-export { slots, slotsCostToMax, getSlotMaxPercent, costToTarget, gemsSpentSoFar };
+export { slots, slotsCostToMax, costToTarget, gemsSpentSoFar };
