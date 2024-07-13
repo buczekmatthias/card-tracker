@@ -11,13 +11,13 @@ import Navigation from "./components/Navigation.vue";
 
 import { onBeforeMount, ref } from "vue";
 import freshLoad from "./data/freshLoad";
-import updateData from "./data/updateData";
 import freshLoadout from "./data/freshLoadout";
+import updateData from "./data/updateData";
 import updateLoadout from "./data/updateLoadout";
 
 const page = ref(localStorage.getItem("page") || "tracker");
 
-const version = "1.1.3";
+const version = "1.2.0";
 
 const changePage = (p) => {
   localStorage.setItem("page", p);
@@ -33,6 +33,13 @@ onBeforeMount(() => {
     freshLoadout();
   }
 
+  if (!localStorage.getItem("ownedSlots")) {
+    localStorage.setItem("ownedSlots", 1);
+  }
+
+  // updateData();
+  // updateLoadout();
+
   if (!localStorage.getItem(`${version}-update`)) {
     for (let key in localStorage) {
       if (key.includes("-update")) {
@@ -40,10 +47,7 @@ onBeforeMount(() => {
       }
     }
 
-    updateData();
-    updateLoadout();
+    localStorage.setItem(`${version}-update`, true);
   }
-
-  localStorage.setItem(`${version}-update`, true);
 });
 </script>

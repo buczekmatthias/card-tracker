@@ -173,5 +173,5 @@ export default () => {
 
   localStorage.setItem("ownedSlots", 1);
 
-  localStorage.setItem("targetSlot", 19);
+  localStorage.setItem("targetSlot", 2);
 };

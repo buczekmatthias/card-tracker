@@ -1,99 +1,36 @@
 <template>
   <Container class="tracker-grid">
-    <p class="container-header col-span-full">Gem tracker</p>
-    <div>
+    <p class="container-header col-span-full mb-0">Gem tracker</p>
+    <div class="tracker-box">
       <p>Cards obtained</p>
       <p>{{ obtainedCards }} ({{ cardCompletePercent }}%)</p>
     </div>
-    <div>
+    <div class="tracker-box">
       <p>Cards required</p>
       <p>{{ requiredCards }}</p>
     </div>
-    <div>
+    <div class="tracker-box">
       <p>Cards gems required</p>
       <p>{{ requiredCardGems }}</p>
     </div>
-    <div>
+    <div class="tracker-box">
       <p>Cards gems spent</p>
       <p>{{ (obtainedCards + requiredCards) * 20 - requiredCardGems }}</p>
     </div>
-    <Container class="border-card-common col-span-full tracker-grid border-2" :class="{ 'items-center': commonStats.required === 0 }">
-      <p class="text-2xl" :class="{ 'col-span-full': commonStats.required !== 0 }">Common</p>
-      <template v-if="commonStats.required !== 0">
-        <div>
-          <p>Cards obtained</p>
-          <p>{{ commonStats.obtained }} ({{ commonStats.percent_finished }}%)</p>
-        </div>
-        <div>
-          <p>Cards required</p>
-          <p>{{ commonStats.required }}</p>
-        </div>
-        <div>
-          <p>Gems required</p>
-          <p>{{ commonStats.gems_required }}</p>
-        </div>
-        <div>
-          <p>Gems spent</p>
-          <p>{{ commonStats.gems_spent }}</p>
-        </div>
-      </template>
-      <p class="justify-self-end" v-else>Finished</p>
-    </Container>
-    <Container class="border-card-rare col-span-full tracker-grid border-2" :class="{ 'items-center': rareStats.required === 0 }">
-      <p class="text-2xl" :class="{ 'col-span-full': rareStats.required !== 0 }">Rare</p>
-      <template v-if="rareStats.required !== 0">
-        <div>
-          <p>Cards obtained</p>
-          <p>{{ rareStats.obtained }} ({{ rareStats.percent_finished }})%</p>
-        </div>
-        <div>
-          <p>Cards required</p>
-          <p>{{ rareStats.required }}</p>
-        </div>
-        <div>
-          <p>Gems required</p>
-          <p>{{ rareStats.gems_required }}</p>
-        </div>
-        <div>
-          <p>Gems spent</p>
-          <p>{{ rareStats.gems_spent }}</p>
-        </div>
-      </template>
-      <p class="justify-self-end" v-else>Finished</p>
-    </Container>
-    <Container class="border-card-epic col-span-full tracker-grid border-2" :class="{ 'items-center': epicStats.required === 0 }">
-      <p class="text-2xl" :class="{ 'col-span-full': epicStats.required !== 0 }">Epic</p>
-      <template v-if="epicStats.required !== 0">
-        <div>
-          <p>Cards obtained</p>
-          <p>{{ epicStats.obtained }} ({{ epicStats.percent_finished }}%)</p>
-        </div>
-        <div>
-          <p>Cards required</p>
-          <p>{{ epicStats.required }}</p>
-        </div>
-        <div>
-          <p>Gems required</p>
-          <p>{{ epicStats.gems_required }}</p>
-        </div>
-        <div>
-          <p>Gems spent</p>
-          <p>{{ epicStats.gems_spent }}</p>
-        </div>
-      </template>
-      <p class="justify-self-end" v-else>Finished</p>
-    </Container>
-    <div>
+    <TrackerGroupStats class="border-card-common" :stats="commonStats" />
+    <TrackerGroupStats class="border-card-rare" :stats="rareStats" />
+    <TrackerGroupStats class="border-card-epic" :stats="epicStats" />
+    <div class="tracker-box">
       <p>Slots gems required</p>
       <p>{{ slotsCost }}</p>
     </div>
-    <div>
+    <div class="tracker-box">
       <p>Slots gems spent</p>
       <p>{{ slotsGemsSpent }}</p>
     </div>
     <div class="col-span-full grid grid-cols-3 gap-2">
       <p class="container-subheader col-span-full mb-2">Card chances</p>
-      <div v-for="(chance, type) in cardChances" :key="type">
+      <div class="tracker-box" v-for="(chance, type) in cardChances" :key="type">
         <p>{{ type }}</p>
         <p>{{ chance }}%</p>
       </div>
@@ -103,6 +40,7 @@
 
 <script setup>
 import Container from "./Container.vue";
+import TrackerGroupStats from "./TrackerGroupStats.vue";
 
 import cards from "@/data/cards.json";
 import { getRequiredCards, getCardChance, getGroupData } from "@/data/cardLevels";
@@ -145,12 +83,3 @@ const refreshTracker = () => {
 
 defineExpose({ refreshTracker });
 </script>
-
-<style lang="postcss">
-.tracker-grid {
-  @apply grid grid-cols-2 gap-6;
-}
-.tracker-box {
-  @apply flex flex-col gap-2;
-}
-</style>

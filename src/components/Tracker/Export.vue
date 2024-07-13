@@ -21,7 +21,7 @@ import ExportBase from "../ExportBase.vue";
 
 import { onMounted, ref, watch } from "vue";
 import { getRequiredCards, getGroupData } from "@/data/cardLevels";
-import { slotsCostToMax, gemsSpentSoFar } from "@/data/cardSlots";
+import { gemsSpentSoFar } from "@/data/cardSlots";
 import cards from "@/data/cards.json";
 
 const options = ref([
@@ -69,7 +69,6 @@ const loadExportData = () => {
   if (["tracker_cards_slots", "tracker_slots", "cards_slots", "slots"].includes(exportType.value)) {
     exportData.value.slots = {
       owned_card_slots: parseInt(localStorage.getItem("ownedSlots")),
-      gems_required_to_max_slots: slotsCostToMax(localStorage.getItem("ownedSlots")),
       spent_slots_gems: gemsSpentSoFar(localStorage.getItem("ownedSlots") || 1),
     };
   }
@@ -85,7 +84,6 @@ const loadExportData = () => {
       required_cards: required_cards,
       required_cards_gems: required_cards * 20,
       spent_cards_gems: (obtained_cards + required_cards) * 20 - required_cards * 20,
-      cards_complete_percent: ((obtained_cards / (cards.length * 80)) * 100).toFixed(2),
       cards: {
         common: getGroupData(0),
         rare: getGroupData(1),

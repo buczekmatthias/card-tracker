@@ -20,11 +20,18 @@ select {
   @apply border border-solid bg-theme text-font rounded-md px-2 py-1.5 cursor-pointer;
 }
 
-select:disabled {
-  @apply cursor-not-allowed;
-}
-
 @layer components {
+  .tracker-grid {
+    @apply grid grid-cols-2 gap-6;
+  }
+  .tracker-box {
+    @apply flex flex-col gap-1;
+  }
+
+  .tracker-box :first-child {
+    @apply text-base font-medium;
+  }
+
   .tracker-container {
     @apply border border-solid border-container rounded-md p-2.5;
   }
@@ -34,19 +41,24 @@ select:disabled {
   }
 
   .slots-content {
-    @apply grid grid-cols-[2fr_2fr_2.5fr_2.5fr_2.5fr] gap-2 items-center;
+    @apply grid grid-cols-[2fr_2fr_2fr_3fr] gap-2 items-center;
   }
 
   .container-subheader {
     @apply text-2xl;
   }
+
   .container-content {
-    @apply grid grid-cols-[1.5fr_2fr_2.5fr_2.5fr_2.5fr] gap-2 items-center;
+    @apply grid gap-2 items-center;
   }
 
-  .container-content span:nth-of-type(n + 3),
-  .slots-content span:nth-of-type(n + 3) {
-    @apply text-center;
+  .slots-content > div,
+  .container-content > div {
+    @apply flex flex-col gap-2;
+  }
+  .slots-content > div:not(:has(select)),
+  .container-content > div:not(:has(select)) {
+    @apply items-center;
   }
 
   .loadout-grid {

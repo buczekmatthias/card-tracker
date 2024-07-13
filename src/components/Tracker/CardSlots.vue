@@ -5,24 +5,43 @@
       <button @click="isShowSlotInfo = !isShowSlotInfo">{{ isShowSlotInfo ? "Hide" : "Show" }} info</button>
     </div>
     <div class="slots-content">
-      <span>Owned</span>
-      <span>Target</span>
-      <span>%</span>
-      <span>Slots left</span>
-      <span>Target gems</span>
-      <select v-model="ownedSlots">
-        <option :value="i" v-for="i in Array.from(Array(parseInt(maxSlots)).keys(), (_, j) => j + 1)" :key="i">{{ i }}</option>
-      </select>
-      <select v-model="targetSlot" :disabled="parseInt(ownedSlots) === parseInt(maxSlots)">
-        <option :value="i" v-for="i in Array.from(Array(parseInt(maxSlots - ownedSlots)).keys(), (_, j) => parseInt(ownedSlots) + j + 1)" :key="i">{{ i }}</option>
-      </select>
-      <span>{{ ((ownedSlots / maxSlots) * 100).toFixed(1) }}</span>
-      <span>{{ maxSlots - ownedSlots }}</span>
-      <span>{{ costToTarget(ownedSlots, targetSlot) }}</span>
+      <div>
+        <span>Owned</span>
+        <select v-model="ownedSlots">
+          <option :value="i" v-for="i in Array.from(Array(parseInt(maxSlots)).keys(), (_, j) => j + 1)" :key="i">{{ i }}</option>
+        </select>
+      </div>
+      <div>
+        <span>Target</span>
+        <select v-model="targetSlot" :disabled="parseInt(ownedSlots) === parseInt(maxSlots)">
+          <option :value="i" v-for="i in Array.from(Array(parseInt(maxSlots - ownedSlots)).keys(), (_, j) => parseInt(ownedSlots) + j + 1)" :key="i">{{ i }}</option>
+        </select>
+      </div>
+      <div>
+        <span>Slots left</span>
+        <span>{{ maxSlots - ownedSlots }}</span>
+      </div>
+      <div>
+        <span>Target gems</span>
+        <span>{{ costToTarget(ownedSlots, targetSlot) }}</span>
+      </div>
     </div>
-    <div class="grid grid-cols-2 gap-3 border-t border-solid border-t-container pt-4" v-if="isShowSlotInfo">
-      <p class="col-span-full font-semibold text-2xl">Slots costs</p>
-      <p class="font-light" v-for="(cost, slot) in slots" :key="slot">{{ slot }}{{ getSlotNumberAffix(slot) }} slot: {{ cost }} gems</p>
+    <div class="flex flex-col gap-3 border-t border-solid border-t-container pt-4" v-if="isShowSlotInfo">
+      <p class="font-semibold text-2xl">Slots costs</p>
+      <table class="w-full border-collapse">
+        <thead>
+          <tr>
+            <th class="w-1/2 border-2 border-container p-3">Slot number</th>
+            <th class="w-1/2 border-2 border-container p-3">Cost (gems)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(cost, slot) in slots" :key="slot">
+            <td class="w-1/2 text-center border border-container p-2">{{ slot }}</td>
+            <td class="w-1/2 text-center border border-container p-2">{{ cost }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </Container>
 </template>
@@ -42,18 +61,6 @@ const maxSlots = ref(localStorage.getItem("slots"));
 const isShowSlotInfo = ref(false);
 
 const emit = defineEmits(["updateOwnedSlots"]);
-
-const getSlotNumberAffix = (slot) => {
-  slot = parseInt(slot);
-
-  if (slot === 1) return "st";
-
-  if (slot === 2) return "nd";
-
-  if (slot === 3) return "rd";
-
-  return "th";
-};
 
 watch(
   () => targetSlot.value,

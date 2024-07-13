@@ -1,27 +1,37 @@
 <template>
   <Container class="flex flex-col gap-2">
-    <p class="container-subheader">{{ updatedCard.name }}</p>
-    <div class="container-content">
-      <span>Level</span>
-      <span>Owned</span>
-      <span>Target</span>
-      <span>%</span>
-      <span>Left</span>
-      <select v-model="updatedCard.lvl">
-        <option :value="i" v-for="i in Array.from(Array(8).keys())" :key="i">{{ i }}</option>
-      </select>
-      <select v-model="updatedCard.owned" :disabled="[0, 7].includes(updatedCard.lvl)">
-        <template v-if="updatedCard.lvl === 1">
-          <option :value="1">1</option>
-          <option :value="2">2</option>
-        </template>
-        <template v-else>
-          <option :value="i" v-for="i in Array.from(Array(target).keys())" :key="i">{{ i }}</option>
-        </template>
-      </select>
-      <span>{{ target || "Max" }}</span>
-      <span>{{ getPercentageOfMax(getRequiredToMax(updatedCard.lvl, updatedCard.owned)) }}</span>
-      <span>{{ getRequiredToMax(updatedCard.lvl, updatedCard.owned) }}</span>
+    <p class="container-subheader mb-2">{{ updatedCard.name }}</p>
+    <div class="container-content" :class="[0, 7].includes(updatedCard.lvl) ? 'grid-cols-4' : 'grid-cols-[1.5fr_2fr_2.5fr_2.5fr_2.5fr]'">
+      <div>
+        <span>Level</span>
+        <select v-model="updatedCard.lvl">
+          <option :value="i" v-for="i in Array.from(Array(8).keys())" :key="i">{{ i }}</option>
+        </select>
+      </div>
+      <div v-if="![0, 7].includes(updatedCard.lvl)">
+        <span>Owned</span>
+        <select v-model="updatedCard.owned" :disabled="[0, 7].includes(updatedCard.lvl)">
+          <template v-if="updatedCard.lvl === 1">
+            <option :value="1">1</option>
+            <option :value="2">2</option>
+          </template>
+          <template v-else>
+            <option :value="i" v-for="i in Array.from(Array(target).keys())" :key="i">{{ i }}</option>
+          </template>
+        </select>
+      </div>
+      <div>
+        <span>Target</span>
+        <span>{{ target || "---" }}</span>
+      </div>
+      <div>
+        <span>%</span>
+        <span>{{ getPercentageOfMax(getRequiredToMax(updatedCard.lvl, updatedCard.owned)) }}</span>
+      </div>
+      <div>
+        <span>Left</span>
+        <span>{{ getRequiredToMax(updatedCard.lvl, updatedCard.owned) }}</span>
+      </div>
     </div>
   </Container>
 </template>
