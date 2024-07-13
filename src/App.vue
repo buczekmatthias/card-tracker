@@ -17,7 +17,7 @@ import updateLoadout from "./data/updateLoadout";
 
 const page = ref(localStorage.getItem("page") || "tracker");
 
-const version = "1.2.1";
+const version = "1.2.2";
 
 const changePage = (p) => {
   localStorage.setItem("page", p);
@@ -37,15 +37,15 @@ onBeforeMount(() => {
     localStorage.setItem("ownedSlots", 1);
   }
 
-  // updateData();
-  // updateLoadout();
-
   if (!localStorage.getItem(`${version}-update`)) {
     for (let key in localStorage) {
       if (key.includes("-update")) {
         localStorage.removeItem(key);
       }
     }
+
+    // updateData();
+    // updateLoadout();
 
     localStorage.setItem(`${version}-update`, true);
   }

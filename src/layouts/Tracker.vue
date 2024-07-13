@@ -19,6 +19,8 @@
         </div>
         <p>{{ group.cards.length }} cards</p>
         <p class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 pl-2" v-if="isGroupFinished[i]">Group finished</p>
+        <p class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 px-2 cursor-pointer" @click="completeGroup(i)" v-if="!isGroupFinished[i]">Complete group</p>
+        <p class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 px-2 cursor-pointer" @click="resetGroup(i)" v-else>Reset group</p>
       </div>
       <template v-if="!collapseGroup[i]">
         <Card v-for="(card, ind) in group.cards" :key="card.name" :card="card" @cardUpdate="updateCard($event, i, ind)" />
@@ -67,4 +69,20 @@ onMounted(() => {
     checkGroupsFinished(i);
   }
 });
+
+const completeGroup = (ind) => {
+  cards.value[ind].cards.map((card) => (card.lvl = 7));
+  localStorage.setItem("cards", JSON.stringify(cards.value));
+  updateTracker();
+  checkGroupsFinished(ind);
+  collapseGroup.value[ind] = true;
+};
+
+const resetGroup = (ind) => {
+  cards.value[ind].cards.map((card) => (card.lvl = 0));
+  localStorage.setItem("cards", JSON.stringify(cards.value));
+  updateTracker();
+  checkGroupsFinished(ind);
+  collapseGroup.value[ind] = false;
+};
 </script>

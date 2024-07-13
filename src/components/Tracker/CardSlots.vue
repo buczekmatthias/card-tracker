@@ -2,7 +2,7 @@
   <Container class="flex flex-col gap-4">
     <div class="flex justify-between items-center">
       <p class="container-header mb-0">Card slots</p>
-      <button @click="isShowSlotInfo = !isShowSlotInfo">{{ isShowSlotInfo ? "Hide" : "Show" }} info</button>
+      <button @click="isShowSlotInfo = !isShowSlotInfo">{{ isShowSlotInfo ? "Hide" : "Show" }} costs</button>
     </div>
     <div class="slots-content">
       <div>
@@ -31,9 +31,9 @@
       <table class="w-full border-collapse">
         <thead>
           <tr>
-            <th class="w-1/5 border-2 border-container p-3">Slot number</th>
-            <th class="w-2/5 border-2 border-container p-3">Cost (gems)</th>
-            <th class="w-2/5 border-2 border-container p-3">Total cost (gems)</th>
+            <th class="w-1/5 border-2 border-container p-3">Slot</th>
+            <th class="w-2/5 border-2 border-container p-3">Cost</th>
+            <th class="w-2/5 border-2 border-container p-3">Total cost</th>
           </tr>
         </thead>
         <tbody>
