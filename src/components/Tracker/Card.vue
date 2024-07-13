@@ -1,7 +1,7 @@
 <template>
   <Container class="flex flex-col gap-2">
     <p class="container-subheader mb-2">{{ updatedCard.name }}</p>
-    <div class="container-content" :class="[0, 7].includes(updatedCard.lvl) ? 'grid-cols-4' : 'grid-cols-[1.5fr_2fr_2.5fr_2.5fr_2.5fr]'">
+    <div class="container-content" :class="[0, 7].includes(updatedCard.lvl) ? 'grid-cols-[3fr_2fr_2fr_2fr]' : 'grid-cols-[1.5fr_2fr_2.5fr_2.5fr_2.5fr]'">
       <div>
         <span>Level</span>
         <select v-model="updatedCard.lvl">
