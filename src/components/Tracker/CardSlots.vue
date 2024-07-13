@@ -31,14 +31,16 @@
       <table class="w-full border-collapse">
         <thead>
           <tr>
-            <th class="w-1/2 border-2 border-container p-3">Slot number</th>
-            <th class="w-1/2 border-2 border-container p-3">Cost (gems)</th>
+            <th class="w-1/5 border-2 border-container p-3">Slot number</th>
+            <th class="w-2/5 border-2 border-container p-3">Cost (gems)</th>
+            <th class="w-2/5 border-2 border-container p-3">Total cost (gems)</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(cost, slot) in slots" :key="slot">
-            <td class="w-1/2 text-center border border-container p-2">{{ slot }}</td>
-            <td class="w-1/2 text-center border border-container p-2">{{ cost }}</td>
+            <td class="w-1/5 text-center border border-container p-2">{{ slot }}</td>
+            <td class="w-2/5 text-center border border-container p-2">{{ cost }}</td>
+            <td class="w-2/5 text-center border border-container p-2">{{ costToTarget(0, slot) }}</td>
           </tr>
         </tbody>
       </table>
