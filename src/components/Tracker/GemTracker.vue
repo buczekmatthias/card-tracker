@@ -1,15 +1,16 @@
 <template>
   <Container class="tracker-grid">
     <p class="container-header col-span-full mb-0">Gem tracker</p>
+    <p class="container-subheader col-span-full">Cards</p>
     <div class="tracker-box">
       <p>Cards obtained</p>
       <p>{{ obtainedCards }} ({{ cardCompletePercent }}%)</p>
     </div>
-    <div class="tracker-box">
+    <div class="tracker-box" v-if="requiredCards > 0">
       <p>Cards required</p>
       <p>{{ requiredCards }}</p>
     </div>
-    <div class="tracker-box">
+    <div class="tracker-box" v-if="requiredCardGems > 0">
       <p>Cards gems required</p>
       <p>{{ requiredCardGems }}</p>
     </div>
@@ -20,14 +21,14 @@
     <TrackerGroupStats class="border-card-common" :stats="commonStats" rarity="Common" />
     <TrackerGroupStats class="border-card-rare" :stats="rareStats" rarity="Rare" />
     <TrackerGroupStats class="border-card-epic" :stats="epicStats" rarity="Epic" />
-    <div class="col-span-full grid grid-cols-3 gap-2 border-b border-solid border-b-container pb-6 -mb-3.5">
+    <div class="col-span-full grid grid-cols-3 gap-2" v-if="requiredCards > 0">
       <p class="container-subheader col-span-full mb-2">Card chances</p>
       <div class="tracker-box" v-for="(chance, type) in cardChances" :key="type">
         <p>{{ type }}</p>
         <p>{{ chance }}%</p>
       </div>
     </div>
-    <p class="container-subheader col-span-full mb-2">Slots</p>
+    <p class="container-subheader col-span-full">Slots</p>
     <div class="tracker-box">
       <p>Slots gems required</p>
       <p>{{ slotsCost }}</p>
