@@ -57,7 +57,7 @@ const options = ref([
 
 const exportData = ref({});
 
-const exportType = ref(options.value[0].value);
+const exportType = ref("tracker");
 
 const copiedMessage = ref(false);
 
@@ -73,7 +73,7 @@ const loadExportData = () => {
     };
   }
   if (["tracker_cards_slots", "tracker_cards", "cards_slots", "cards"].includes(exportType.value)) {
-    exportData.value.cards = storageCards.value.map((entry) => entry.cards);
+    exportData.value.cards = storageCards.value.map((entry) => entry.cards.map((card) => ([0, 7].includes(card.lvl) ? { name: card.name, lvl: card.lvl } : card)));
   }
   if (["tracker_cards_slots", "tracker_cards", "tracker_slots", "tracker"].includes(exportType.value)) {
     const required_cards = getRequiredCards(storageCards.value);
@@ -95,7 +95,7 @@ const loadExportData = () => {
 
 const copyResult = () => {
   if (!copiedMessage.value) {
-    navigator.clipboard.writeText(JSON.stringify(exportData.value));
+    navigator.clipboard.writeText(JSON.stringify(exportData.value, null, 2));
     copiedMessage.value = true;
 
     setTimeout(() => (copiedMessage.value = false), 2500);

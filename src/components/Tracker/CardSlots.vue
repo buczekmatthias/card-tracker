@@ -2,7 +2,7 @@
   <Container class="flex flex-col gap-4">
     <div class="flex justify-between items-center">
       <p class="container-header mb-0">Card slots</p>
-      <button class="underline" @click="isShowSlotInfo = !isShowSlotInfo">{{ isShowSlotInfo ? "Hide" : "Show" }} costs</button>
+      <button class="toggle-underline" @click="isShowSlotInfo = !isShowSlotInfo">{{ isShowSlotInfo ? "Hide" : "Show" }} costs</button>
     </div>
     <div class="slots-content">
       <div>
