@@ -1,28 +1,29 @@
 <template>
-  <Notification header="Data share" message="Data copied to clipboard" v-if="copiedMessage" />
-  <ShareBase title="Tracker export" @closeShare="$emit('closeShare')">
+  <div class="e-i-container row-start-1">
+    <Notification header="Data share" message="Data copied to clipboard" v-if="copiedMessage" />
     <label class="flex flex-col gap-4">
-      <span>What to export?</span>
+      <p class="text-2xl font-semibold">What to share?</p>
       <select v-model="exportType">
         <option :value="option.value" v-for="option in options" :key="option">{{ option.label }}</option>
       </select>
     </label>
     <pre class="flex w-full p-2 rounded-md border border-solid border-separator">
-        <code class="flex flex-col max-h-96 overflow-auto w-full">
-          <p>{{ exportData }}</p>
-        </code>
-      </pre>
+          <code class="flex flex-col max-h-96 overflow-auto w-full">
+            <p>{{ exportData }}</p>
+          </code>
+        </pre>
     <button class="border border-solid border-active text-active rounded-md p-3" @click="copyResult">Copy JSON</button>
-  </ShareBase>
+    <Info message="If you made changes with this modal open, reopen it to update" />
+  </div>
 </template>
 
 <script setup>
-import ShareBase from "../ShareBase.vue";
-
 import { onMounted, ref, watch } from "vue";
 import { getRequiredCards, getGroupData } from "@/data/cardLevels";
 import { gemsSpentSoFar } from "@/data/cardSlots";
+
 import Notification from "../Notification.vue";
+import Info from "../Info.vue";
 
 import cards from "@/data/cards.json";
 
@@ -64,8 +65,6 @@ const exportType = ref("tracker");
 const copiedMessage = ref(false);
 
 const storageCards = ref(JSON.parse(localStorage.getItem("cards")));
-
-defineEmits(["closeShare"]);
 
 const loadExportData = () => {
   exportData.value = {};

@@ -1,6 +1,5 @@
 <template>
   <div class="p-container flex flex-col">
-    <LoadoutShare v-if="showShare" @closeShare="showShare = false" />
     <div class="sticky top-0 bg-theme">
       <div class="loadout-grid h-24 justify-items-center">
         <div></div>
@@ -13,8 +12,8 @@
     </div>
     <Preset v-for="(card, i) in cards" @updatePreset="updateLoadout" :key="card" :card="card" :cardIndex="i" />
   </div>
-  <SharePanel>
-    <ShareButton @click="showShare = true" />
+  <SharePanel v-slot="scope">
+    <LoadoutShare v-if="scope.showShare" />
   </SharePanel>
 </template>
 
@@ -22,15 +21,12 @@
 import Preset from "@/components/Loadout/Preset.vue";
 import LoadoutShare from "@/components/Loadout/Share.vue";
 import SharePanel from "@/components/SharePanel.vue";
-import ShareButton from "@/components/ShareButton.vue";
 
 import cards from "@/data/cards.json";
 
 import { ref } from "vue";
 
 const presets = ref(JSON.parse(localStorage.getItem("presets")));
-
-const showShare = ref(false);
 
 const updateLoadout = (isUsed, set, card) => {
   presets.value[set][card].used = isUsed;
