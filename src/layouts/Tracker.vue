@@ -1,19 +1,22 @@
 <template>
   <div class="p-container flex flex-col gap-4">
-    <ExportButton @click="showExport = true" />
-    <Export v-if="showExport" @closeExport="showExport = false" ref="exportComponent" />
+    <TrackerShare v-if="showShare" @closeShare="showShare = false" ref="shareComponent" />
     <GemTracker ref="tracker" />
     <CardSlots @updateOwnedSlots="updateTracker" />
     <CardGroup v-for="(group, i) in cards" :key="group.name" :group="group" :index="i" :rarity="group.name" @updateCard="updateGroupCards" @completeGroup="completeGroup" @resetGroup="resetGroup" />
   </div>
+  <SharePanel>
+    <ShareButton @click="showShare = true" />
+  </SharePanel>
 </template>
 
 <script setup>
 import CardSlots from "@/components/Tracker/CardSlots.vue";
 import GemTracker from "@/components/Tracker/GemTracker.vue";
-import ExportButton from "@/components/ExportButton.vue";
-import Export from "@/components/Tracker/Export.vue";
+import TrackerShare from "@/components/Tracker/Share.vue";
 import CardGroup from "@/components/Tracker/CardGroup.vue";
+import SharePanel from "@/components/SharePanel.vue";
+import ShareButton from "@/components/ShareButton.vue";
 
 import { ref } from "vue";
 
@@ -21,9 +24,9 @@ const cards = ref(JSON.parse(localStorage.getItem("cards")));
 
 const tracker = ref(null);
 
-const exportComponent = ref(null);
+const shareComponent = ref(null);
 
-const showExport = ref(false);
+const showShare = ref(false);
 
 const updateTracker = () => tracker.value.refreshTracker();
 

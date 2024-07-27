@@ -4,14 +4,20 @@
       <p class="container-header mb-0">Card slots</p>
       <button class="toggle-underline" @click="isShowSlotInfo = !isShowSlotInfo">{{ isShowSlotInfo ? "Hide" : "Show" }} costs</button>
     </div>
-    <div class="slots-content">
+    <div
+      class="slots-content"
+      :class="{
+        'grid-cols-[2fr_2fr_2fr_3fr]': parseInt(ownedSlots) !== parseInt(maxSlots),
+        'grid-cols-[4.2fr_2fr_3fr]': parseInt(ownedSlots) === parseInt(maxSlots),
+      }"
+    >
       <div>
         <span>Owned</span>
         <select v-model="ownedSlots">
           <option :value="i" v-for="i in Array.from(Array(parseInt(maxSlots)).keys(), (_, j) => j + 1)" :key="i">{{ i }}</option>
         </select>
       </div>
-      <div>
+      <div v-if="parseInt(ownedSlots) !== parseInt(maxSlots)">
         <span>Target</span>
         <select v-model="targetSlot" :disabled="parseInt(ownedSlots) === parseInt(maxSlots)">
           <option :value="i" v-for="i in Array.from(Array(parseInt(maxSlots - ownedSlots)).keys(), (_, j) => parseInt(ownedSlots) + j + 1)" :key="i">{{ i }}</option>

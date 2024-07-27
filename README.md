@@ -18,7 +18,16 @@ Web version of [this stylesheet](https://docs.google.com/spreadsheets/d/1xb32S9a
   - Uncomment card slots available and provide new value, if slot number changes
 
 - Changes to `/src/data/updateLoadout.js`
+
   - Uncomment card push, provide [preset](#loadout-presets), name[^2] and used[^3]
+
+- Changes to `src/data/cards.js`
+
+  - Add new cards as needed
+
+- Changes to `src/data/loadout.js`
+
+  - Add new cards as needed
 
 ## Rarity table
 

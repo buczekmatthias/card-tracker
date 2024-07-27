@@ -1,7 +1,6 @@
 <template>
   <div class="p-container flex flex-col">
-    <ExportButton @click="showExport = true" />
-    <Export v-if="showExport" @closeExport="showExport = false" />
+    <LoadoutShare v-if="showShare" @closeShare="showShare = false" />
     <div class="sticky top-0 bg-theme">
       <div class="loadout-grid h-24 justify-items-center">
         <div></div>
@@ -14,12 +13,16 @@
     </div>
     <Preset v-for="(card, i) in cards" @updatePreset="updateLoadout" :key="card" :card="card" :cardIndex="i" />
   </div>
+  <SharePanel>
+    <ShareButton @click="showShare = true" />
+  </SharePanel>
 </template>
 
 <script setup>
 import Preset from "@/components/Loadout/Preset.vue";
-import ExportButton from "@/components/ExportButton.vue";
-import Export from "@/components/Loadout/Export.vue";
+import LoadoutShare from "@/components/Loadout/Share.vue";
+import SharePanel from "@/components/SharePanel.vue";
+import ShareButton from "@/components/ShareButton.vue";
 
 import cards from "@/data/cards.json";
 
@@ -27,7 +30,7 @@ import { ref } from "vue";
 
 const presets = ref(JSON.parse(localStorage.getItem("presets")));
 
-const showExport = ref(false);
+const showShare = ref(false);
 
 const updateLoadout = (isUsed, set, card) => {
   presets.value[set][card].used = isUsed;

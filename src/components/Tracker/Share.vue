@@ -1,5 +1,6 @@
 <template>
-  <ExportBase title="Tracker export">
+  <Notification header="Data share" message="Data copied to clipboard" v-if="copiedMessage" />
+  <ShareBase title="Tracker export" @closeShare="$emit('closeShare')">
     <label class="flex flex-col gap-4">
       <span>What to export?</span>
       <select v-model="exportType">
@@ -12,16 +13,17 @@
         </code>
       </pre>
     <button class="border border-solid border-active text-active rounded-md p-3" @click="copyResult">Copy JSON</button>
-    <p class="text-center" v-if="copiedMessage">Export content has been copied</p>
-  </ExportBase>
+  </ShareBase>
 </template>
 
 <script setup>
-import ExportBase from "../ExportBase.vue";
+import ShareBase from "../ShareBase.vue";
 
 import { onMounted, ref, watch } from "vue";
 import { getRequiredCards, getGroupData } from "@/data/cardLevels";
 import { gemsSpentSoFar } from "@/data/cardSlots";
+import Notification from "../Notification.vue";
+
 import cards from "@/data/cards.json";
 
 const options = ref([
@@ -62,6 +64,8 @@ const exportType = ref("tracker");
 const copiedMessage = ref(false);
 
 const storageCards = ref(JSON.parse(localStorage.getItem("cards")));
+
+defineEmits(["closeShare"]);
 
 const loadExportData = () => {
   exportData.value = {};

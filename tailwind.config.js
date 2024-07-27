@@ -25,6 +25,7 @@ export default {
       },
       fill: {
         active: "#111111",
+        "active-share": "#32ef2e",
         inactive: "#2b2b2b",
       },
       height: {

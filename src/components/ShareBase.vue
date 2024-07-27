@@ -3,7 +3,7 @@
     <div class="p-4 bg-theme max-h-[85%] overflow-auto w-full border border-solid border-container rounded-md flex flex-col gap-6">
       <div class="flex justify-between items-center">
         <p class="text-3xl font-semibold">{{ title }}</p>
-        <button class="hover:text-active text-lg" @click="$emit('closeExport')">Close</button>
+        <button class="hover:text-active text-lg" @click="$emit('closeShare')">Close</button>
       </div>
       <slot />
     </div>
@@ -15,5 +15,5 @@ defineProps({
   title: String,
 });
 
-defineEmits(["closeExport"]);
+defineEmits(["closeShare"]);
 </script>
