@@ -3,7 +3,7 @@
     <Notification header="Data share" message="Data copied to clipboard" v-if="copiedMessage" />
     <p class="text-2xl font-semibold">What to share?</p>
     <pre class="flex w-full p-2 rounded-md border border-solid border-separator/50">
-          <code class="flex flex-col max-h-[60vh] overflow-auto w-full">
+          <code class="flex flex-col overflow-auto w-full">
             <p>{{ exportData }}</p>
           </code>
       </pre>

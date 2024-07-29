@@ -9,7 +9,7 @@
       </select>
     </label>
     <pre class="flex w-full p-2 rounded-md border border-solid border-separator/50">
-          <code class="flex flex-col max-h-96 overflow-auto w-full">
+          <code class="flex flex-col overflow-auto w-full">
             <p>{{ shareData }}</p>
           </code>
         </pre>

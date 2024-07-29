@@ -24,6 +24,10 @@ select {
   @apply border border-solid border-separator/50 bg-theme text-font rounded-md px-2 py-1.5 cursor-pointer;
 }
 
+code {
+  @apply max-h-[15vh] [@media(min-height:500px)]:max-h-[40vh] [@media(min-height:700px)]:max-h-[60vh];
+}
+
 @layer components {
   .toggle-underline {
     @apply underline underline-offset-[3px];
