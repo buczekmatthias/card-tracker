@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-theme sticky bottom-0 left-0 p-3 grid grid-cols-[1fr_1fr_auto] gap-x-2 gap-y-3 border-t border-solid border-t-container md:border-x md:border-x-container">
+  <div class="bg-theme sticky bottom-0 left-0 p-3 grid grid-cols-[1fr_1fr_auto] gap-x-2 gap-y-3 border-t border-solid border-t-separator/50 sm:border-x sm:border-x-separator/50 sm:rounded-t-lg sm:mx-3">
     <SharePanelExport v-if="showExport" />
     <SharePanelImport v-if="showImport" />
     <slot :showShare="showShare" />

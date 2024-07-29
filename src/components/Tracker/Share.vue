@@ -7,13 +7,12 @@
         <option :value="option.value" v-for="option in options" :key="option">{{ option.label }}</option>
       </select>
     </label>
-    <pre class="flex w-full p-2 rounded-md border border-solid border-separator">
-          <code class="flex flex-col max-h-96 overflow-auto w-full">
+    <pre class="flex w-full p-2 rounded-md border border-solid border-separator/50">
+          <code class="flex flex-col max-h-[60vh] overflow-auto w-full">
             <p>{{ exportData }}</p>
           </code>
         </pre>
-    <button class="border border-solid border-active text-active rounded-md p-3" @click="copyResult">Copy JSON</button>
-    <Info message="If you made changes with this modal open, reopen it to update" />
+    <Button @click="copyResult">Copy JSON</Button>
   </div>
 </template>
 
@@ -23,7 +22,7 @@ import { getRequiredCards, getGroupData } from "@/data/cardLevels";
 import { gemsSpentSoFar } from "@/data/cardSlots";
 
 import Notification from "../Notification.vue";
-import Info from "../Info.vue";
+import Button from "../Button.vue";
 
 import cards from "@/data/cards.json";
 
@@ -60,7 +59,7 @@ const options = ref([
 
 const exportData = ref({});
 
-const exportType = ref("tracker");
+const exportType = ref("tracker_slots");
 
 const copiedMessage = ref(false);
 

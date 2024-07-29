@@ -1,6 +1,6 @@
 <template>
-  <div class="p-container flex flex-col">
-    <div class="sticky top-0 bg-theme">
+  <div class="flex flex-col pb-0">
+    <div class="px-container sticky top-0 bg-theme border-b border-solid border-b-separator/50">
       <div class="loadout-grid h-24 justify-items-center">
         <div></div>
         <p class="h-full preset" v-for="i in Array.from(Array(5).keys())" :key="i">{{ `Preset ${i + 1}` }}</p>

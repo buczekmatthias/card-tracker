@@ -2,9 +2,9 @@
   <Notification :header="notification.header" :message="notification.message" v-if="showNotification" />
   <div class="e-i-container">
     <p class="text-2xl font-semibold">Import</p>
+    <Info message="Provide unchanged JSON file downloaded via export. Anything else might cause tracker to not work anymore until clearing browser local storage" />
     <input type="file" ref="importFile" class="cursor-pointer border border-solid border-container px-2 py-4 rounded-lg" accept="application/json" />
     <Button @click="handleImport">Import data</Button>
-    <Info message="Provide unchanged JSON file downloaded via export. Anything else might cause tracker to not work anymore until clearing browser local storage" />
   </div>
 </template>
 

@@ -7,7 +7,7 @@ html:has(#export) {
 }
 
 #app {
-  @apply mx-auto min-h-screen text-font flex flex-col w-full max-w-2xl text-sm md:text-base;
+  @apply mx-auto min-h-screen text-font flex flex-col w-full max-w-2xl text-sm sm:text-base;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -16,8 +16,12 @@ html {
   @apply bg-theme;
 }
 
+body:has(.e-i-container) {
+  @apply h-screen overflow-hidden;
+}
+
 select {
-  @apply border border-solid bg-theme text-font rounded-md px-2 py-1.5 cursor-pointer;
+  @apply border border-solid border-separator/50 bg-theme text-font rounded-md px-2 py-1.5 cursor-pointer;
 }
 
 @layer components {
@@ -69,13 +73,22 @@ select {
     @apply grid grid-cols-[3fr_repeat(5,1fr)];
   }
 
-  /* Export/Import container */
+  /* Export/Import/Share container */
   .e-i-container {
     @apply col-span-full border-b border-solid border-b-container pb-3 flex flex-col gap-4;
+    @apply after:h-screen after:w-full after:-z-10 after:bg-theme/70 after:fixed after:bottom-0 after:left-0;
   }
-}
-.preset {
-  writing-mode: vertical-lr;
-  text-align: center;
-  transform: rotate(180deg);
+
+  .preset {
+    writing-mode: vertical-lr;
+    text-align: center;
+    transform: rotate(180deg);
+  }
+
+  .preset-card {
+    @apply border-b border-solid border-b-container py-5 px-container;
+  }
+  .preset-card:last-of-type {
+    @apply border-b-0;
+  }
 }

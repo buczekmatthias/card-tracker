@@ -1,5 +1,5 @@
 <template>
-  <div class="loadout-grid even:border-y even:border-solid even:border-container py-6">
+  <div class="preset-card loadout-grid">
     <p>{{ card }}</p>
     <button class="rounded-md w-fit p-0.5 justify-self-center border border-solid" :class="isInPreset(i) ? 'bg-active border-active' : 'bg-theme border-inactive'" v-for="i in Array.from(Array(5).keys())" :key="i" @click="updatePreset(i)">
       <svg class="h-5" :class="isInPreset(i) ? 'fill-active' : 'fill-inactive'" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 15.586L6.707 12.293 5.293 13.707 10 18.414 19.707 8.707 18.293 7.293z"></path></svg>

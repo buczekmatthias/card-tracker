@@ -8,18 +8,17 @@
         <option :value="`preset_${i}`" v-for="i in Array.from(Array(5).keys()).map((_, j) => (j += 1))" :key="i">Preset {{ i }}</option>
       </select>
     </label>
-    <pre class="flex w-full p-2 rounded-md border border-solid border-separator">
+    <pre class="flex w-full p-2 rounded-md border border-solid border-separator/50">
           <code class="flex flex-col max-h-96 overflow-auto w-full">
             <p>{{ shareData }}</p>
           </code>
         </pre>
-    <button class="border border-solid border-active text-active rounded-md p-3" @click="copyResult">Copy JSON</button>
-    <Info message="If you made changes with this modal open, reopen it to update" />
+    <Button @click="copyResult">Copy JSON</Button>
   </div>
 </template>
 
 <script setup>
-import Info from "../Info.vue";
+import Button from "../Button.vue";
 import Notification from "../Notification.vue";
 
 import { onMounted, ref, watch } from "vue";
