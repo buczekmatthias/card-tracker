@@ -1,17 +1,15 @@
 <template>
   <div class="e-i-container row-start-1">
     <Notification header="Data share" message="Data copied to clipboard" v-if="copiedMessage" />
-    <label class="flex flex-col gap-4">
-      <p class="text-2xl font-semibold">What to share?</p>
-      <select v-model="exportType">
-        <option :value="option.value" v-for="option in options" :key="option">{{ option.label }}</option>
-      </select>
-    </label>
+    <p class="text-2xl font-semibold">What to share?</p>
     <pre class="flex w-full p-2 rounded-md border border-solid border-separator/50">
           <code class="flex flex-col max-h-[60vh] overflow-auto w-full">
             <p>{{ exportData }}</p>
           </code>
-        </pre>
+      </pre>
+    <select v-model="exportType">
+      <option :value="option.value" v-for="option in options" :key="option">{{ option.label }}</option>
+    </select>
     <Button @click="copyResult">Copy JSON</Button>
   </div>
 </template>
