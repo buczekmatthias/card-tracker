@@ -7,7 +7,7 @@
             <p>{{ exportData }}</p>
           </code>
       </pre>
-    <select v-model="exportType">
+    <select v-model="exportType" class="p-2">
       <option :value="option.value" v-for="option in options" :key="option">{{ option.label }}</option>
     </select>
     <Button @click="copyResult">Copy JSON</Button>

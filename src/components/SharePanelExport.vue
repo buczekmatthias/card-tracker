@@ -1,7 +1,7 @@
 <template>
   <div class="e-i-container">
     <p class="text-2xl font-semibold">Export</p>
-    <Info message="Do not modify downloaded file. Validation is planned to be implemented in future" />
+    <Info message="Modified data may cause app to not work properly. <strong>Do not modify downloaded file</strong>" />
     <a href="" download="card_tracker_export.json" ref="exportDownload">
       <Button class="w-full">Download data as JSON file</Button>
     </a>

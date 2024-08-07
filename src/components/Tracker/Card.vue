@@ -1,5 +1,6 @@
 <template>
   <Container class="flex flex-col gap-2">
+    <p class="font-light italic" v-if="Object.keys(unlocks).includes(updatedCard.name)">Locked behind {{ unlocks[updatedCard.name] }} milestone</p>
     <p class="container-subheader mb-2">{{ updatedCard.name }}</p>
     <div class="container-content" :class="[0, 7].includes(updatedCard.lvl) ? 'grid-cols-[3fr_2fr_2fr_2fr]' : 'grid-cols-[1.5fr_2fr_2.5fr_2.5fr_2.5fr]'">
       <div>
@@ -39,6 +40,7 @@
 <script setup>
 import Container from "./Container.vue";
 
+import { unlocks } from "@/data/cardUnlocks";
 import { getPercentageOfMax, getRequiredToMax, levels } from "@/data/cardLevels";
 import { ref, watch } from "vue";
 

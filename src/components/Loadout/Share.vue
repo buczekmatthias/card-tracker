@@ -1,18 +1,18 @@
 <template>
   <div class="e-i-container col-start-1">
     <Notification header="Data share" message="Data copied to clipboard" v-if="copiedMessage" />
-    <label class="flex flex-col gap-4">
-      <p class="text-2xl font-semibold">What to share?</p>
-      <select v-model="shareType">
-        <option value="all">All presets</option>
-        <option :value="`preset_${i}`" v-for="i in Array.from(Array(5).keys()).map((_, j) => (j += 1))" :key="i">Preset {{ i }}</option>
-      </select>
-    </label>
+    <p class="text-2xl font-semibold">What to share?</p>
     <pre class="flex w-full p-2 rounded-md border border-solid border-separator/50">
           <code class="flex flex-col overflow-auto w-full">
             <p>{{ shareData }}</p>
           </code>
         </pre>
+    <label class="flex flex-col gap-4">
+      <select v-model="shareType" class="p-2">
+        <option value="all">All presets</option>
+        <option :value="`preset_${i}`" v-for="i in Array.from(Array(5).keys()).map((_, j) => (j += 1))" :key="i">Preset {{ i }}</option>
+      </select>
+    </label>
     <Button @click="copyResult">Copy JSON</Button>
   </div>
 </template>

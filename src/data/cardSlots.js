@@ -54,16 +54,4 @@ const gemsSpentSoFar = (owned) => {
   return cost;
 };
 
-const handleSlotsValidation = (owned) => {
-  return owned > Object.keys(slots).length ? Object.keys(slots).length : owned < 1 ? 1 : owned;
-};
-
-const handleTargetSlotsValidation = (owned, target) => {
-  owned = parseInt(owned);
-  target = parseInt(target);
-  let maxSlots = Object.keys(slots).length;
-
-  return target >= maxSlots ? maxSlots : target < 2 ? 2 : owned === target ? owned + 1 : target;
-};
-
-export { slots, slotsCostToMax, costToTarget, gemsSpentSoFar, handleSlotsValidation, handleTargetSlotsValidation };
+export { slots, slotsCostToMax, costToTarget, gemsSpentSoFar };

@@ -15,13 +15,8 @@
       <p class="w-full container-header" v-else>{{ group.name }}</p>
       <div class="flex">
         <p>{{ group.cards.length }} cards</p>
-        <template v-if="isGroupFinished">
-          <p class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 pl-2">Group finished</p>
-          <button class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 px-2 toggle-underline" @click="resetGroup">Reset group</button>
-        </template>
-        <template v-else>
-          <button class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 px-2 toggle-underline" @click="completeGroup" v-if="!isGroupFinished">Complete group</button>
-        </template>
+        <p v-if="isGroupFinished" class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 pl-2">Group finished</p>
+        <button v-else class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 px-2 toggle-underline" @click="completeGroup" v-if="!isGroupFinished">Complete group</button>
       </div>
     </div>
     <template v-if="!collapseGroup">
