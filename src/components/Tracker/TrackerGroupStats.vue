@@ -4,7 +4,7 @@
     <p class="justify-self-end italic" v-if="stats.required === 0">Finished</p>
     <div class="tracker-box">
       <p>Cards obtained</p>
-      <p>{{ stats.obtained }} ({{ stats.percent_finished }})%</p>
+      <p>{{ stats.obtained }} ({{ stats.percent_finished }}%)</p>
     </div>
     <div class="tracker-box" v-if="stats.required !== 0">
       <p>Cards required</p>
