@@ -29,36 +29,22 @@
       </div>
       <div>
         <span>Target gems</span>
-        <span>{{ costToTarget(ownedSlots, targetSlot) }}</span>
+        <span>{{ costToTarget(ownedSlots, targetSlot).toLocaleString() }}</span>
       </div>
     </div>
     <div class="flex flex-col gap-3 border-t border-solid border-t-container pt-4" v-if="isShowSlotInfo">
       <p class="font-semibold text-2xl">Slots costs</p>
-      <table class="w-full border-collapse">
-        <thead>
-          <tr>
-            <th class="w-1/5 border-2 border-container p-3">Slot</th>
-            <th class="w-2/5 border-2 border-container p-3">Cost</th>
-            <th class="w-2/5 border-2 border-container p-3">Total cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(cost, slot) in slots" :key="slot">
-            <td class="w-1/5 text-center border border-container p-2">{{ slot }}</td>
-            <td class="w-2/5 text-center border border-container p-2">{{ cost }}</td>
-            <td class="w-2/5 text-center border border-container p-2">{{ costToTarget(0, slot) }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <CardSlotsTable />
     </div>
   </Container>
 </template>
 
 <script setup>
 import Container from "./Container.vue";
+import CardSlotsTable from "./CardSlotsTable.vue";
 
 import { ref, watch } from "vue";
-import { slots, costToTarget } from "@/data/cardSlots";
+import { costToTarget } from "@/data/cardSlots";
 
 const ownedSlots = ref(localStorage.getItem("ownedSlots") || 1);
 

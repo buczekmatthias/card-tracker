@@ -4,19 +4,19 @@
     <p class="container-subheader col-span-full">Cards</p>
     <div class="tracker-box">
       <p>Cards obtained</p>
-      <p>{{ obtainedCards }} ({{ cardCompletePercent }}%)</p>
+      <p>{{ obtainedCards.toLocaleString() }} ({{ cardCompletePercent }}%)</p>
     </div>
     <div class="tracker-box" v-if="requiredCards > 0">
       <p>Cards required</p>
-      <p>{{ requiredCards }}</p>
+      <p>{{ requiredCards.toLocaleString() }}</p>
     </div>
     <div class="tracker-box" v-if="requiredCardGems > 0">
       <p>Cards gems required</p>
-      <p>{{ requiredCardGems }}</p>
+      <p>{{ requiredCardGems.toLocaleString() }}</p>
     </div>
     <div class="tracker-box">
       <p>Cards gems spent</p>
-      <p>{{ (obtainedCards + requiredCards) * 20 - requiredCardGems }}</p>
+      <p>{{ ((obtainedCards + requiredCards) * 20 - requiredCardGems).toLocaleString() }}</p>
     </div>
     <TrackerGroupStats class="border-card-common" :stats="commonStats" rarity="Common" />
     <TrackerGroupStats class="border-card-rare" :stats="rareStats" rarity="Rare" />
@@ -31,11 +31,11 @@
     <p class="container-subheader col-span-full">Slots</p>
     <div class="tracker-box">
       <p>Slots gems required</p>
-      <p>{{ slotsCost }}</p>
+      <p>{{ slotsCost.toLocaleString() }}</p>
     </div>
     <div class="tracker-box">
       <p>Slots gems spent</p>
-      <p>{{ slotsGemsSpent }}</p>
+      <p>{{ slotsGemsSpent.toLocaleString() }}</p>
     </div>
   </Container>
 </template>
