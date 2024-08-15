@@ -13,17 +13,19 @@
         <option :value="`preset_${i}`" v-for="i in Array.from(Array(5).keys()).map((_, j) => (j += 1))" :key="i">Preset {{ i }}</option>
       </select>
     </label>
-    <Button @click="copyResult">Copy JSON</Button>
+    <Button @click="copyResult">Copy data to share</Button>
   </div>
 </template>
 
 <script setup>
+import { getAllPresetsExportString, getPresetExportString } from "@/data/loadoutShare";
+
 import Button from "../Button.vue";
 import Notification from "../Notification.vue";
 
 import { onMounted, ref, watch } from "vue";
 
-const shareData = ref({});
+const shareData = ref("");
 
 const shareType = ref("all");
 
@@ -32,18 +34,15 @@ const copiedMessage = ref(false);
 const presets = ref(JSON.parse(localStorage.getItem("presets")));
 
 const loadShareData = () => {
-  if (shareType.value === "all") {
-    shareData.value = presets.value.map((preset) => preset.filter((val) => val.used === true).map((val) => val.name));
-  } else {
-    let preset_id = parseInt(shareType.value.split("_")[1]);
+  shareData.value = "";
 
-    shareData.value = presets.value[preset_id - 1].filter((val) => val.used === true).map((val) => val.name);
-  }
+  if (shareType.value === "all") shareData.value = getAllPresetsExportString(presets.value);
+  else shareData.value = getPresetExportString(presets.value[parseInt(shareType.value.split("_")[1] - 1)]);
 };
 
 const copyResult = () => {
   if (!copiedMessage.value) {
-    navigator.clipboard.writeText(JSON.stringify(shareData.value, null, 2));
+    navigator.clipboard.writeText(shareData.value);
     copiedMessage.value = true;
 
     setTimeout(() => (copiedMessage.value = false), 2500);
