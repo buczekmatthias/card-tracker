@@ -20,14 +20,16 @@
       </div>
     </div>
     <template v-if="!collapseGroup">
-      <Card v-for="(card, ind) in group.cards" :key="card.name" :card="card" @cardUpdate="updateCard($event, ind)" />
+      <Card v-for="(card, ind) in group.cards" :key="card.name" :card="card" :info="info[card.name]" @cardUpdate="updateCard($event, ind)" />
     </template>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
+
 import { getGroupData } from "@/data/cardLevels";
+import { info } from "@/data/cardsInfo";
 
 import Card from "@/components/Tracker/Card.vue";
 
