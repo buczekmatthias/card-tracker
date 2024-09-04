@@ -31,6 +31,9 @@ export default {
       height: {
         screen: ["100vh", "100dvh"],
       },
+      maxWidth: {
+        app: "600px"
+      },
       minHeight: {
         screen: ["100vh", "100dvh"],
       },
