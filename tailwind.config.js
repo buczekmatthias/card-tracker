@@ -43,6 +43,9 @@ export default {
         inactive: "#343434",
       },
     },
+    screens: {
+      app: "512px",
+    },
   },
   plugins: [],
 };
