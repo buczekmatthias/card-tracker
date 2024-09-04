@@ -1,8 +1,13 @@
 <template>
-  <Container class="flex flex-col gap-4">
+  <Container class="flex flex-col gap-4 w-full max-w-md cardsDouble:max-w-3xl cardsTriple:max-w-6xl self-center">
     <div class="flex justify-between items-center">
       <p class="container-header mb-0">Card slots</p>
-      <button class="toggle-underline" @click="isShowSlotInfo = !isShowSlotInfo">{{ isShowSlotInfo ? "Hide" : "Show" }} costs</button>
+      <button
+        class="toggle-underline"
+        @click="isShowSlotInfo = !isShowSlotInfo"
+      >
+        {{ isShowSlotInfo ? "Hide" : "Show" }} costs
+      </button>
     </div>
     <div
       class="slots-content"
@@ -14,13 +19,28 @@
       <div>
         <span>Owned</span>
         <select v-model="ownedSlots">
-          <option :value="i" v-for="i in Array.from(Array(parseInt(maxSlots)).keys(), (_, j) => j + 1)" :key="i">{{ i }}</option>
+          <option
+            :value="i"
+            v-for="i in Array.from(Array(parseInt(maxSlots)).keys(), (_, j) => j + 1)"
+            :key="i"
+          >
+            {{ i }}
+          </option>
         </select>
       </div>
       <div v-if="parseInt(ownedSlots) !== parseInt(maxSlots)">
         <span>Target</span>
-        <select v-model="targetSlot" :disabled="parseInt(ownedSlots) === parseInt(maxSlots)">
-          <option :value="i" v-for="i in Array.from(Array(parseInt(maxSlots - ownedSlots)).keys(), (_, j) => parseInt(ownedSlots) + j + 1)" :key="i">{{ i }}</option>
+        <select
+          v-model="targetSlot"
+          :disabled="parseInt(ownedSlots) === parseInt(maxSlots)"
+        >
+          <option
+            :value="i"
+            v-for="i in Array.from(Array(parseInt(maxSlots - ownedSlots)).keys(), (_, j) => parseInt(ownedSlots) + j + 1)"
+            :key="i"
+          >
+            {{ i }}
+          </option>
         </select>
       </div>
       <div>
@@ -32,7 +52,10 @@
         <span>{{ costToTarget(ownedSlots, targetSlot).toLocaleString() }}</span>
       </div>
     </div>
-    <div class="flex flex-col gap-3 border-t border-solid border-t-container pt-4" v-if="isShowSlotInfo">
+    <div
+      class="flex flex-col gap-3 border-t border-solid border-t-container pt-4"
+      v-if="isShowSlotInfo"
+    >
       <p class="font-semibold text-2xl">Slots costs</p>
       <CardSlotsTable />
     </div>

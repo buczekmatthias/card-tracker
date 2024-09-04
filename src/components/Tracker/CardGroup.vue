@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-3">
+  <div class="flex flex-col gap-3 self-center w-full max-w-md cardsDouble:max-w-3xl cardsTriple:max-w-6xl">
     <div
       class="p-3 bg-opacity-80 rounded-md -mb-1 flex flex-col"
       :class="{
@@ -8,20 +8,54 @@
         'bg-card-epic': rarity === 'Epic',
       }"
     >
-      <div class="w-full flex gap-3 items-center justify-between mb-4" v-if="isGroupFinished">
+      <div
+        class="w-full flex gap-3 items-center justify-between mb-4"
+        v-if="isGroupFinished"
+      >
         <p class="container-header mb-0">{{ group.name }}</p>
-        <button class="toggle-underline" @click="collapseGroup = !collapseGroup">{{ collapseGroup ? "Show" : "Hide" }} cards</button>
+        <button
+          class="toggle-underline"
+          @click="collapseGroup = !collapseGroup"
+        >
+          {{ collapseGroup ? "Show" : "Hide" }} cards
+        </button>
       </div>
-      <p class="w-full container-header" v-else>{{ group.name }}</p>
+      <p
+        class="w-full container-header"
+        v-else
+      >
+        {{ group.name }}
+      </p>
       <div class="flex">
         <p>{{ group.cards.length }} cards</p>
-        <p v-if="isGroupFinished" class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 pl-2">Group finished</p>
-        <button v-else class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 px-2 toggle-underline" @click="completeGroup" v-if="!isGroupFinished">Complete group</button>
+        <p
+          v-if="isGroupFinished"
+          class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 pl-2"
+        >
+          Group finished
+        </p>
+        <button
+          v-else
+          class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 px-2 toggle-underline"
+          @click="completeGroup"
+          v-if="!isGroupFinished"
+        >
+          Complete group
+        </button>
       </div>
     </div>
-    <template v-if="!collapseGroup">
-      <Card v-for="(card, ind) in group.cards" :key="card.name" :card="card" :info="info[card.name]" @cardUpdate="updateCard($event, ind)" />
-    </template>
+    <div
+      class="grid gap-2 grid-cols-1 cardsDouble:grid-cols-2 cardsTriple:grid-cols-3 items-start"
+      v-if="!collapseGroup"
+    >
+      <Card
+        v-for="(card, ind) in group.cards"
+        :key="card.name"
+        :card="card"
+        :info="info[card.name]"
+        @cardUpdate="updateCard($event, ind)"
+      />
+    </div>
   </div>
 </template>
 

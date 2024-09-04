@@ -7,7 +7,7 @@ html:has(#export) {
 }
 
 #app {
-  @apply mx-auto min-h-screen text-font flex flex-col w-full max-w-app text-sm;
+  @apply mx-auto min-h-screen text-font flex flex-col w-full text-sm;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -47,10 +47,6 @@ pre {
     @apply flex flex-col gap-1;
   }
 
-  .tracker-box :first-child {
-    @apply text-base font-medium;
-  }
-
   .tracker-container {
     @apply border border-solid border-container rounded-md p-2.5;
   }
@@ -64,7 +60,7 @@ pre {
   }
 
   .container-subheader {
-    @apply text-xl;
+    @apply text-xl font-medium;
   }
 
   .container-content {

@@ -32,7 +32,8 @@ export default {
         screen: ["100vh", "100dvh"],
       },
       maxWidth: {
-        app: "500px",
+        nav: "700px",
+        loadout: "800px",
       },
       minHeight: {
         screen: ["100vh", "100dvh"],
@@ -41,7 +42,9 @@ export default {
         container: "0.75rem",
       },
       screens: {
-        app: "500px",
+        cardsDouble: "685px",
+        cardsTriple: "1060px",
+        panel: "705px",
       },
       textColor: {
         active: "#32ef2e",

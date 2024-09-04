@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col pb-0 app:px-3">
+  <div class="flex flex-col pb-0 max-w-loadout self-center w-full">
     <div class="px-container sticky top-0 bg-theme border-b border-solid border-b-separator/50">
       <div class="loadout-grid h-24 justify-items-center">
         <div></div>

@@ -1,21 +1,21 @@
 <template>
-  <Container class="flex flex-col gap-2 p-4">
-    <div class="grid grid-cols-[1.5fr_2fr] gap-3">
-      <div class="flex flex-col items-start gap-3">
-        <p class="container-subheader">{{ updatedCard.name }}</p>
-        <img
-          :src="getIcon()"
-          :alt="`${updatedCard.name} card`"
-          class="max-h-40"
-        />
-      </div>
-      <div class="flex flex-col gap-2">
-        <button
-          class="toggle-underline self-end my-1"
-          @click="showInfo = !showInfo"
-        >
-          {{ showInfo ? "Hide" : "Show" }} info
-        </button>
+  <Container class="flex flex-col gap-4 p-4 flex-1">
+    <div class="flex items-start justify-between">
+      <p class="container-subheader">{{ updatedCard.name }}</p>
+      <button
+        class="toggle-underline self-end my-1"
+        @click="showInfo = !showInfo"
+      >
+        {{ showInfo ? "Hide" : "Show" }} info
+      </button>
+    </div>
+    <div class="grid grid-cols-2 gap-2">
+      <img
+        :src="getIcon()"
+        :alt="`${updatedCard.name} card`"
+        class="max-h-44"
+      />
+      <div class="flex flex-col gap-3">
         <div
           class="grid gap-2"
           :class="[0, 7].includes(updatedCard.lvl) ? 'grid-cols-1' : 'grid-cols-2'"
@@ -60,16 +60,16 @@
         <table>
           <tbody class="[&>tr>td]:py-1.5">
             <tr>
-              <td class="w-8/12">Level up target</td>
-              <td>{{ target || "---" }}</td>
+              <td class="w-8/12">Lvl up target</td>
+              <td class="text-end">{{ target || "---" }}</td>
             </tr>
             <tr>
               <td class="w-8/12">Complete</td>
-              <td>{{ getPercentageOfMax(getRequiredToMax(updatedCard.lvl, updatedCard.owned)) }} %</td>
+              <td class="text-end">{{ getPercentageOfMax(getRequiredToMax(updatedCard.lvl, updatedCard.owned)) }} %</td>
             </tr>
             <tr>
               <td class="w-8/12">Left to max</td>
-              <td>{{ getRequiredToMax(updatedCard.lvl, updatedCard.owned) }}</td>
+              <td class="text-end">{{ getRequiredToMax(updatedCard.lvl, updatedCard.owned) }}</td>
             </tr>
           </tbody>
         </table>

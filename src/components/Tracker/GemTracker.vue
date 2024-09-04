@@ -1,41 +1,81 @@
 <template>
-  <Container class="tracker-grid">
+  <Container
+    class="grid grid-cols-1 cardsDouble:grid-cols-2 cardsTriple:grid-cols-3 gap-6 w-full max-w-md cardsDouble:max-w-3xl cardsTriple:max-w-6xl self-center"
+    :class="{ 'cardsTriple:grid-cols-2': requiredCards === 0 }"
+  >
     <p class="container-header col-span-full mb-0">Gem tracker</p>
-    <p class="container-subheader col-span-full">Cards</p>
-    <div class="tracker-box">
-      <p>Cards obtained</p>
-      <p>{{ obtainedCards.toLocaleString() }} ({{ cardCompletePercent }}%)</p>
-    </div>
-    <div class="tracker-box" v-if="requiredCards > 0">
-      <p>Cards required</p>
-      <p>{{ requiredCards.toLocaleString() }}</p>
-    </div>
-    <div class="tracker-box" v-if="requiredCardGems > 0">
-      <p>Cards gems required</p>
-      <p>{{ requiredCardGems.toLocaleString() }}</p>
-    </div>
-    <div class="tracker-box">
-      <p>Cards gems spent</p>
-      <p>{{ ((obtainedCards + requiredCards) * 20 - requiredCardGems).toLocaleString() }}</p>
-    </div>
-    <TrackerGroupStats class="border-card-common" :stats="commonStats" rarity="Common" />
-    <TrackerGroupStats class="border-card-rare" :stats="rareStats" rarity="Rare" />
-    <TrackerGroupStats class="border-card-epic" :stats="epicStats" rarity="Epic" />
-    <div class="col-span-full grid grid-cols-3 gap-2" v-if="requiredCards > 0">
-      <p class="container-subheader col-span-full mb-2">Card chances</p>
-      <div class="tracker-box" v-for="(chance, type) in cardChances" :key="type">
-        <p>{{ type }}</p>
-        <p>{{ chance }}%</p>
+    <div class="flex flex-col gap-4">
+      <p class="container-subheader">Cards</p>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="tracker-box">
+          <p>Cards obtained</p>
+          <p>{{ obtainedCards.toLocaleString() }} ({{ cardCompletePercent }}%)</p>
+        </div>
+        <div
+          class="tracker-box"
+          v-if="requiredCards > 0"
+        >
+          <p>Cards required</p>
+          <p>{{ requiredCards.toLocaleString() }}</p>
+        </div>
+        <div
+          class="tracker-box"
+          v-if="requiredCardGems > 0"
+        >
+          <p>Cards gems required</p>
+          <p>{{ requiredCardGems.toLocaleString() }}</p>
+        </div>
+        <div class="tracker-box">
+          <p>Cards gems spent</p>
+          <p>{{ ((obtainedCards + requiredCards) * 20 - requiredCardGems).toLocaleString() }}</p>
+        </div>
       </div>
     </div>
-    <p class="container-subheader col-span-full">Slots</p>
-    <div class="tracker-box">
-      <p>Slots gems required</p>
-      <p>{{ slotsCost.toLocaleString() }}</p>
+    <div
+      class="flex flex-col gap-4"
+      v-if="requiredCards > 0"
+    >
+      <p class="container-subheader">Card chances</p>
+      <div class="grid grid-cols-3 gap-4">
+        <div
+          class="tracker-box"
+          v-for="(chance, type) in cardChances"
+          :key="type"
+        >
+          <p>{{ type }}</p>
+          <p>{{ chance }}%</p>
+        </div>
+      </div>
     </div>
-    <div class="tracker-box">
-      <p>Slots gems spent</p>
-      <p>{{ slotsGemsSpent.toLocaleString() }}</p>
+    <div class="flex flex-col gap-4 cardsDouble:col-start-2 cardsDouble:row-start-2">
+      <p class="container-subheader col-span-full">Slots</p>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="tracker-box">
+          <p>Slots gems required</p>
+          <p>{{ slotsCost.toLocaleString() }}</p>
+        </div>
+        <div class="tracker-box">
+          <p>Slots gems spent</p>
+          <p>{{ slotsGemsSpent.toLocaleString() }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-full grid grid-cols-1 gap-4 cardsDouble:grid-cols-2 cardsTriple:grid-cols-3 items-start">
+      <TrackerGroupStats
+        class="border-card-common"
+        :stats="commonStats"
+        rarity="Common"
+      />
+      <TrackerGroupStats
+        class="border-card-rare"
+        :stats="rareStats"
+        rarity="Rare"
+      />
+      <TrackerGroupStats
+        class="border-card-epic"
+        :stats="epicStats"
+        rarity="Epic"
+      />
     </div>
   </Container>
 </template>
