@@ -2,7 +2,16 @@
   <div class="p-container flex flex-col gap-4">
     <GemTracker ref="tracker" />
     <CardSlots @updateOwnedSlots="updateTracker" />
-    <CardGroup v-for="(group, i) in cards" :key="group.name" :group="group" :index="i" :rarity="group.name" @updateCard="updateGroupCards" @completeGroup="completeGroup" @resetGroup="resetGroup" />
+    <CardGroup
+      v-for="(group, i) in cards"
+      :key="group.name"
+      :group="group"
+      :index="i"
+      :rarity="group.name"
+      @updateCard="updateGroupCards"
+      @completeGroup="completeGroup"
+      @resetGroup="resetGroup"
+    />
   </div>
   <SharePanel v-slot="scope">
     <TrackerShare v-if="scope.showShare" />

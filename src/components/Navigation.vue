@@ -1,7 +1,19 @@
 <template>
   <nav class="nav">
-    <button class="nav-btn" :class="page === 'tracker' ? 'active' : 'inactive'" @click="$emit('pageChange', 'tracker')">Tracker</button>
-    <button class="nav-btn" :class="page === 'loadout' ? 'active' : 'inactive'" @click="$emit('pageChange', 'loadout')">Loadout</button>
+    <button
+      class="nav-btn"
+      :class="page === 'tracker' ? 'active' : 'inactive'"
+      @click="$emit('pageChange', 'tracker')"
+    >
+      Tracker
+    </button>
+    <button
+      class="nav-btn"
+      :class="page === 'loadout' ? 'active' : 'inactive'"
+      @click="$emit('pageChange', 'loadout')"
+    >
+      Loadout
+    </button>
   </nav>
 </template>
 

@@ -32,7 +32,7 @@ export default {
         screen: ["100vh", "100dvh"],
       },
       maxWidth: {
-        app: "600px"
+        app: "500px",
       },
       minHeight: {
         screen: ["100vh", "100dvh"],
@@ -40,14 +40,14 @@ export default {
       padding: {
         container: "0.75rem",
       },
+      screens: {
+        app: "500px",
+      },
       textColor: {
         active: "#32ef2e",
         font: "#fafafa",
         inactive: "#343434",
       },
-    },
-    screens: {
-      app: "600px",
     },
   },
   plugins: [],
