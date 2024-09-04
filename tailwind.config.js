@@ -44,7 +44,7 @@ export default {
       },
     },
     screens: {
-      app: "512px",
+      app: "600px",
     },
   },
   plugins: [],
