@@ -9,7 +9,7 @@
         {{ showInfo ? "Hide" : "Show" }} info
       </button>
     </div>
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-[auto_1fr] gap-6">
       <img
         :src="getIcon()"
         :alt="`${updatedCard.name} card`"
