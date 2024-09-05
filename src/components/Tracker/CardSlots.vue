@@ -1,5 +1,5 @@
 <template>
-  <Container class="flex flex-col gap-4 w-full max-w-md cardsDouble:max-w-3xl cardsTriple:max-w-6xl self-center">
+  <Container class="flex flex-col gap-4 w-full cardsTriple:max-w-6xl self-center">
     <div class="flex justify-between items-center">
       <p class="container-header mb-0">Card slots</p>
       <button

@@ -1,6 +1,6 @@
 <template>
   <Container
-    class="grid grid-cols-1 cardsDouble:grid-cols-2 cardsTriple:grid-cols-3 gap-6 w-full max-w-md cardsDouble:max-w-3xl cardsTriple:max-w-6xl self-center"
+    class="grid grid-cols-1 cardsDouble:grid-cols-2 cardsTriple:grid-cols-3 gap-6 w-full cardsTriple:max-w-6xl self-center"
     :class="{ 'cardsTriple:grid-cols-2': requiredCards === 0 }"
   >
     <p class="container-header col-span-full mb-0">Gem tracker</p>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-3 self-center w-full max-w-md cardsDouble:max-w-3xl cardsTriple:max-w-6xl">
+  <div class="flex flex-col gap-3 self-center w-full cardsTriple:max-w-6xl">
     <div
       class="p-3 bg-opacity-80 rounded-md -mb-1 flex flex-col"
       :class="{
