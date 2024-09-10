@@ -11,7 +11,7 @@
     </div>
     <div class="grid grid-cols-[auto_1fr] gap-6">
       <img
-        :src="getIcon()"
+        v-lazy="getIcon()"
         :alt="`${updatedCard.name} card`"
         class="max-h-44"
       />
