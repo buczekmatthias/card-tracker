@@ -1,6 +1,6 @@
 <template>
   <div class="border-t border-solid border-t-container pt-2 mt-2 flex flex-col gap-3">
-    <p class="text-base">{{ info.description }}</p>
+    <p class="text-base">{{ formatInfoValue() }}</p>
     <p
       class="font-light italic"
       v-if="Object.keys(info).includes('unlocks')"
@@ -48,8 +48,10 @@
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   info: Object,
   cardLvl: Number,
 });
+
+const formatInfoValue = () => props.info.description.replace("pvs", `${props.info.prefix}${props.cardLvl === 0 ? "N" : props.info.values[props.cardLvl - 1]}${props.info.suffix}`);
 </script>
