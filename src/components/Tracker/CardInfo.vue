@@ -21,7 +21,7 @@
           :class="{ 'bg-active/10': lvl + 1 === cardLvl }"
         >
           <td class="text-center border border-container p-2">{{ lvl + 1 }}</td>
-          <td class="text-center border border-container p-2">{{ value }}</td>
+          <td class="text-center border border-container p-2">{{ value }}{{ info.suffix }}</td>
         </tr>
       </tbody>
     </table>
