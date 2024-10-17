@@ -1,5 +1,8 @@
 <template>
-  <Navigation :page="page" @pageChange="changePage" />
+  <Navigation
+    :page="page"
+    @pageChange="changePage"
+  />
   <Tracker v-if="page === 'tracker'" />
   <Loadout v-else />
 </template>
@@ -17,7 +20,7 @@ import updateLoadout from "./data/updateLoadout";
 
 const page = ref(localStorage.getItem("page") || "tracker");
 
-const version = "24.2.0";
+const version = "25.0.0";
 
 const changePage = (p) => {
   localStorage.setItem("page", p);
@@ -44,7 +47,7 @@ onBeforeMount(() => {
       }
     }
 
-    // updateData();
+    updateData();
     // updateLoadout();
 
     localStorage.setItem(`${version}-update`, true);

@@ -18,7 +18,11 @@ const slots = {
   17: 4500,
   18: 5500,
   19: 6500,
+  20: 7500,
+  21: 8500,
 };
+
+const getMaxSlots = () => Object.keys(slots).pop();
 
 const slotsCostToMax = (owned) => {
   let cost = 0;
@@ -54,4 +58,4 @@ const gemsSpentSoFar = (owned) => {
   return cost;
 };
 
-export { slots, slotsCostToMax, costToTarget, gemsSpentSoFar };
+export { slots, getMaxSlots, slotsCostToMax, costToTarget, gemsSpentSoFar };

@@ -77,13 +77,12 @@ const emit = defineEmits(["updateCard", "completeGroup", "resetGroup"]);
 
 const cards = ref(props.group.cards);
 
-const isGroupFinished = ref(false);
+const isGroupFinished = ref(getGroupData(props.index).required === 0);
 
 const collapseGroup = ref(false);
 
 const checkGroupsFinished = () => {
   isGroupFinished.value = getGroupData(props.index).required === 0;
-  collapseGroup.value = isGroupFinished.value;
 };
 
 const updateCard = (card, card_id) => {
@@ -97,12 +96,7 @@ const completeGroup = () => {
   checkGroupsFinished();
 };
 
-const resetGroup = () => {
-  emit("resetGroup", props.index);
-  checkGroupsFinished();
-};
-
 onMounted(() => {
-  checkGroupsFinished();
+  collapseGroup.value = isGroupFinished.value;
 });
 </script>

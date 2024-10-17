@@ -1,12 +1,12 @@
 <template>
   <Container
-    class="grid grid-cols-1 cardsDouble:grid-cols-2 cardsTriple:grid-cols-3 gap-6 w-full cardsTriple:max-w-6xl self-center"
+    class="grid grid-cols-1 cardsDouble:grid-cols-2 gap-6 w-full cardsTriple:max-w-6xl self-center"
     :class="{ 'cardsTriple:grid-cols-2': requiredCards === 0 }"
   >
     <p class="container-header col-span-full mb-0">Gem tracker</p>
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 col-span-full">
       <p class="container-subheader">Cards</p>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-2 cardsTriple:grid-cols-4 gap-4 gap-y-6">
         <div class="tracker-box">
           <p>Cards obtained</p>
           <p>{{ obtainedCards.toLocaleString() }} ({{ cardCompletePercent }}%)</p>
@@ -29,6 +29,14 @@
           <p>Cards gems spent</p>
           <p>{{ ((obtainedCards + requiredCards) * 20 - requiredCardGems).toLocaleString() }}</p>
         </div>
+        <div class="tracker-box">
+          <p>Masteries stones required</p>
+          <p>{{ masteriesRequiredStones.toLocaleString() }}</p>
+        </div>
+        <div class="tracker-box">
+          <p>Masteries stones spent</p>
+          <p>{{ masteriesSpentStones.toLocaleString() }}</p>
+        </div>
       </div>
     </div>
     <div
@@ -47,7 +55,7 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-col gap-4 cardsDouble:col-start-2 cardsDouble:row-start-2">
+    <div class="flex flex-col gap-4">
       <p class="container-subheader col-span-full">Slots</p>
       <div class="grid grid-cols-2 gap-4">
         <div class="tracker-box">
@@ -88,6 +96,7 @@ import cards from "@/data/cards.json";
 import { getRequiredCards, getCardChance, getGroupData } from "@/data/cardLevels";
 import { slotsCostToMax, gemsSpentSoFar } from "@/data/cardSlots";
 import { ref } from "vue";
+import { getRequiredStones, getSpentStones } from "@/data/masteries";
 
 const storageCards = ref(JSON.parse(localStorage.getItem("cards")));
 
@@ -105,6 +114,9 @@ const cardChances = ref(getCardChance());
 const slotsCost = ref(slotsCostToMax(localStorage.getItem("ownedSlots") || 1));
 const slotsGemsSpent = ref(gemsSpentSoFar(localStorage.getItem("ownedSlots") || 1));
 
+const masteriesRequiredStones = ref(getRequiredStones(storageCards.value));
+const masteriesSpentStones = ref(getSpentStones(storageCards.value));
+
 const refreshTracker = () => {
   storageCards.value = JSON.parse(localStorage.getItem("cards"));
 
@@ -121,6 +133,9 @@ const refreshTracker = () => {
 
   slotsCost.value = slotsCostToMax(localStorage.getItem("ownedSlots") || 1);
   slotsGemsSpent.value = gemsSpentSoFar(localStorage.getItem("ownedSlots") || 1);
+
+  masteriesRequiredStones.value = getRequiredStones(storageCards.value);
+  masteriesSpentStones.value = getSpentStones(storageCards.value);
 };
 
 defineExpose({ refreshTracker });

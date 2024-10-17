@@ -75,9 +75,17 @@
         </table>
       </div>
     </div>
+    <label class="flex gap-2 items-center cursor-pointer">
+      <input
+        type="checkbox"
+        v-model="updatedCard.masteryUnlocked"
+      />
+      <span>Mastery unlocked</span>
+    </label>
     <CardInfo
       :info="info"
       :cardLvl="updatedCard.lvl"
+      :mastery="masteries[updatedCard.name]"
       v-if="showInfo"
     />
   </Container>
@@ -89,6 +97,7 @@ import CardInfo from "./CardInfo.vue";
 
 import { getPercentageOfMax, getRequiredToMax, levels } from "@/data/cardLevels";
 import { ref, watch } from "vue";
+import { masteries } from "@/data/masteries";
 
 const props = defineProps({
   card: Object,

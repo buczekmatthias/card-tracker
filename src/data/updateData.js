@@ -7,7 +7,11 @@ export default () => {
   //     owned: 21,
   //   });
 
-  localStorage.setItem("cards", JSON.stringify(cards));
+  cards.forEach((group) => {
+    group.cards.forEach((card) => {
+      card["masteryUnlocked"] = false;
+    });
+  });
 
-  // localStorage.setItem("slots", 19);
+  localStorage.setItem("cards", JSON.stringify(cards));
 };

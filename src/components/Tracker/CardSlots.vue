@@ -67,13 +67,13 @@ import Container from "./Container.vue";
 import CardSlotsTable from "./CardSlotsTable.vue";
 
 import { ref, watch } from "vue";
-import { costToTarget } from "@/data/cardSlots";
+import { costToTarget, getMaxSlots } from "@/data/cardSlots";
 
 const ownedSlots = ref(localStorage.getItem("ownedSlots") || 1);
 
 const targetSlot = ref(localStorage.getItem("targetSlot"));
 
-const maxSlots = ref(localStorage.getItem("slots"));
+const maxSlots = getMaxSlots();
 
 const isShowSlotInfo = ref(false);
 
@@ -90,7 +90,7 @@ watch(
     localStorage.setItem("ownedSlots", ownedSlots.value);
     emit("updateOwnedSlots");
     if (targetSlot.value <= ownedSlots.value) {
-      targetSlot.value = parseInt(ownedSlots.value) === parseInt(maxSlots.value) ? maxSlots.value : ownedSlots.value + 1;
+      targetSlot.value = parseInt(ownedSlots.value) === parseInt(maxSlots) ? maxSlots : ownedSlots.value + 1;
     }
   }
 );

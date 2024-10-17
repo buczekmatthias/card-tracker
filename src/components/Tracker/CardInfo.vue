@@ -25,6 +25,21 @@
         </tr>
       </tbody>
     </table>
+    <div class="border-t border-solid border-t-container pt-2 flex flex-col gap-3">
+      <p class="font-semibold text-xl">Mastery</p>
+      <p>
+        <span class="font-medium">Unlock: </span>
+        <span class="font-light">{{ mastery.cost }} stones</span>
+      </p>
+      <p>{{ mastery.description }}</p>
+      <a
+        href="https://tower-lab-calculator.netlify.app/"
+        target="_blank"
+        class="flex gap-1 items-center self-start after:content-['🔗']"
+      >
+        <span class="text-lg toggle-underline">{{ mastery.researchName }} research</span>
+      </a>
+    </div>
     <div
       class="flex flex-col gap-2 border-t border-solid border-t-container pt-3"
       v-if="Object.keys(info).includes('labs')"
@@ -51,6 +66,7 @@
 const props = defineProps({
   info: Object,
   cardLvl: Number,
+  mastery: Object,
 });
 
 const formatInfoValue = () => props.info.description.replace("pvs", `${props.info.prefix}${props.cardLvl === 0 ? "N" : props.info.values[props.cardLvl - 1]}${props.info.suffix}`);
