@@ -4,35 +4,31 @@ export default {
   theme: {
     extend: {
       backgroundColor: {
-        active: "#32ef2e",
         card: {
           common: "#919191",
           epic: "#c825ad",
           rare: "#236dc8",
         },
-        theme: "#111111",
+        theme: "#1c1c1c",
       },
       borderColor: {
-        active: "#32ef2e",
         card: {
           common: "#919191",
           epic: "#c825ad",
           rare: "#236dc8",
         },
         container: "#343434",
-        inactive: "#2b2b2b",
-        separator: "#fafafa",
+        inactive: "#4f4f4f",
       },
       fill: {
         active: "#111111",
-        "active-share": "#32ef2e",
-        inactive: "#2b2b2b",
+        inactive: "#4f4f4f",
       },
       height: {
         screen: ["100vh", "100dvh"],
       },
       maxWidth: {
-        nav: "700px",
+        transfer: "550px",
         loadout: "800px",
       },
       minHeight: {
@@ -42,14 +38,13 @@ export default {
         container: "0.75rem",
       },
       screens: {
-        cardsDouble: "685px",
-        cardsTriple: "1060px",
-        panel: "705px",
+        cardsDouble: "825px",
+        cardsTriple: "1200px",
+        loadout: "800px",
+        transfer: "550px",
       },
       textColor: {
-        active: "#32ef2e",
-        font: "#fafafa",
-        inactive: "#343434",
+        inactive: "#4f4f4f",
       },
     },
   },

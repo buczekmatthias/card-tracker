@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col pb-0 max-w-loadout self-center w-full">
-    <div class="px-container sticky top-0 bg-theme border-b border-solid border-b-separator/50">
+    <div class="px-container sticky top-0 bg-theme border-b border-solid border-b-zinc-50/50">
       <div class="loadout-grid h-24 justify-items-center">
         <div></div>
         <p
@@ -30,15 +30,10 @@
       :cardIndex="i"
     />
   </div>
-  <SharePanel v-slot="scope">
-    <LoadoutShare v-if="scope.showShare" />
-  </SharePanel>
 </template>
 
 <script setup>
 import Preset from "@/components/Loadout/Preset.vue";
-import LoadoutShare from "@/components/Loadout/Share.vue";
-import SharePanel from "@/components/SharePanel.vue";
 
 import cards from "@/data/cards.json";
 

@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-3 self-center w-full cardsTriple:max-w-6xl">
     <div
-      class="p-3 bg-opacity-80 rounded-md -mb-1 flex flex-col"
+      class="p-3 bg-opacity-70 rounded-md -mb-1 flex flex-col"
       :class="{
         'bg-card-common': rarity === 'Common',
         'bg-card-rare': rarity === 'Rare',

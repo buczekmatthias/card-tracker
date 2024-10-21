@@ -1,25 +1,35 @@
 <template>
-  <div class="e-i-container row-start-1">
-    <Notification header="Data share" message="Data copied to clipboard" v-if="copiedMessage" />
-    <p class="text-2xl font-semibold">What to share?</p>
-    <pre class="flex w-full p-2 rounded-md border border-solid border-separator/50">
+  <div class="share-container">
+    <p class="text-2xl font-semibold">Tracker data share</p>
+    <pre class="flex w-full p-2 rounded-md border border-solid border-zinc-50/50">
           <code class="flex flex-col overflow-auto w-full">
             <p>{{ exportData }}</p>
           </code>
       </pre>
-    <select v-model="exportType" class="p-2">
-      <option :value="option.value" v-for="option in options" :key="option">{{ option.label }}</option>
+    <select
+      v-model="exportType"
+      class="p-2"
+    >
+      <option
+        :value="option.value"
+        v-for="option in options"
+        :key="option"
+      >
+        {{ option.label }}
+      </option>
     </select>
-    <Button @click="copyResult">Copy data to share</Button>
+    <button
+      class="share-btn"
+      @click="copyResult"
+    >
+      Copy data
+    </button>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref, watch } from "vue";
 import { getCardsDataExportString, getSlotsExportString, getTrackerExportString } from "@/data/trackerShare";
-
-import Notification from "../Notification.vue";
-import Button from "../Button.vue";
 
 const options = ref([
   {
@@ -56,8 +66,6 @@ const exportData = ref("");
 
 const exportType = ref("tracker_cards_slots");
 
-const copiedMessage = ref(false);
-
 const storageCards = ref(JSON.parse(localStorage.getItem("cards")));
 
 const loadExportData = () => {
@@ -79,12 +87,7 @@ const loadExportData = () => {
 };
 
 const copyResult = () => {
-  if (!copiedMessage.value) {
-    navigator.clipboard.writeText(exportData.value);
-    copiedMessage.value = true;
-
-    setTimeout(() => (copiedMessage.value = false), 2500);
-  }
+  navigator.clipboard.writeText(exportData.value);
 };
 
 onMounted(() => {

@@ -18,7 +18,7 @@
         <tr
           v-for="(value, lvl) in info.values"
           :key="value"
-          :class="{ 'bg-active/10': lvl + 1 === cardLvl }"
+          :class="{ 'bg-emerald-400/10': lvl + 1 === cardLvl }"
         >
           <td class="text-center border border-container p-2">{{ lvl + 1 }}</td>
           <td class="text-center border border-container p-2">{{ info.prefix }}{{ value }}{{ info.suffix }}</td>
@@ -35,9 +35,9 @@
       <a
         href="https://tower-lab-calculator.netlify.app/"
         target="_blank"
-        class="flex gap-1 items-center self-start after:content-['🔗']"
+        class="flex gap-1 items-center self-start link after:content-['🔗']"
       >
-        <span class="text-lg toggle-underline">{{ mastery.researchName }} research</span>
+        {{ mastery.researchName }} research
       </a>
     </div>
     <div
@@ -47,9 +47,9 @@
       <a
         href="https://tower-lab-calculator.netlify.app/"
         target="_blank"
-        class="flex gap-1 items-center self-start after:content-['🔗']"
+        class="flex gap-1 items-center self-start link after:content-['🔗']"
       >
-        <span class="text-lg toggle-underline">Additional labs</span>
+        Additional labs
       </a>
       <p
         v-for="lab in info.labs"

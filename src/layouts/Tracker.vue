@@ -13,17 +13,12 @@
       @resetGroup="resetGroup"
     />
   </div>
-  <SharePanel v-slot="scope">
-    <TrackerShare v-if="scope.showShare" />
-  </SharePanel>
 </template>
 
 <script setup>
 import CardSlots from "@/components/Tracker/CardSlots.vue";
 import GemTracker from "@/components/Tracker/GemTracker.vue";
-import TrackerShare from "@/components/Tracker/Share.vue";
 import CardGroup from "@/components/Tracker/CardGroup.vue";
-import SharePanel from "@/components/SharePanel.vue";
 
 import { ref } from "vue";
 
