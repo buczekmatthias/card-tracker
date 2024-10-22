@@ -3,8 +3,7 @@
     class="border-t border-solid border-t-container p-container flex flex-col gap-4 mt-auto w-full mx-auto"
     :class="{
       'cardsTriple:max-w-6xl': page === 'tracker',
-      'max-w-loadout': page === 'loadout',
-      'max-w-transfer': page === 'transfer',
+      'max-w-loadout': ['loadout', 'transfer'].includes(page),
     }"
   >
     <p>Made by _.hazy</p>

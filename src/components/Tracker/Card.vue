@@ -131,8 +131,6 @@
 </template>
 
 <script setup>
-// TODO: Change how cards are displayed
-
 import Container from "./Container.vue";
 import CardInfo from "./CardInfo.vue";
 
@@ -163,7 +161,12 @@ const emit = defineEmits(["cardUpdate"]);
 
 watch(
   () => updatedCard.value,
-  () => emit("cardUpdate", updatedCard.value),
+  () => {
+    if (updatedCard.value.lvl !== 7 && updatedCard.value.masteryUnlocked) {
+      updatedCard.value.masteryUnlocked = false;
+    }
+    emit("cardUpdate", updatedCard.value);
+  },
   { deep: true }
 );
 

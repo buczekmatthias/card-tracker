@@ -15,9 +15,9 @@ const getCardsDataExportString = (storageCards, isNotLast) => {
     str += `= ${group.name} =\n`;
 
     group.cards.forEach((card) => {
-      str += `${card.name} - ${card.lvl}* - `;
-      str += card.lvl === 0 ? "Locked" : card.lvl === 7 ? "Maxed" : `${card.owned}/${levels[card.lvl]}`;
-      str += ` - Mastery ${card.masteryUnlocked ? "unlocked" : "locked"}`;
+      str += `${card.name} - ${card.lvl}*`;
+      str += [0, 7].includes(card.lvl) ? "" : ` - ${card.owned}/${levels[card.lvl]}`;
+      str += card.lvl === 7 && card.masteryUnlocked ? " - Mastery unlocked" : "";
       str += "\n";
     });
     str += "\n";

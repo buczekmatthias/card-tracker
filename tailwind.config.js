@@ -28,7 +28,6 @@ export default {
         screen: ["100vh", "100dvh"],
       },
       maxWidth: {
-        transfer: "550px",
         loadout: "800px",
       },
       minHeight: {
@@ -41,7 +40,6 @@ export default {
         cardsDouble: "825px",
         cardsTriple: "1200px",
         loadout: "800px",
-        transfer: "550px",
       },
       textColor: {
         inactive: "#4f4f4f",

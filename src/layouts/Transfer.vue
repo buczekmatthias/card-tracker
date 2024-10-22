@@ -1,5 +1,5 @@
 <template>
-  <div class="px-container flex flex-col divide-y-2 divide-container w-full max-w-transfer mx-auto">
+  <div class="px-container flex flex-col divide-y-2 divide-container w-full max-w-loadout mx-auto">
     <Export />
     <Import />
     <TrackerShare />
