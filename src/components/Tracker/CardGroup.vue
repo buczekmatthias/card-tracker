@@ -26,22 +26,30 @@
       >
         {{ group.name }}
       </p>
-      <div class="flex">
+      <div class="flex gap-2">
         <p>{{ group.cards.length }} cards</p>
         <p
           v-if="isGroupFinished"
-          class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 pl-2"
+          class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid pl-2"
         >
           Group finished
         </p>
-        <button
-          v-else
-          class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid ml-2 px-2 toggle-underline"
-          @click="completeGroup"
-          v-if="!isGroupFinished"
-        >
-          Complete group
-        </button>
+        <template v-else>
+          <button
+            class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid pl-2 toggle-underline"
+            @click="completeGroup(false)"
+            v-if="group.cards.some((card) => card.lvl !== 7)"
+          >
+            Complete group cards
+          </button>
+          <button
+            class="border-l-2 border-l-[#fafafa] border-opacity-20 border-solid pl-2 toggle-underline"
+            @click="completeGroup(true)"
+            v-else
+          >
+            Complete group masteries
+          </button>
+        </template>
       </div>
     </div>
     <div
@@ -62,7 +70,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
-import { getGroupData } from "@/data/cardLevels";
 import { info } from "@/data/cardsInfo";
 
 import Card from "@/components/Tracker/Card.vue";
@@ -77,12 +84,13 @@ const emit = defineEmits(["updateCard", "completeGroup", "resetGroup"]);
 
 const cards = ref(props.group.cards);
 
-const isGroupFinished = ref(getGroupData(props.index).required === 0);
+const isGroupFinished = ref(false);
 
 const collapseGroup = ref(false);
 
 const checkGroupsFinished = () => {
-  isGroupFinished.value = getGroupData(props.index).required === 0;
+  isGroupFinished.value = props.group.cards.every((card) => card.lvl === 7 && card.masteryUnlocked === true);
+  collapseGroup.value = isGroupFinished.value;
 };
 
 const updateCard = (card, card_id) => {
@@ -91,12 +99,12 @@ const updateCard = (card, card_id) => {
   checkGroupsFinished();
 };
 
-const completeGroup = () => {
-  emit("completeGroup", props.index);
+const completeGroup = (withMasteries) => {
+  emit("completeGroup", props.index, withMasteries);
   checkGroupsFinished();
 };
 
 onMounted(() => {
-  collapseGroup.value = isGroupFinished.value;
+  checkGroupsFinished();
 });
 </script>

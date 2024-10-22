@@ -1,5 +1,5 @@
 <template>
-  <Container class="grid grid-cols-[146px_1fr] gap-4 p-4 flex-1 items-start">
+  <Container class="grid grid-cols-[146px_1fr] gap-4 p-4 flex-1">
     <div class="grid grid-rows-[1fr_4fr_1.35fr] border border-solid border-zinc-200 rounded-md h-[13.5rem]">
       <p class="text-center p-1.5">{{ updatedCard.name }}</p>
       <div
@@ -37,7 +37,7 @@
     </div>
     <div class="flex flex-col gap-3">
       <button
-        class="toggle-underline self-end my-1"
+        class="toggle-underline self-end"
         @click="showInfo = !showInfo"
       >
         {{ showInfo ? "Hide" : "Show" }} info
@@ -101,7 +101,7 @@
       </table>
       <label
         v-if="updatedCard.lvl === 7"
-        class="flex gap-2 items-center justify-center cursor-pointer rounded-md py-3 px-container border border-solid"
+        class="flex gap-2 items-center justify-center cursor-pointer rounded-md py-3 px-container border border-solid mt-auto"
         :class="updatedCard.masteryUnlocked ? 'border-emerald-400 fill-emerald-400 text-emerald-400' : 'border-inactive fill-inactive text-inactive'"
       >
         <input

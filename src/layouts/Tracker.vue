@@ -34,8 +34,13 @@ const updateGroupCards = (i, groupCards) => {
   updateTracker();
 };
 
-const completeGroup = (ind) => {
-  cards.value[ind].cards.map((card) => (card.lvl = 7));
+const completeGroup = (ind, withMasteries) => {
+  cards.value[ind].cards.map((card) => {
+    card.lvl = 7;
+    if (withMasteries) {
+      card.masteryUnlocked = true;
+    }
+  });
   localStorage.setItem("cards", JSON.stringify(cards.value));
   updateTracker();
 };
