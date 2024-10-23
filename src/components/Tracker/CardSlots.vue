@@ -31,7 +31,7 @@
           <optgroup label="Vault">
             <option
               :value="gemSlotsCount + i"
-              v-for="i in Array.from(Array(getVaultSlotsCount()).keys(), (_, j) => j + 1)"
+              v-for="i in Array.from(Array(vaultSlotsCount).keys(), (_, j) => j + 1)"
               :key="i"
             >
               {{ gemSlotsCount + i }}
@@ -45,13 +45,27 @@
           v-model="targetSlot"
           :disabled="parseInt(ownedSlots) === parseInt(maxSlots)"
         >
-          <option
-            :value="i"
-            v-for="i in Array.from(Array(parseInt(maxSlots - ownedSlots)).keys(), (_, j) => parseInt(ownedSlots) + j + 1)"
-            :key="i"
+          <optgroup
+            label="Gems"
+            v-if="ownedSlots < gemSlotsCount"
           >
-            {{ i }}
-          </option>
+            <option
+              :value="i"
+              v-for="i in Array.from(Array(gemSlotsCount - ownedSlots).keys(), (_, j) => parseInt(ownedSlots) + j + 1)"
+              :key="i"
+            >
+              {{ i }}
+            </option>
+          </optgroup>
+          <optgroup label="Vault">
+            <option
+              :value="gemSlotsCount + i"
+              v-for="i in Array.from(Array(maxSlots - ownedSlots).keys(), (_, j) => vaultSlotsCount - j).reverse()"
+              :key="i"
+            >
+              {{ gemSlotsCount + i }}
+            </option>
+          </optgroup>
         </select>
       </div>
       <div>
@@ -77,13 +91,15 @@ import Container from "./Container.vue";
 import CardSlotsTable from "./CardSlotsTable.vue";
 
 import { ref, watch } from "vue";
-import { costToTarget, getGemSlotsCount, getVaultSlotsCount, getMaxSlotsCount, getTotalCost } from "@/data/cardSlots";
+import { costToTarget, getGemSlotsCount, getVaultSlotsCount, getMaxSlotsCount, getTotalCost, vaultSlots } from "@/data/cardSlots";
 
 const ownedSlots = ref(localStorage.getItem("ownedSlots") || 1);
 
 const targetSlot = ref(localStorage.getItem("targetSlot"));
 
 const gemSlotsCount = getGemSlotsCount();
+
+const vaultSlotsCount = getVaultSlotsCount();
 
 const maxSlots = getMaxSlotsCount();
 
