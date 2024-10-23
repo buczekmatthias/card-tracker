@@ -86,7 +86,7 @@ const cards = ref(props.group.cards);
 
 const isGroupFinished = ref(false);
 
-const collapseGroup = ref(false);
+const collapseGroup = ref(true);
 
 const checkGroupsFinished = () => {
   isGroupFinished.value = props.group.cards.every((card) => card.lvl === 7 && card.masteryUnlocked === true);

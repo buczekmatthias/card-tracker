@@ -55,9 +55,15 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-col gap-4">
+    <div
+      class="flex flex-col gap-4 cardsDouble:col-start-1 cardsDouble:row-start-3"
+      :class="{ 'col-span-full ': requiredCards === 0 }"
+    >
       <p class="container-subheader col-span-full">Slots</p>
-      <div class="grid grid-cols-2 gap-4">
+      <div
+        class="grid gap-4"
+        :class="requiredCards === 0 ? 'grid-cols-4' : 'grid-cols-2'"
+      >
         <div class="tracker-box">
           <p>Slots gems required</p>
           <p>{{ slotsGemsCost.toLocaleString() }}</p>

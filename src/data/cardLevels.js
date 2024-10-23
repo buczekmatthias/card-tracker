@@ -1,3 +1,5 @@
+import { masteries } from "./masteries";
+
 const levels = {
   0: 1,
   1: 3,

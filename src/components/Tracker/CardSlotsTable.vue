@@ -3,10 +3,10 @@
   <table class="border-collapse w-full">
     <thead>
       <tr>
-        <th class="border-2 border-container p-3">Slot</th>
-        <th class="border-2 border-container p-3">Cost</th>
-        <th class="border-2 border-container p-3">Total cost</th>
-        <th class="border-2 border-container p-3">Cost left</th>
+        <th class="border-2 border-container py-3 px-2">Slot</th>
+        <th class="border-2 border-container py-3 px-2">Cost</th>
+        <th class="border-2 border-container py-3 px-2">Total cost</th>
+        <th class="border-2 border-container py-3 px-2">Cost left</th>
       </tr>
     </thead>
     <tbody>
@@ -25,10 +25,10 @@
   <table class="border-collapse w-full">
     <thead>
       <tr>
-        <th class="border-2 border-container p-3">Slot</th>
-        <th class="border-2 border-container p-3">Cost</th>
-        <th class="border-2 border-container p-3">Path cost</th>
-        <th class="border-2 border-container p-3">Total cost</th>
+        <th class="border-2 border-container py-3 px-2">Slot</th>
+        <th class="border-2 border-container py-3 px-2">Cost</th>
+        <th class="border-2 border-container py-3 px-2">Path cost</th>
+        <th class="border-2 border-container py-3 px-2">Total cost</th>
       </tr>
     </thead>
     <tbody>
@@ -36,7 +36,7 @@
         v-for="(content, slot) in vaultSlots"
         :key="slot"
       >
-        <td class="text-center border border-container p-2">{{ slot }}</td>
+        <td class="text-center border border-container p-2">{{ `${slot} (${getGemSlotsCount() + parseInt(slot)})` }}</td>
         <td class="text-center border border-container p-2">{{ content.unlock.toLocaleString() }}</td>
         <td class="text-center border border-container p-2">{{ `${pathCost(0, slot).toLocaleString()} ${parseInt(slot) === 1 ? "" : "(+" + content.path + ")"}` }}</td>
         <td class="text-center border border-container p-2">{{ getTotalCost(0, slot).toLocaleString() }}</td>
@@ -46,5 +46,5 @@
 </template>
 
 <script setup>
-import { slots, costToTarget, vaultSlots, pathCost, getTotalCost } from "@/data/cardSlots";
+import { slots, costToTarget, vaultSlots, pathCost, getTotalCost, getGemSlotsCount } from "@/data/cardSlots";
 </script>
