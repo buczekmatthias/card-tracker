@@ -60,11 +60,19 @@
       <div class="grid grid-cols-2 gap-4">
         <div class="tracker-box">
           <p>Slots gems required</p>
-          <p>{{ slotsCost.toLocaleString() }}</p>
+          <p>{{ slotsGemsCost.toLocaleString() }}</p>
         </div>
         <div class="tracker-box">
           <p>Slots gems spent</p>
           <p>{{ slotsGemsSpent.toLocaleString() }}</p>
+        </div>
+        <div class="tracker-box">
+          <p>Slots keys required</p>
+          <p>{{ slotsKeysCost.toLocaleString() }}</p>
+        </div>
+        <div class="tracker-box">
+          <p>Slots keys spent</p>
+          <p>{{ slotsKeysSpent.toLocaleString() }}</p>
         </div>
       </div>
     </div>
@@ -94,7 +102,7 @@ import TrackerGroupStats from "./TrackerGroupStats.vue";
 
 import cards from "@/data/cards.json";
 import { getRequiredCards, getCardChance, getGroupData } from "@/data/cardLevels";
-import { slotsCostToMax, gemsSpentSoFar } from "@/data/cardSlots";
+import { slotsCostToMax, gemsSpentSoFar, getGemSlotsCount, keysSpentSoFar, getTotalCost } from "@/data/cardSlots";
 import { ref } from "vue";
 import { getRequiredStones, getSpentStones } from "@/data/masteries";
 
@@ -111,13 +119,19 @@ const epicStats = ref(getGroupData(2));
 
 const cardChances = ref(getCardChance());
 
-const slotsCost = ref(slotsCostToMax(localStorage.getItem("ownedSlots") || 1));
-const slotsGemsSpent = ref(gemsSpentSoFar(localStorage.getItem("ownedSlots") || 1));
+const ownedSlots = ref(parseInt(localStorage.getItem("ownedSlots")));
+const gemSlotsCount = getGemSlotsCount();
+
+const slotsGemsCost = ref(slotsCostToMax(ownedSlots.value));
+const slotsGemsSpent = ref(gemsSpentSoFar(ownedSlots.value));
+const slotsKeysCost = ref(getTotalCost(ownedSlots.value > gemSlotsCount ? ownedSlots.value - gemSlotsCount : 0));
+const slotsKeysSpent = ref(keysSpentSoFar(ownedSlots.value > gemSlotsCount ? ownedSlots.value - gemSlotsCount : 0));
 
 const masteriesRequiredStones = ref(getRequiredStones(storageCards.value));
 const masteriesSpentStones = ref(getSpentStones(storageCards.value));
 
 const refreshTracker = () => {
+  ownedSlots.value = parseInt(localStorage.getItem("ownedSlots"));
   storageCards.value = JSON.parse(localStorage.getItem("cards"));
 
   requiredCards.value = getRequiredCards(storageCards.value);
@@ -131,8 +145,10 @@ const refreshTracker = () => {
 
   cardChances.value = getCardChance();
 
-  slotsCost.value = slotsCostToMax(localStorage.getItem("ownedSlots") || 1);
-  slotsGemsSpent.value = gemsSpentSoFar(localStorage.getItem("ownedSlots") || 1);
+  slotsGemsCost.value = slotsCostToMax(ownedSlots.value);
+  slotsGemsSpent.value = gemsSpentSoFar(ownedSlots.value);
+  slotsKeysCost.value = getTotalCost(ownedSlots.value > gemSlotsCount ? ownedSlots.value - gemSlotsCount : 0);
+  slotsKeysSpent.value = keysSpentSoFar(ownedSlots.value > gemSlotsCount ? ownedSlots.value - gemSlotsCount : 0);
 
   masteriesRequiredStones.value = getRequiredStones(storageCards.value);
   masteriesSpentStones.value = getSpentStones(storageCards.value);

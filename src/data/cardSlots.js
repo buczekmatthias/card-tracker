@@ -22,11 +22,29 @@ const slots = {
   21: 8500,
 };
 
-const getMaxSlots = () => Object.keys(slots).pop();
+const vaultSlots = {
+  1: { unlock: 10, path: 10 },
+  2: { unlock: 15, path: 20 },
+  3: { unlock: 20, path: 10 },
+  4: { unlock: 25, path: 10 },
+};
+
+const getGemSlotsCount = () => parseInt(Object.keys(slots).pop());
+
+const getVaultSlotsCount = () => parseInt(Object.keys(vaultSlots).pop());
+
+const getMaxSlotsCount = () => getGemSlotsCount() + getVaultSlotsCount();
+
+//
+// Gem slots functions
+//
 
 const slotsCostToMax = (owned) => {
+  const gemSlotsCount = getGemSlotsCount();
+
+  owned = owned >= gemSlotsCount ? gemSlotsCount + 1 : parseInt(owned) + 1;
+
   let cost = 0;
-  owned = parseInt(owned) + 1;
 
   for (let i = owned; i <= Object.keys(slots).length; i++) {
     cost += slots[i];
@@ -36,6 +54,11 @@ const slotsCostToMax = (owned) => {
 };
 
 const costToTarget = (owned, target) => {
+  const gemSlotsCount = getGemSlotsCount();
+  if (target > gemSlotsCount) {
+    target = gemSlotsCount;
+  }
+
   let cost = 0;
   owned = parseInt(owned) + 1;
 
@@ -46,16 +69,37 @@ const costToTarget = (owned, target) => {
   return cost;
 };
 
-const gemsSpentSoFar = (owned) => {
+const gemsSpentSoFar = (owned) => costToTarget(0, owned);
+
+//
+// Vault slots functions
+//
+
+const pathCost = (owned, target) => {
+  let pathCost = 0;
+  owned = owned + 1;
+
+  for (let i = owned; i <= target; i++) {
+    pathCost += vaultSlots[i].path;
+  }
+
+  return pathCost;
+};
+
+const getTotalCost = (owned, target = null) => {
   let cost = 0;
+  owned = owned + 1;
+  if (target === null) {
+    target = getVaultSlotsCount();
+  }
 
-  owned = parseInt(owned);
-
-  for (let i = 1; i <= owned; i++) {
-    cost += slots[i];
+  for (let i = owned; i <= target; i++) {
+    cost += vaultSlots[i].unlock + vaultSlots[i].path;
   }
 
   return cost;
 };
 
-export { slots, getMaxSlots, slotsCostToMax, costToTarget, gemsSpentSoFar };
+const keysSpentSoFar = (owned) => getTotalCost(0, owned);
+
+export { slots, vaultSlots, getGemSlotsCount, getVaultSlotsCount, getMaxSlotsCount, slotsCostToMax, costToTarget, gemsSpentSoFar, pathCost, getTotalCost, keysSpentSoFar };

@@ -1,17 +1,22 @@
 export default () => {
-  const cards = JSON.parse(localStorage.getItem("cards"));
+  const cards = localStorage.getItem("cards");
+  const cardsObject = JSON.parse(cards);
 
-  //   cards[2].cards.push({
-  //     name: "Test",
-  //     lvl: 55,
-  //     owned: 21,
-  //   });
+  if (!cards.includes("masteryUnlocked")) {
+    //   cards[2].cards.push({
+    //     name: "Test",
+    //     lvl: 55,
+    //     owned: 21,
+    //   });
 
-  cards.forEach((group) => {
-    group.cards.forEach((card) => {
-      card["masteryUnlocked"] = false;
+    cards.forEach((group) => {
+      group.cards.forEach((card) => {
+        if (!("masteryUnlocked" in card)) {
+          card["masteryUnlocked"] = false;
+        }
+      });
     });
-  });
+  }
 
-  localStorage.setItem("cards", JSON.stringify(cards));
+  localStorage.setItem("cards", JSON.stringify(cardsObject));
 };

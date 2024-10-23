@@ -1,4 +1,5 @@
 <template>
+  <p class="font-semibold text-2xl">Gem slots costs</p>
   <table class="border-collapse w-full">
     <thead>
       <tr>
@@ -9,7 +10,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(cost, slot) in slots" :key="slot">
+      <tr
+        v-for="(cost, slot) in slots"
+        :key="slot"
+      >
         <td class="text-center border border-container p-2">{{ slot }}</td>
         <td class="text-center border border-container p-2">{{ cost.toLocaleString() }}</td>
         <td class="text-center border border-container p-2">{{ costToTarget(0, slot).toLocaleString() }}</td>
@@ -17,8 +21,30 @@
       </tr>
     </tbody>
   </table>
+  <p class="font-semibold text-2xl">Vault slots costs</p>
+  <table class="border-collapse w-full">
+    <thead>
+      <tr>
+        <th class="border-2 border-container p-3">Slot</th>
+        <th class="border-2 border-container p-3">Cost</th>
+        <th class="border-2 border-container p-3">Path cost</th>
+        <th class="border-2 border-container p-3">Total cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        v-for="(content, slot) in vaultSlots"
+        :key="slot"
+      >
+        <td class="text-center border border-container p-2">{{ slot }}</td>
+        <td class="text-center border border-container p-2">{{ content.unlock.toLocaleString() }}</td>
+        <td class="text-center border border-container p-2">{{ `${pathCost(0, slot).toLocaleString()} ${parseInt(slot) === 1 ? "" : "(+" + content.path + ")"}` }}</td>
+        <td class="text-center border border-container p-2">{{ getTotalCost(0, slot).toLocaleString() }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script setup>
-import { slots, costToTarget } from "@/data/cardSlots";
+import { slots, costToTarget, vaultSlots, pathCost, getTotalCost } from "@/data/cardSlots";
 </script>

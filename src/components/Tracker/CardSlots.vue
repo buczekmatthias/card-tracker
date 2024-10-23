@@ -19,13 +19,24 @@
       <div>
         <span>Owned</span>
         <select v-model="ownedSlots">
-          <option
-            :value="i"
-            v-for="i in Array.from(Array(parseInt(maxSlots)).keys(), (_, j) => j + 1)"
-            :key="i"
-          >
-            {{ i }}
-          </option>
+          <optgroup label="Gems">
+            <option
+              :value="i"
+              v-for="i in Array.from(Array(gemSlotsCount).keys(), (_, j) => j + 1)"
+              :key="i"
+            >
+              {{ i }}
+            </option>
+          </optgroup>
+          <optgroup label="Vault">
+            <option
+              :value="gemSlotsCount + i"
+              v-for="i in Array.from(Array(getVaultSlotsCount()).keys(), (_, j) => j + 1)"
+              :key="i"
+            >
+              {{ gemSlotsCount + i }}
+            </option>
+          </optgroup>
         </select>
       </div>
       <div v-if="parseInt(ownedSlots) !== parseInt(maxSlots)">
@@ -44,19 +55,18 @@
         </select>
       </div>
       <div>
-        <span>Slots left</span>
-        <span>{{ maxSlots - ownedSlots }}</span>
-      </div>
-      <div>
         <span>Target gems</span>
         <span>{{ costToTarget(ownedSlots, targetSlot).toLocaleString() }}</span>
+      </div>
+      <div>
+        <span>Target keys</span>
+        <span>{{ getTotalCost(ownedSlots - gemSlotsCount > 0 ? ownedSlots - gemSlotsCount : 0, targetSlot - gemSlotsCount) }}</span>
       </div>
     </div>
     <div
       class="flex flex-col gap-3 border-t border-solid border-t-container pt-4"
       v-if="isShowSlotInfo"
     >
-      <p class="font-semibold text-2xl">Slots costs</p>
       <CardSlotsTable />
     </div>
   </Container>
@@ -67,13 +77,15 @@ import Container from "./Container.vue";
 import CardSlotsTable from "./CardSlotsTable.vue";
 
 import { ref, watch } from "vue";
-import { costToTarget, getMaxSlots } from "@/data/cardSlots";
+import { costToTarget, getGemSlotsCount, getVaultSlotsCount, getMaxSlotsCount, getTotalCost } from "@/data/cardSlots";
 
 const ownedSlots = ref(localStorage.getItem("ownedSlots") || 1);
 
 const targetSlot = ref(localStorage.getItem("targetSlot"));
 
-const maxSlots = getMaxSlots();
+const gemSlotsCount = getGemSlotsCount();
+
+const maxSlots = getMaxSlotsCount();
 
 const isShowSlotInfo = ref(false);
 
@@ -84,14 +96,11 @@ watch(
   () => localStorage.setItem("targetSlot", targetSlot.value)
 );
 
-watch(
-  () => ownedSlots.value,
-  () => {
-    localStorage.setItem("ownedSlots", ownedSlots.value);
-    emit("updateOwnedSlots");
-    if (targetSlot.value <= ownedSlots.value) {
-      targetSlot.value = parseInt(ownedSlots.value) === parseInt(maxSlots) ? maxSlots : ownedSlots.value + 1;
-    }
+watch([ownedSlots], () => {
+  localStorage.setItem("ownedSlots", ownedSlots.value);
+  emit("updateOwnedSlots");
+  if (targetSlot.value <= ownedSlots.value) {
+    targetSlot.value = parseInt(ownedSlots.value) === parseInt(maxSlots) ? maxSlots : ownedSlots.value + 1;
   }
-);
+});
 </script>

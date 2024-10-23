@@ -21,7 +21,7 @@ import updateLoadout from "./data/updateLoadout";
 
 const page = ref(localStorage.getItem("page"));
 
-const version = "25.0.0";
+const version = "25.4.0";
 
 onBeforeMount(() => {
   if (!localStorage.getItem("page")) {
