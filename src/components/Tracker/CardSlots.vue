@@ -60,7 +60,7 @@
           <optgroup label="Vault">
             <option
               :value="gemSlotsCount + i"
-              v-for="i in Array.from(Array(maxSlots - ownedSlots).keys(), (_, j) => vaultSlotsCount - j).reverse()"
+              v-for="i in Array.from(Array(vaultSlotsCount - (ownedSlots - gemSlotsCount < 0 ? 0 : ownedSlots - gemSlotsCount)).keys(), (_, j) => vaultSlotsCount - j).reverse()"
               :key="i"
             >
               {{ gemSlotsCount + i }}
