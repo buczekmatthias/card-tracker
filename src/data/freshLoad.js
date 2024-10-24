@@ -1,9 +1,15 @@
 import cards from "./cards";
 
 export default () => {
-  localStorage.setItem("cards", JSON.stringify(cards));
+  if (!localStorage.getItem("cards")) {
+    localStorage.setItem("cards", JSON.stringify(cards));
+  }
 
-  localStorage.setItem("ownedSlots", 1);
+  if (!localStorage.getItem("ownedSlots")) {
+    localStorage.setItem("ownedSlots", 1);
+  }
 
-  localStorage.setItem("targetSlot", 2);
+  if (!localStorage.getItem("vaultSlots")) {
+    localStorage.setItem("vaultSlots", 0);
+  }
 };

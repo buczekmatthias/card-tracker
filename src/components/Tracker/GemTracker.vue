@@ -126,18 +126,19 @@ const epicStats = ref(getGroupData(2));
 const cardChances = ref(getCardChance());
 
 const ownedSlots = ref(parseInt(localStorage.getItem("ownedSlots")));
-const gemSlotsCount = getGemSlotsCount();
+const ownedVaultSlots = ref(parseInt(localStorage.getItem("vaultSlots")));
 
 const slotsGemsCost = ref(slotsCostToMax(ownedSlots.value));
 const slotsGemsSpent = ref(gemsSpentSoFar(ownedSlots.value));
-const slotsKeysCost = ref(getTotalCost(ownedSlots.value > gemSlotsCount ? ownedSlots.value - gemSlotsCount : 0));
-const slotsKeysSpent = ref(keysSpentSoFar(ownedSlots.value > gemSlotsCount ? ownedSlots.value - gemSlotsCount : 0));
+const slotsKeysCost = ref(getTotalCost(ownedVaultSlots.value));
+const slotsKeysSpent = ref(keysSpentSoFar(ownedVaultSlots.value));
 
 const masteriesRequiredStones = ref(getRequiredStones(storageCards.value));
 const masteriesSpentStones = ref(getSpentStones(storageCards.value));
 
 const refreshTracker = () => {
   ownedSlots.value = parseInt(localStorage.getItem("ownedSlots"));
+  ownedVaultSlots.value = parseInt(localStorage.getItem("vaultSlots"));
   storageCards.value = JSON.parse(localStorage.getItem("cards"));
 
   requiredCards.value = getRequiredCards(storageCards.value);
@@ -153,8 +154,8 @@ const refreshTracker = () => {
 
   slotsGemsCost.value = slotsCostToMax(ownedSlots.value);
   slotsGemsSpent.value = gemsSpentSoFar(ownedSlots.value);
-  slotsKeysCost.value = getTotalCost(ownedSlots.value > gemSlotsCount ? ownedSlots.value - gemSlotsCount : 0);
-  slotsKeysSpent.value = keysSpentSoFar(ownedSlots.value > gemSlotsCount ? ownedSlots.value - gemSlotsCount : 0);
+  slotsKeysCost.value = getTotalCost(ownedVaultSlots.value);
+  slotsKeysSpent.value = keysSpentSoFar(ownedVaultSlots.value);
 
   masteriesRequiredStones.value = getRequiredStones(storageCards.value);
   masteriesSpentStones.value = getSpentStones(storageCards.value);

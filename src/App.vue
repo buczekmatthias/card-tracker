@@ -29,17 +29,8 @@ onBeforeMount(() => {
     page.value = "tracker";
   }
 
-  if (!localStorage.getItem("cards")) {
-    freshLoad();
-  }
-
-  if (!localStorage.getItem("presets")) {
-    freshLoadout();
-  }
-
-  if (!localStorage.getItem("ownedSlots")) {
-    localStorage.setItem("ownedSlots", 1);
-  }
+  freshLoad();
+  freshLoadout();
 
   if (!localStorage.getItem(`${version}-update`)) {
     for (let key in localStorage) {

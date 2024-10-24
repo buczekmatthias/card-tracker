@@ -9,72 +9,39 @@
         {{ isShowSlotInfo ? "Hide" : "Show" }} costs
       </button>
     </div>
-    <div
-      class="slots-content"
-      :class="{
-        'grid-cols-[2fr_2fr_2fr_3fr]': parseInt(ownedSlots) !== parseInt(maxSlots),
-        'grid-cols-[4.2fr_2fr_3fr]': parseInt(ownedSlots) === parseInt(maxSlots),
-      }"
-    >
+    <div class="slots-content grid-cols-[2fr_2fr_2fr_3fr]">
       <div>
-        <span>Owned</span>
+        <span>Gem slots</span>
         <select v-model="ownedSlots">
-          <optgroup label="Gems">
-            <option
-              :value="i"
-              v-for="i in Array.from(Array(gemSlotsCount).keys(), (_, j) => j + 1)"
-              :key="i"
-            >
-              {{ i }}
-            </option>
-          </optgroup>
-          <optgroup label="Vault">
-            <option
-              :value="gemSlotsCount + i"
-              v-for="i in Array.from(Array(vaultSlotsCount).keys(), (_, j) => j + 1)"
-              :key="i"
-            >
-              {{ gemSlotsCount + i }}
-            </option>
-          </optgroup>
-        </select>
-      </div>
-      <div v-if="parseInt(ownedSlots) !== parseInt(maxSlots)">
-        <span>Target</span>
-        <select
-          v-model="targetSlot"
-          :disabled="parseInt(ownedSlots) === parseInt(maxSlots)"
-        >
-          <optgroup
-            label="Gems"
-            v-if="ownedSlots < gemSlotsCount"
+          <option
+            :value="i"
+            v-for="i in Array.from(Array(gemSlotsCount).keys(), (_, j) => j + 1)"
+            :key="i"
           >
-            <option
-              :value="i"
-              v-for="i in Array.from(Array(gemSlotsCount - ownedSlots).keys(), (_, j) => parseInt(ownedSlots) + j + 1)"
-              :key="i"
-            >
-              {{ i }}
-            </option>
-          </optgroup>
-          <optgroup label="Vault">
-            <option
-              :value="gemSlotsCount + i"
-              v-for="i in Array.from(Array(vaultSlotsCount - (ownedSlots - gemSlotsCount < 0 ? 0 : ownedSlots - gemSlotsCount)).keys(), (_, j) => vaultSlotsCount - j).reverse()"
-              :key="i"
-            >
-              {{ gemSlotsCount + i }}
-            </option>
-          </optgroup>
+            {{ i }}
+          </option>
         </select>
       </div>
       <div>
-        <span>Target gems</span>
-        <span>{{ costToTarget(ownedSlots, targetSlot).toLocaleString() }}</span>
+        <span>Vault slots</span>
+        <select v-model="ownedVaultSlots">
+          <option :value="0">0</option>
+          <option
+            :value="i"
+            v-for="i in Array.from(Array(vaultSlotsCount).keys(), (_, j) => j + 1)"
+            :key="i"
+          >
+            {{ `${i} (${gemSlotsCount + i})` }}
+          </option>
+        </select>
       </div>
       <div>
-        <span>Target keys</span>
-        <span>{{ getTotalCost(ownedSlots - gemSlotsCount > 0 ? ownedSlots - gemSlotsCount : 0, targetSlot - gemSlotsCount) }}</span>
+        <span>Next gems</span>
+        <span>{{ costToTarget(ownedSlots, ownedSlots + 1).toLocaleString() }}</span>
+      </div>
+      <div>
+        <span>Next keys</span>
+        <span>{{ getTotalCost(ownedVaultSlots, ownedVaultSlots + 1) }}</span>
       </div>
     </div>
     <div
@@ -91,11 +58,11 @@ import Container from "./Container.vue";
 import CardSlotsTable from "./CardSlotsTable.vue";
 
 import { ref, watch } from "vue";
-import { costToTarget, getGemSlotsCount, getVaultSlotsCount, getMaxSlotsCount, getTotalCost, vaultSlots } from "@/data/cardSlots";
+import { costToTarget, getGemSlotsCount, getVaultSlotsCount, getMaxSlotsCount, getTotalCost } from "@/data/cardSlots";
 
-const ownedSlots = ref(localStorage.getItem("ownedSlots") || 1);
+const ownedSlots = ref(parseInt(localStorage.getItem("ownedSlots")));
 
-const targetSlot = ref(localStorage.getItem("targetSlot"));
+const ownedVaultSlots = ref(parseInt(localStorage.getItem("vaultSlots")));
 
 const gemSlotsCount = getGemSlotsCount();
 
@@ -107,16 +74,9 @@ const isShowSlotInfo = ref(false);
 
 const emit = defineEmits(["updateOwnedSlots"]);
 
-watch(
-  () => targetSlot.value,
-  () => localStorage.setItem("targetSlot", targetSlot.value)
-);
-
-watch([ownedSlots], () => {
+watch([ownedSlots, ownedVaultSlots], () => {
   localStorage.setItem("ownedSlots", ownedSlots.value);
+  localStorage.setItem("vaultSlots", ownedVaultSlots.value);
   emit("updateOwnedSlots");
-  if (targetSlot.value <= ownedSlots.value) {
-    targetSlot.value = parseInt(ownedSlots.value) === parseInt(maxSlots) ? maxSlots : ownedSlots.value + 1;
-  }
 });
 </script>

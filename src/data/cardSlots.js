@@ -89,8 +89,9 @@ const pathCost = (owned, target) => {
 const getTotalCost = (owned, target = null) => {
   let cost = 0;
   owned = owned + 1;
-  if (target === null) {
-    target = getVaultSlotsCount();
+  const vaultSlotsCount = getVaultSlotsCount();
+  if (target === null || target > vaultSlotsCount) {
+    target = vaultSlotsCount;
   }
 
   for (let i = owned; i <= target; i++) {
