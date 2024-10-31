@@ -1,12 +1,18 @@
 <template>
-  <div class="border-t border-solid border-t-container pt-2 mt-2 flex flex-col gap-3">
-    <p class="text-base">{{ formatInfoValue() }}</p>
+  <div class="border-t border-solid border-t-container pt-4 mt-2 flex flex-col gap-4">
     <p
-      class="font-light italic"
+      class="font-light"
       v-if="Object.keys(info).includes('unlocks')"
     >
       Locked behind {{ info.unlocks }} milestone
     </p>
+    <p
+      v-if="isLocked"
+      class="font-light"
+    >
+      This card can't be swapped during active run
+    </p>
+    <p class="text-base">{{ formatInfoValue() }}</p>
     <table class="border-collapse w-full">
       <thead>
         <tr>
@@ -25,32 +31,19 @@
         </tr>
       </tbody>
     </table>
-    <div class="border-t border-solid border-t-container pt-2 flex flex-col gap-3">
+    <div class="border-t border-solid border-t-container pt-4 flex flex-col gap-3">
       <p class="font-semibold text-xl">Mastery</p>
       <p>
         <span class="font-medium">Unlock: </span>
         <span class="font-light">{{ mastery.cost }} stones</span>
       </p>
       <p>{{ mastery.description }}</p>
-      <a
-        href="https://tower-lab-calculator.netlify.app/"
-        target="_blank"
-        class="flex gap-1 items-center self-start link after:content-['🔗']"
-      >
-        {{ mastery.researchName }} research
-      </a>
     </div>
     <div
-      class="flex flex-col gap-2 border-t border-solid border-t-container pt-3"
+      class="flex flex-col gap-2 border-t border-solid border-t-container pt-4"
       v-if="Object.keys(info).includes('labs')"
     >
-      <a
-        href="https://tower-lab-calculator.netlify.app/"
-        target="_blank"
-        class="flex gap-1 items-center self-start link after:content-['🔗']"
-      >
-        Additional labs
-      </a>
+      <p class="text-xl self-start">Additional labs</p>
       <p
         v-for="lab in info.labs"
         :key="lab"
@@ -59,6 +52,13 @@
         {{ lab }}
       </p>
     </div>
+    <a
+      href="https://tower-lab-calculator.netlify.app/"
+      target="_blank"
+      class="link after:content-['🔗'] flex items-center"
+    >
+      Check out researches costs and times
+    </a>
   </div>
 </template>
 
@@ -67,6 +67,7 @@ const props = defineProps({
   info: Object,
   cardLvl: Number,
   mastery: Object,
+  isLocked: Boolean,
 });
 
 const formatInfoValue = () => props.info.description.replace("pvs", `${props.info.prefix}${props.cardLvl === 0 ? "N" : props.info.values[props.cardLvl - 1]}${props.info.suffix}`);

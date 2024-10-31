@@ -61,8 +61,8 @@
     >
       <p class="container-subheader col-span-full">Slots</p>
       <div
-        class="grid gap-4"
-        :class="requiredCards === 0 ? 'grid-cols-4' : 'grid-cols-2'"
+        class="grid grid-cols-2 gap-4"
+        :class="{ 'cardsDouble:grid-cols-4': requiredCards === 0 }"
       >
         <div class="tracker-box">
           <p>Slots gems required</p>
@@ -106,7 +106,7 @@
 import Container from "./Container.vue";
 import TrackerGroupStats from "./TrackerGroupStats.vue";
 
-import cards from "@/data/cards.json";
+import { cards } from "@/data/cards.js";
 import { getRequiredCards, getCardChance, getGroupData } from "@/data/cardLevels";
 import { slotsCostToMax, gemsSpentSoFar, getGemSlotsCount, keysSpentSoFar, getTotalCost } from "@/data/cardSlots";
 import { ref } from "vue";

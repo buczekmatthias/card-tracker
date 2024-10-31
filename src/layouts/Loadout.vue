@@ -22,7 +22,7 @@
         </p>
       </div>
     </div>
-    <Preset
+    <Card
       v-for="(card, i) in cards"
       @updatePreset="updateLoadout"
       :key="card"
@@ -33,9 +33,9 @@
 </template>
 
 <script setup>
-import Preset from "@/components/Loadout/Preset.vue";
+import Card from "@/components/Loadout/Card.vue";
 
-import cards from "@/data/cards.json";
+import { cards } from "@/data/cards.js";
 
 import { ref } from "vue";
 

@@ -1,4 +1,4 @@
-import cards from "./cards";
+import cards from "./cardsSetup";
 
 export default () => {
   if (!localStorage.getItem("cards")) {

@@ -1,7 +1,7 @@
 import { gemsSpentSoFar } from "@/data/cardSlots";
 import { levels, getRequiredCards, getGroupData } from "@/data/cardLevels";
 
-import cards from "./cards.json";
+import { cards } from "./cards.js";
 import { getSpentStones, getRequiredStones } from "./masteries";
 
 const getSlotsExportString = () => `=== Slots ===\n${localStorage.getItem("ownedSlots")} slots owned | ${gemsSpentSoFar(localStorage.getItem("ownedSlots") || 1).toLocaleString()} gems spent`;

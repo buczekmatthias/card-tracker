@@ -1,0 +1,197 @@
+export default [
+  {
+    name: "Common",
+    cards: [
+      {
+        name: "Damage",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Attack speed",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Health",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Health regen",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Range",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Cash",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Coins",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Slow aura",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Critical chance",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Enemy balance",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Extra defense",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Fortress",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+    ],
+  },
+  {
+    name: "Rare",
+    cards: [
+      {
+        name: "Free upgrades",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Inner orb",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Plasma cannon",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Critical coin",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Wave skip",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Intro skip",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Land mine stun",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Package change",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+    ],
+  },
+  {
+    name: "Epic",
+    cards: [
+      {
+        name: "Death ray",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Energy net",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Super tower",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Second wind",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Demon mode",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Energy shield",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Wave accelerator",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Berserker",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Ultimate crit",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+      {
+        name: "Nuke",
+        lvl: 0,
+        owned: 0,
+        masteryUnlocked: false,
+      },
+    ],
+  },
+];

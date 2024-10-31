@@ -1,6 +1,27 @@
 <template>
   <div class="preset-card loadout-grid">
-    <p>{{ card }}</p>
+    <div class="flex gap-2 items-center">
+      <p>{{ card }}</p>
+      <svg
+        v-if="lockedCards.includes(card)"
+        class="h-4 fill-amber-500"
+        viewBox="0 0 16 16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          width="11"
+          height="9"
+          x="2.5"
+          y="7"
+          rx="2"
+        ></rect>
+        <path
+          fill-rule="evenodd"
+          d="M4.5 4a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    </div>
     <button
       class="rounded-md w-fit p-0.5 justify-self-center border border-solid"
       :class="isInPreset(i) ? 'bg-emerald-500 border-emerald-500' : 'bg-theme border-inactive'"
@@ -21,6 +42,7 @@
 </template>
 
 <script setup>
+import { lockedCards } from "@/data/cards";
 import { ref } from "vue";
 
 const props = defineProps({

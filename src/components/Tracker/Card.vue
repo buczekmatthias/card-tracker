@@ -3,9 +3,28 @@
     <div class="grid grid-rows-[1fr_4fr_1.35fr] border border-solid border-zinc-200 rounded-md h-[13.5rem]">
       <p class="text-center p-1.5">{{ updatedCard.name }}</p>
       <div
-        class="border-y border-solid border-y-zinc-200 flex items-center justify-center glow"
+        class="border-y border-solid border-y-zinc-200 flex items-center justify-center glow relative"
         :class="info.glow"
       >
+        <svg
+          v-if="lockedCards.includes(updatedCard.name)"
+          class="h-6 absolute top-2.5 left-1.5 z-30 fill-amber-500"
+          viewBox="0 0 16 16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            width="11"
+            height="9"
+            x="2.5"
+            y="7"
+            rx="2"
+          ></rect>
+          <path
+            fill-rule="evenodd"
+            d="M4.5 4a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
         <img
           v-lazy="getIcon()"
           :alt="`${updatedCard.name} card`"
@@ -125,6 +144,7 @@
       :info="info"
       :cardLvl="updatedCard.lvl"
       :mastery="masteries[updatedCard.name]"
+      :isLocked="lockedCards.includes(updatedCard.name)"
       v-if="showInfo"
     />
   </Container>
@@ -134,9 +154,11 @@
 import Container from "./Container.vue";
 import CardInfo from "./CardInfo.vue";
 
-import { getPercentageOfMax, getRequiredToMax, levels } from "@/data/cardLevels";
 import { ref, watch } from "vue";
+
+import { getPercentageOfMax, getRequiredToMax, levels } from "@/data/cardLevels";
 import { masteries } from "@/data/masteries";
+import { lockedCards } from "@/data/cards";
 
 const props = defineProps({
   card: Object,
