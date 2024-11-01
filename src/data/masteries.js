@@ -7,7 +7,7 @@ const masteries = {
   Cash: { cost: 500, description: "Adds a chance for elites to drop Reroll Dice", researchName: "Elite Farming", research: "Adds a chance for elites to drop Reroll Dice" },
   Coins: { cost: 1250, description: "Increases card's stat multiplier and unlocks Coin mastery research", researchName: "Coins+", research: "Increase bonus coins" },
   "Slow aura": { cost: 1000, description: "Adds an additional affect to show enemies attack speed and unlocks Slow Attack mastery research", researchName: "Slow Attack", research: "Time delay between enemy attacks" },
-  "Critical chance": { cost: 750, description: "Adds an additional bonus to increase Super Crit Chance and unlocks Super Critical Chance mastery research", researchName: "Super Critical Chance", research: "Bonus to Super Crit Chance" },
+  "Critical chance": { cost: 750, description: "Adds an additional bonus to increase Crit Chance, Super Crit Chance, and Super Crit Factor and unlocks Super Critical Chance mastery research", researchName: "Super Critical Chance", research: "Bonus to Super Crit Chance" },
   "Enemy balance": { cost: 1000, description: "Adds a chance to double spawn elites and locks Elite Balance mastery research", researchName: "Elite Balance", research: "Chance for a double elite spawn to occur" },
   "Extra defense": { cost: 1000, description: "Increases card's stat multiplier and unlocks Extra Defense mastery research", researchName: "Extra Defense+", research: "Increase bonus defense percent" },
   Fortress: { cost: 750, description: "Reduces wall rebuild time and unlocks Fortress Walls mastery research", researchName: "Fortress Walls", research: "Reduce wall rebuild time" },
