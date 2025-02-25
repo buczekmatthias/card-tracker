@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+html:has(#modal) {
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow-y: hidden;
+}
+
+body {
+  background-color: #131313;
+  @apply text-slate-50;
+}
+
+#app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  @apply flex flex-col justify-center items-center p-3 gap-5;
+}
+
+#app * {
+  line-height: 175%;
+}
+
+code {
+  @apply max-h-[15vh] [@media(min-height:500px)]:max-h-[40vh] [@media(min-height:700px)]:max-h-[60vh];
+}
+pre {
+  white-space: pre-wrap; /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+@theme {
+  --color-card-common: #bababa;
+  --color-card-rare: #236dc8;
+  --color-card-epic: #c825ad;
+  --color-nav: #1a1a1a;
+  --color-theme: #131313
+}
+
+.p-container {
+  padding: 0.75rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.glow-blue {
+    --glow: #19a5e680;
+  }
+  .glow-red {
+    --glow: #ca1b3e80;
+  }
+  .glow-yellow {
+    --glow: #ddc31880;
+  }
+  .glow-green {
+    --glow: #11b43480;
+  }
+  .glow-orange {
+    --glow: #e4a61680;
+  }
+  .glow {
+    box-shadow: inset 0 0 20px 6px var(--glow, #00abe3);
+  }
+
+  .loadout-grid {
+    @apply grid grid-cols-[3fr_repeat(5,1fr)] sm:grid-cols-[4fr_repeat(5,1fr)] md:grid-cols-[5fr_repeat(5,1fr)];
+  }
+  .preset {
+    writing-mode: vertical-lr;
+    text-align: center;
+    transform: rotate(180deg);
+  }
+  .preset-card {
+    @apply border-b border-solid border-b-slate-300/30 py-5;
+  }
+  .preset-card:last-of-type {
+    @apply border-b-0;
+  }
+
+  .tracker-box {
+    @apply flex flex-col gap-1.5 self-center;
+  }
+  .tracker-subheader {
+    @apply text-sm lg:text-base;
+  }
+
+  .slots-content {
+    @apply grid gap-2;
+  }
+  .slots-content > div {
+    @apply flex flex-col gap-2;
+  }
+
+  
+  .toggle-underline {
+    @apply underline underline-offset-[3px] decoration-dotted cursor-pointer;
+  }
