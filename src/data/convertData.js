@@ -1,7 +1,7 @@
 export default () => {
   // ============== CARDS FORMAT =============
   const oldFormatCards = JSON.parse(localStorage.getItem("cards"));
-  if (typeof oldFormatCards !== "object") {
+  if (Object.prototype.toString.call(oldFormatCards) === '[object Array]') {
     const newFormatCards = {};
 
     Object.keys(oldFormatCards).forEach((k) => {
