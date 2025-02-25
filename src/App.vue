@@ -35,14 +35,14 @@ onBeforeMount(() => {
   freshLoad();
   freshLoadout();
 
+  convertData();
+
   if (!localStorage.getItem(`${version}-update`)) {
     for (let key in localStorage) {
       if (key.includes("-update")) {
         localStorage.removeItem(key);
       }
     }
-
-    convertData();
 
     // updateData();
 
