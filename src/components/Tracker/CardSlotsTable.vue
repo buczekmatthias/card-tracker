@@ -5,10 +5,10 @@
       <table class="border-collapse w-full">
         <thead>
           <tr>
-            <th class="border-2 border-container py-3 px-2">Slot</th>
-            <th class="border-2 border-container py-3 px-2">Cost</th>
-            <th class="border-2 border-container py-3 px-2">Total cost</th>
-            <th class="border-2 border-container py-3 px-2">Cost left</th>
+            <th class="border border-slate-300/40 py-3 px-2">Slot</th>
+            <th class="border border-slate-300/40 py-3 px-2">Cost</th>
+            <th class="border border-slate-300/40 py-3 px-2">Total cost</th>
+            <th class="border border-slate-300/40 py-3 px-2">Cost left</th>
           </tr>
         </thead>
         <tbody>
@@ -16,10 +16,10 @@
             v-for="(cost, slot) in slots"
             :key="slot"
           >
-            <td class="text-center border border-container p-2">{{ slot }}</td>
-            <td class="text-center border border-container p-2">{{ cost.toLocaleString() }}</td>
-            <td class="text-center border border-container p-2">{{ costToTarget(1, slot).toLocaleString() }}</td>
-            <td class="text-center border border-container p-2">{{ costToTarget(slot, Object.keys(slots).length).toLocaleString() }}</td>
+            <td class="text-center border border-slate-300/20 p-2">{{ slot }}</td>
+            <td class="text-center border border-slate-300/20 p-2">{{ cost.toLocaleString() }}</td>
+            <td class="text-center border border-slate-300/20 p-2">{{ costToTarget(1, slot).toLocaleString() }}</td>
+            <td class="text-center border border-slate-300/20 p-2">{{ costToTarget(slot, Object.keys(slots).length).toLocaleString() }}</td>
           </tr>
         </tbody>
       </table>
