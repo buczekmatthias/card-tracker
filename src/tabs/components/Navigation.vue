@@ -14,7 +14,7 @@
         :icon="tab.icon"
         height="20"
         class="duration-150"
-        :class="activeTab === tab.value ? 'text-emerald-600' : 'text-slate-50/20'"
+        :class="activeTab === tab.value ? 'text-emerald-600' : 'text-slate-50/20 hover:text-slate-50/40'"
       />
     </button>
   </div>
