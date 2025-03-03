@@ -27,6 +27,8 @@ const vaultSlots = {
   2: { unlock: 15, path: 20 },
   3: { unlock: 20, path: 10 },
   4: { unlock: 25, path: 10 },
+  5: { unlock: 35, path: 10 },
+  6: { unlock: 45, path: 20 },
 };
 
 const getGemSlotsCount = () => parseInt(Object.keys(slots).pop());

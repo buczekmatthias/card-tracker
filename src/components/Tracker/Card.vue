@@ -72,30 +72,5 @@ const info = ref(getCardImgAndGlow(props.name));
 
 const showInfo = ref(false);
 
-// const updatedCard = ref(props.card);
-
-// const target = ref(levels[updatedCard.value.lvl]);
-
-// watch(
-//   () => updatedCard.value.lvl,
-//   () => {
-//     target.value = levels[updatedCard.value.lvl];
-//     updatedCard.value.owned = updatedCard.value.lvl === 1 ? 1 : 0;
-//   }
-// );
-
-// const emit = defineEmits(["cardUpdate"]);
-
-// watch(
-//   () => updatedCard.value,
-//   () => {
-//     if (updatedCard.value.lvl !== 7 && updatedCard.value.masteryUnlocked) {
-//       updatedCard.value.masteryUnlocked = false;
-//     }
-//     emit("cardUpdate", updatedCard.value);
-//   },
-//   { deep: true }
-// );
-
 const getIcon = () => new URL(`../../assets/cards/${info.value.card}`, import.meta.url).href;
 </script>
