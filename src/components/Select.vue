@@ -19,7 +19,7 @@
         <Icon icon="fluent:chevron-up-down-16-filled" />
       </Button>
       <div
-        class="absolute duration-150 left-0 w-full flex-col bg-theme border border-solid border-slate-300/30 rounded-md shadow-md max-h-[40vh] overflow-auto"
+        class="absolute duration-150 left-0 w-full flex-col bg-theme border border-solid border-slate-300/30 rounded-md shadow-md max-h-[clamp(100px,40vh,300px)] overflow-auto"
         :class="[showOptions ? 'opacity-100 translate-y-0 z-40' : `opacity-0 ${isInUpperHalf ? '-translate-y-4' : 'translate-y-4'} -z-10`, isInUpperHalf ? 'top-[110%]' : 'bottom-[110%]']"
       >
         <p
