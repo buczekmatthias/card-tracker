@@ -1,11 +1,11 @@
 <template>
   <div
-    class="grid grid-rows-[1fr_4fr_1.35fr] grid-cols-1 border border-solid border-slate-300/20 hover:border-slate-300/50 duration-150 rounded-md h-[13.5rem] cursor-pointer w-40"
+    class="grid grid-rows-[1fr_4.5fr_1.35fr] grid-cols-1 border border-solid border-slate-300/20 hover:border-slate-300/50 duration-150 rounded-md h-80 cursor-pointer w-44"
     @click="showInfo = true"
   >
-    <p class="text-center p-1.5">{{ name }}</p>
+    <p class="text-center p-1.5 self-center">{{ name }}</p>
     <div
-      class="border-y border-solid border-y-zinc-200 flex items-center justify-center glow relative"
+      class="border-y border-solid border-y-slate-300/20 flex items-center justify-center glow relative"
       :class="info.glow"
     >
       <Icon
@@ -17,8 +17,14 @@
       <img
         v-lazy="getIcon()"
         :alt="`${name} card`"
-        class="h-1/3"
+        class="h-12"
       />
+      <p
+        class="absolute bottom-0 left-0 z-30 w-full p-2 text-center border-t border-solid border-t-slate-300/20 bg-theme/70"
+        v-if="content.lvl !== 7"
+      >
+        {{ content.owned }} / {{ levels[content.lvl] }}
+      </p>
     </div>
     <div class="flex gap-2 items-center justify-center p-1.5">
       <template v-if="content.lvl === 0">
@@ -56,6 +62,7 @@
 import { ref } from "vue";
 import { lockedCards } from "@/data/cards";
 import { getCardImgAndGlow } from "@/data/cardsInfo";
+import { levels } from "@/data/cardLevels";
 
 import { Icon } from "@iconify/vue";
 import CardInfo from "@/components/Tracker/CardInfo.vue";
