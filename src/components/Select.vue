@@ -45,7 +45,7 @@
 
 <script setup>
 import { ref, useTemplateRef, computed } from "vue";
-import { useWindowSize, useElementBounding } from "@vueuse/core";
+import { useWindowSize, useElementBounding, onClickOutside } from "@vueuse/core";
 
 import Button from "@/components/Button.vue";
 import { Icon } from "@iconify/vue";
@@ -65,4 +65,6 @@ const { height } = useWindowSize();
 const { top } = useElementBounding(select);
 
 const isInUpperHalf = computed(() => height.value / 2 >= top.value);
+
+onClickOutside(select, (e) => (showOptions.value = false));
 </script>
