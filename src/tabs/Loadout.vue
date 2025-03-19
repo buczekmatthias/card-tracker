@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col pb-0 self-center w-full max-w-2xl">
-    <div class="sticky top-0 bg-theme border-b border-solid border-b-zinc-50/50 bg-theme pb-2">
+    <div class="sticky top-0 bg-theme border-b border-solid border-b-zinc-50/50 pb-2">
       <div class="loadout-grid h-24 justify-items-center">
         <div></div>
         <p

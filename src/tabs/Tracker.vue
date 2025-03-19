@@ -6,27 +6,21 @@
         icon="octicon:info-16"
         height="28"
       />
-      <p class="text-sm">Use lab calculator you can find <a href="https://thetower.tools/" class="text-sky-600">thetower.tools</a> to discover cards and masteries labs times and costs</p>
+      <p class="text-sm">
+        On
+        <a
+          href="https://thetower.tools/"
+          class="text-sky-500"
+          >thetower.tools</a
+        >
+        you can find lab calc you can use to discover times & costs related cards and masteries labs
+      </p>
     </div>
-    <div class="self-center bg-nav p-2 rounded-lg flex gap-4">
-      <button
-        v-for="rarityTab in ['common', 'rare', 'epic']"
-        :key="rarityTab"
-        class="capitalize cursor-pointer py-2 px-4 rounded-md"
-        :class="{
-          'bg-transparent !text-slate-50': cardRarity !== rarityTab,
-          'bg-card-common text-nav': cardRarity === 'common',
-          'bg-card-rare': cardRarity === 'rare',
-          'bg-card-epic': cardRarity === 'epic',
-        }"
-        @click="cardRarity = rarityTab"
-      >
-        {{ rarityTab }} ({{ Object.keys(cardsFilter(rarityTab)).length }})
-      </button>
-    </div>
-    <CardGroup
-      :rarity="cardRarity"
-      :cards="cardsFilter(cardRarity)"
+    <Card
+      v-for="[card, content] in Object.entries(cards)"
+      :key="card"
+      :name="card"
+      :content="content"
       @cardUpdate="saveChanges"
     />
   </div>
@@ -34,13 +28,10 @@
 
 <script setup>
 import { ref } from "vue";
-import cardsFilter from "@/composables/cardsFilter";
 
 import { Icon } from "@iconify/vue";
 import CardSlots from "@/components/Tracker/CardSlots.vue";
-import CardGroup from "@/components/Tracker/CardGroup.vue";
-
-const cardRarity = ref("common");
+import Card from "@/components/Tracker/Card.vue";
 
 const cards = ref(JSON.parse(localStorage.getItem("cards")));
 

@@ -5,7 +5,7 @@
       id="modal"
     >
       <div
-        class="bg-theme p-4 flex flex-col gap-2 border border-solid border-slate-300/15 rounded-md max-h-[85vh] max-w-[1360px] w-full overflow-auto"
+        class="bg-theme p-4 flex flex-col gap-2 border border-solid border-slate-300/15 rounded-md max-h-[95vh] max-w-[1360px] w-full"
         ref="modal"
       >
         <div class="w-full flex justify-end">
@@ -16,7 +16,9 @@
             @click="$emit('closeModal')"
           />
         </div>
-        <slot />
+        <div class="overflow-auto">
+          <slot />
+        </div>
       </div>
     </div>
   </Teleport>
