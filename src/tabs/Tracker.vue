@@ -7,13 +7,12 @@
         height="28"
       />
       <p class="text-sm">
-        On
         <a
           href="https://thetower.tools/"
           class="text-sky-500"
           >thetower.tools</a
         >
-        you can find lab calc you can use to discover times & costs related cards and masteries labs
+        has lab calculator you can use to discover times & costs of cards and masteries related labs
       </p>
     </div>
     <Card
