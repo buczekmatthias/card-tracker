@@ -43,8 +43,8 @@
     <table class="border-collapse w-full">
       <thead>
         <tr>
-          <th class="border border-slate-300/40 p-3">Level</th>
-          <th class="border border-slate-300/40 p-3">Value</th>
+          <th class="border border-slate-300/20 p-3">Level</th>
+          <th class="border border-slate-300/20 p-3">Value</th>
         </tr>
       </thead>
       <tbody>
@@ -71,6 +71,23 @@
         </div>
       </div>
       <p>{{ mastery.description }}</p>
+      <table class="border-collapse w-full">
+        <thead>
+          <tr>
+            <th class="border border-slate-300/20 p-3">Level</th>
+            <th class="border border-slate-300/20 p-3">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(value, lvl) in mastery.values"
+            :key="value"
+          >
+            <td class="text-center border border-slate-300/20 p-2">{{ lvl }}</td>
+            <td class="text-center border border-slate-300/20 p-2">{{ formatMasteryValue(value) }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -95,6 +112,8 @@ const info = ref(getCardInfo(props.name));
 console.log(info.value.card);
 
 const formatInfoValue = () => info.value.description.replace("pvs", `${info.value.prefix}${props.content.lvl === 0 ? "N" : info.value.values[props.content.lvl - 1]}${info.value.suffix}`);
+
+const formatMasteryValue = (v) => mastery.value.value.replace("v", v);
 
 const getIcon = () => new URL(`../../assets/cards/${info.value.card}`, import.meta.url).href;
 
