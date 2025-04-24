@@ -1,5 +1,5 @@
 <template>
-  <div class="order-last flex flex-col gap-3.5 text-slate-600 text-xs max-w-2xl w-full">
+  <div class="mt-auto order-last flex flex-col gap-3.5 text-slate-600 text-xs max-w-2xl w-full">
     <p>TheTower &copy; _.hazy</p>
     <div class="flex gap-5 flex-wrap">
       <a

@@ -1,6 +1,5 @@
 <template>
   <div class="w-full max-w-4xl flex flex-col gap-4">
-    <CardSlots />
     <div class="flex gap-2 items-center border border-solid border-slate-300/30 rounded-md p-3.5">
       <Icon
         icon="octicon:info-16"
@@ -15,6 +14,7 @@
         has lab calculator you can use to discover times & costs of cards and masteries related labs
       </p>
     </div>
+    <CardSlots />
     <input
       v-model="search"
       class="border border-solid border-slate-300/30 rounded-md p-3 w-full !ring-0 !outline-none"
