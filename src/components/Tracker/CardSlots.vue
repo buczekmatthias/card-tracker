@@ -37,6 +37,16 @@
       v-if="showModal"
       @closeModal="showModal = false"
     >
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="">
+          <p>Gem slots count</p>
+          <p>{{ gemSlotsCount }}</p>
+        </div>
+        <div class="">
+          <p>Vault slots count</p>
+          <p>{{ vaultSlotsCount }}</p>
+        </div>
+      </div>
       <CardSlotsTable />
     </Modal>
   </div>

@@ -1,5 +1,6 @@
 <template>
   <div class="w-full max-w-4xl flex flex-col gap-4">
+    <CardSlots />
     <div class="flex gap-2 items-center border border-solid border-slate-300/30 rounded-md p-3.5">
       <Icon
         icon="octicon:info-16"
@@ -14,7 +15,7 @@
         has lab calculator you can use to discover times & costs of cards and masteries related labs
       </p>
     </div>
-    <CardSlots />
+    <Counter />
     <input
       v-model="search"
       class="border border-solid border-slate-300/30 rounded-md p-3 w-full !ring-0 !outline-none"
@@ -38,6 +39,7 @@ import { ref, computed } from "vue";
 import { Icon } from "@iconify/vue";
 import CardSlots from "@/components/Tracker/CardSlots.vue";
 import Card from "@/components/Tracker/Card.vue";
+import Counter from "@/components/Tracker/Counter.vue";
 
 const cards = ref(JSON.parse(localStorage.getItem("cards")));
 
