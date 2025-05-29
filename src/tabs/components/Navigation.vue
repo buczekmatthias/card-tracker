@@ -1,13 +1,13 @@
 <template>
   <div
-    class="order-last border border-solid border-slate-300/15 sticky bottom-4 z-30 grid grid-cols-4 gap-6 bg-nav rounded-md px-6"
+    class="order-last border border-solid border-slate-300/15 shadow-lg sticky bottom-4 z-30 grid grid-cols-4 gap-6 bg-nav rounded-md px-6"
     id="navigation"
   >
     <button
       v-for="tab in tabs"
       :key="tab.value"
-      class="cursor-pointer p-4 border-t-2 border-solid duration-150"
-      :class="activeTab === tab.value ? 'border-t-emerald-600' : 'border-t-transparent'"
+      class="cursor-pointer p-4 border-b-2 border-solid duration-150"
+      :class="activeTab === tab.value ? 'border-b-emerald-600' : 'border-b-transparent'"
       @click="activeTab = tab.value"
     >
       <Icon

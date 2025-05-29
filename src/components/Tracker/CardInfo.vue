@@ -109,7 +109,6 @@ const props = defineProps({
 const mastery = ref(getCardMastery(props.name));
 
 const info = ref(getCardInfo(props.name));
-console.log(info.value.card);
 
 const formatInfoValue = () => info.value.description.replace("pvs", `${info.value.prefix}${props.content.lvl === 0 ? "N" : info.value.values[props.content.lvl - 1]}${info.value.suffix}`);
 

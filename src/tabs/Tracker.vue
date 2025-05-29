@@ -1,7 +1,7 @@
 <template>
   <div class="w-full max-w-4xl flex flex-col gap-4">
     <CardSlots />
-    <div class="flex gap-2 items-center border border-solid border-slate-300/30 rounded-md p-3.5">
+    <div class="flex gap-2 items-start border border-solid border-slate-300/30 rounded-md p-3.5">
       <Icon
         icon="octicon:info-16"
         height="28"
@@ -10,8 +10,9 @@
         <a
           href="https://thetower.tools/"
           class="text-sky-500"
-          >thetower.tools</a
         >
+          thetower.tools
+        </a>
         has lab calculator you can use to discover times & costs of cards and masteries related labs
       </p>
     </div>

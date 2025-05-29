@@ -4,7 +4,7 @@
       <div class="loadout-grid h-24 justify-items-center">
         <div></div>
         <p
-          class="h-full preset"
+          class="preset"
           v-for="i in Array.from(Array(5).keys())"
           :key="i"
         >
