@@ -17,7 +17,7 @@ const masteries = {
   "Critical coin": { cost: 1000, description: "Adds a chance to drop two coins instead of one", value: "v%", values: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] },
   "Wave skip": { cost: 1000, description: "Adds a distinct chance to double wave skip. This chance can be stacked with other skips.", value: "v%", values: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55] },
   "Intro skip": { cost: 1250, description: "Dramatically increase how many waves Intro Sprint stays active", value: "xv", values: [1.8, 3.6, 5.4, 7.2, 9, 10.8, 12.6, 14.4, 16.2, 18] },
-  "Land mine stun": { cost: 1000, description: "Unlocks flashbang which causes enemies stunned by a land mine to have a chance to miss their attacks", value: "v%", values: [2.5, 5.4, 8.1, 10.8, 13.5, 16.2, 18.9, 21.6, 24.3, 27] },
+  "Land mine stun": { cost: 1000, description: "Unlocks flashbang which causes enemies stunned by a land mine to have a chance to miss their attacks", value: "v%", values: [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 25] },
   "Package change": { cost: 1000, description: "Unlocks care package which gives packages a chance to also deliver a common module", value: "v%", values: [0.4, 0.8, 1.2, 1.6, 2, 2.4, 2.8, 3.2, 3.6, 4] },
   "Death ray": { cost: 750, description: "Allows death ray to partially pierce protector's shields", value: "v%", values: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50] },
   "Energy net": { cost: 750, description: "Adds a damage multiplier to enemies while they are trapped by the net and lingers for 10 seconds after", value: "xv", values: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20] },
