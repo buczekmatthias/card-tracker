@@ -7,17 +7,16 @@ export default () => {
   //    owned: 0,
   //    mastery: false,
   //    rarity: ""
-  //  }
-  //
-  // if (!cards.includes("masteryUnlocked")) {
-  //   cards.forEach((group) => {
-  //    group.cards.forEach((card) => {
-  //      if (!("masteryUnlocked" in card)) {
-  //         card["masteryUnlocked"] = false;
-  //      }
-  //    });
-  //  });
   // }
+
+  if (!Object.keys(cardsObject).includes("Area of effect")) {
+    cardsObject["Area of effect"] = {
+      lvl: 0,
+      owned: 0,
+      mastery: false,
+      rarity: "epic",
+    };
+  }
 
   localStorage.setItem("cards", JSON.stringify(cardsObject));
 };

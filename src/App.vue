@@ -44,7 +44,7 @@ onBeforeMount(() => {
       }
     }
 
-    // updateData();
+    updateData();
 
     localStorage.setItem(`${version}-update`, true);
   }

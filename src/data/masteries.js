@@ -29,6 +29,7 @@ const masteries = {
   Berserker: { cost: 750, description: "Increases the damage cap to x500 for a duration when Death Defy is activated", value: "vs", values: [30, 60, 90, 120, 150, 180, 210, 240, 270, 300] },
   "Ultimate crit": { cost: 750, description: "Increases the card's stat multiplier", value: "+v%", values: [0.3, 0.7, 1, 1.3, 1.7, 2, 2.3, 2.7, 3, 3.3] },
   Nuke: { cost: 750, description: "Unlocks a lingering attack speed slow which lasts for 300 waves after the nuke", value: "v%", values: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50] },
+  "Area of effect": { cost: 1000, description: "Increases the range of all damage area of effects", value: "v%", values: [2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 25] },
 };
 
 const getTotalCost = () => {
