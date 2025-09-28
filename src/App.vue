@@ -1,4 +1,5 @@
 <template>
+  <EndOfService />
   <Navigation v-model="page" />
   <Tracker v-if="page === 'tracker'" />
   <Loadout v-else-if="page === 'loadout'" />
@@ -21,6 +22,7 @@ import freshLoadout from "@/data/freshLoadout";
 import updateData from "@/data/updateData";
 
 import convertData from "@/data/convertData";
+import EndOfService from "@/components/EndOfService.vue";
 
 const page = ref(localStorage.getItem("page"));
 
